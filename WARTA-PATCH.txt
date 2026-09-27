@@ -1,0 +1,5 @@
+Tambahkan SATU baris berikut tepat sebelum </body> di warta.html:
+
+<script src="pwa.js" defer></script>
+
+Itu saja. Jangan hapus JavaScript Warta yang sudah ada.

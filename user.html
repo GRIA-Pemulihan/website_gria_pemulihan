@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0c">
+<title>User — GRIA Pemulihan Palu</title>
+<meta name="description" content="Profil jemaat dan perjalanan baca Alkitab GRIA Pemulihan Palu.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  .user-wrap{
+    max-width:820px;
+    margin:0 auto;
+    padding:115px var(--pad) 110px;
+    position:relative;
+    z-index:2;
+  }
+  .user-loading{
+    color:var(--text-mute);
+    text-align:center;
+    padding:70px 20px;
+  }
+  .profile-head{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:28px;
+  }
+  .profile-avatar{
+    width:62px;height:62px;
+    display:flex;align-items:center;justify-content:center;
+    flex:0 0 auto;
+    border-radius:20px;
+    color:#0a0a0a;
+    background:var(--neon);
+    font-family:var(--font-display);
+    font-size:22px;
+    font-weight:800;
+  }
+  .profile-head h1{font-size:clamp(25px,5vw,36px);margin-bottom:4px;}
+  .profile-head p{color:var(--text-mute);font-size:13px;}
+  .member-badge{
+    display:inline-flex;
+    margin-top:7px;
+    padding:5px 9px;
+    border-radius:999px;
+    color:var(--neon);
+    background:rgba(204,255,0,.08);
+    border:1px solid rgba(204,255,0,.18);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+  }
+  .user-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+  .user-card{
+    background:linear-gradient(155deg,var(--bg-elevated),var(--bg-soft));
+    border:1px solid var(--card-border);
+    border-radius:var(--r-xl);
+    padding:24px;
+    overflow:hidden;
+  }
+  .user-card h2{
+    font-size:13px;
+    color:var(--text-mute);
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:16px;
+  }
+  .bible-ref{font-size:24px;font-weight:800;color:#fff;margin:6px 0 4px;}
+  .bible-day{color:var(--neon);font-size:12px;font-weight:700;}
+  .bible-detail{color:var(--text-mute);font-size:13px;margin-top:7px;}
+  .progress-bar{
+    height:10px;
+    background:#060607;
+    border:1px solid var(--card-border);
+    border-radius:999px;
+    overflow:hidden;
+    margin-top:18px;
+  }
+  .progress-fill{
+    height:100%;
+    background:var(--neon);
+    border-radius:999px;
+  }
+  .progress-row{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    color:var(--text-mute);
+    font-size:12px;
+    margin-top:8px;
+  }
+  .mark-btn{
+    width:100%;
+    min-height:46px;
+    margin-top:18px;
+    border:0;
+    border-radius:14px;
+    background:var(--neon);
+    color:#050505;
+    font-weight:750;
+    cursor:pointer;
+  }
+  .mark-btn.done{
+    color:var(--neon);
+    background:rgba(204,255,0,.08);
+    border:1px solid rgba(204,255,0,.2);
+  }
+  .profile-list{display:grid;gap:0;}
+  .profile-row{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:13px 0;
+    border-bottom:1px solid var(--card-border);
+    font-size:13px;
+  }
+  .profile-row:last-child{border-bottom:0;}
+  .profile-row span:first-child{color:var(--text-mute);}
+  .profile-row span:last-child{text-align:right;color:#eee;}
+  .quick-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .quick-actions a{
+    min-height:48px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:14px;
+    color:var(--text);
+    background:rgba(255,255,255,.045);
+    border:1px solid var(--card-border);
+    font-size:13px;
+    font-weight:650;
+  }
+  .logout-btn{
+    width:100%;
+    min-height:48px;
+    border-radius:14px;
+    border:1px solid rgba(255,100,100,.2);
+    color:#ff8585;
+    background:rgba(255,100,100,.05);
+    font-weight:700;
+    cursor:pointer;
+  }
+  .guest-card{
+    max-width:520px;
+    margin:20px auto 0;
+    padding:30px 24px;
+    border-radius:var(--r-2xl);
+    background:linear-gradient(155deg,var(--bg-elevated),var(--bg-soft));
+    border:1px solid var(--card-border);
+  }
+  .guest-icon{
+    width:58px;height:58px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:18px;
+    color:var(--neon);
+    background:rgba(204,255,0,.08);
+    border:1px solid rgba(204,255,0,.18);
+    margin-bottom:22px;
+  }
+  .guest-icon svg{width:28px;height:28px;}
+  .guest-card h1{font-size:28px;margin-bottom:10px;}
+  .guest-card p{color:var(--text-mute);font-size:14px;line-height:1.7;}
+  .guest-benefits{margin:20px 0;display:grid;gap:9px;color:#ddd;font-size:13px;}
+  .guest-benefits div::before{content:'✓';color:var(--neon);margin-right:9px;font-weight:800;}
+  .login-cta{
+    display:flex;
+    min-height:50px;
+    align-items:center;
+    justify-content:center;
+    border-radius:15px;
+    color:#050505;
+    background:var(--neon);
+    font-size:14px;
+    font-weight:750;
+  }
+  @media(min-width:720px){
+    .user-grid{grid-template-columns:1.2fr .8fr;}
+    .user-card.bible-card{grid-row:span 2;}
+  }
+  @media(max-width:768px){
+    .user-wrap{padding-top:90px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div id="scrollProgress"></div>
+  <div class="navbar-inner">
+    <a href="index.html" class="logo" aria-label="GRIA — Beranda">GRI<span>A</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="warta.html">Warta</a></li>
+      <li><a href="persekutuan.html">Persekutuan</a></li>
+      <li><a href="user.html">User</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="user-wrap" id="userContent">
+  <div class="user-loading">Memuat akun...</div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/auth.js"></script>
+<script>
+(async function () {
+  const root = document.getElementById('userContent');
+
+  function escapeHtml(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function initials(name) {
+    const parts = String(name || 'GRIA').trim().split(/\s+/).filter(Boolean);
+    return (parts[0]?.[0] || 'G') + (parts[1]?.[0] || '');
+  }
+
+  let session = null;
+  try {
+    session = await getSession();
+  } catch (_) {}
+
+  if (!session) {
+    root.innerHTML = `
+      <section class="guest-card">
+        <div class="guest-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        </div>
+        <span class="eyebrow">Akses Jemaat</span>
+        <h1>Masuk sebagai Jemaat GRIA</h1>
+        <p>Fitur publik tetap dapat digunakan tanpa akun. Masuk untuk membuka fitur pribadi Anda.</p>
+        <div class="guest-benefits">
+          <div>Profil dan data keanggotaan</div>
+          <div>Alkitab Saya &amp; tracker 365 hari</div>
+          <div>Progress bacaan pribadi</div>
+        </div>
+        <a class="login-cta" href="daftar.html">Masuk / Daftar Jemaat</a>
+      </section>
+    `;
+    return;
+  }
+
+  let profile;
+  try {
+    profile = await getProfile(session.user.id);
+  } catch (error) {
+    root.innerHTML = '<div class="user-loading">Profil belum dapat dimuat. Silakan coba lagi.</div>';
+    return;
+  }
+
+  if (!profile.onboarding_selesai) {
+    window.location.href = 'onboarding.html';
+    return;
+  }
+
+  try { localStorage.setItem('gria_entry_mode', 'member'); } catch (_) {}
+
+  const userId = session.user.id;
+
+  if (!profile.tanggal_mulai_baca) {
+    const todayStr = new Date().toISOString().split('T')[0];
+    await supabaseClient.from('profiles').update({ tanggal_mulai_baca: todayStr }).eq('id', userId);
+    profile.tanggal_mulai_baca = todayStr;
+  }
+
+  const startDate = new Date(profile.tanggal_mulai_baca);
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  startDate.setHours(0,0,0,0);
+  const diffDays = Math.floor((today - startDate) / 86400000);
+  const currentDay = Math.min(Math.max(diffDays + 1, 1), 365);
+
+  const [{ data: todayPlan }, { data: progress }] = await Promise.all([
+    supabaseClient.from('rencana_baca_harian').select('*').eq('urutan_hari', currentDay).single(),
+    supabaseClient.from('progres_baca').select('urutan_hari, tanggal_ditandai').eq('user_id', userId)
+  ]);
+
+  const completedDays = Array.isArray(progress) ? progress.length : 0;
+  const percentage = Math.round((completedDays / 365) * 100);
+  const todayDone = Array.isArray(progress) && progress.some(p => p.urutan_hari === currentDay);
+
+  const nama = profile.nama || (session.user.email || 'Jemaat GRIA').split('@')[0];
+  const email = session.user.email || '—';
+  const startFormatted = startDate.toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' });
+
+  root.innerHTML = `
+    <header class="profile-head">
+      <div class="profile-avatar">${escapeHtml(initials(nama).toUpperCase())}</div>
+      <div>
+        <h1>${escapeHtml(nama)}</h1>
+        <p>${escapeHtml(email)}</p>
+        <span class="member-badge">Jemaat GRIA</span>
+      </div>
+    </header>
+
+    <div class="user-grid">
+      <section class="user-card bible-card">
+        <h2>Alkitab Saya</h2>
+        <span class="bible-day">Hari ke-${currentDay} dari 365</span>
+        <div class="bible-ref">${escapeHtml(todayPlan ? todayPlan.referensi_ayat : 'Bacaan belum tersedia')}</div>
+        <div class="bible-detail">Program dimulai ${escapeHtml(startFormatted)}</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${percentage}%"></div></div>
+        <div class="progress-row">
+          <span>${completedDays}/365 hari</span>
+          <span>${percentage}%</span>
+        </div>
+        <button class="mark-btn ${todayDone ? 'done' : ''}" id="markReading" ${todayDone ? 'disabled' : ''}>
+          ${todayDone ? '✓ Sudah Dibaca Hari Ini' : 'Tandai Sudah Baca'}
+        </button>
+      </section>
+
+      <section class="user-card">
+        <h2>Profil Jemaat</h2>
+        <div class="profile-list">
+          <div class="profile-row"><span>Nama</span><span>${escapeHtml(nama)}</span></div>
+          <div class="profile-row"><span>WhatsApp</span><span>${escapeHtml(profile.nomor_wa || '—')}</span></div>
+          <div class="profile-row"><span>Pekerjaan</span><span>${escapeHtml(profile.pekerjaan || '—')}</span></div>
+          <div class="profile-row"><span>Status</span><span>Aktif</span></div>
+        </div>
+      </section>
+
+      <section class="user-card">
+        <h2>Akses Cepat</h2>
+        <div class="quick-actions">
+          <a href="warta.html">Warta</a>
+          <a href="persekutuan.html">Persekutuan</a>
+        </div>
+      </section>
+
+      <section class="user-card" style="grid-column:1/-1">
+        <button class="logout-btn" id="logoutBtn">Keluar dari Akun</button>
+      </section>
+    </div>
+  `;
+
+  const markBtn = document.getElementById('markReading');
+  if (markBtn && !todayDone) {
+    markBtn.addEventListener('click', async function () {
+      markBtn.disabled = true;
+      markBtn.textContent = 'Menyimpan...';
+
+      const { error } = await supabaseClient.from('progres_baca').upsert({
+        user_id: userId,
+        urutan_hari: currentDay,
+        sudah_baca: true,
+        tanggal_ditandai: new Date().toISOString()
+      }, { onConflict: 'user_id,urutan_hari' });
+
+      if (error) {
+        markBtn.disabled = false;
+        markBtn.textContent = 'Gagal, coba lagi';
+      } else {
+        markBtn.classList.add('done');
+        markBtn.textContent = '✓ Sudah Dibaca Hari Ini';
+        window.setTimeout(() => window.location.reload(), 500);
+      }
+    });
+  }
+
+  document.getElementById('logoutBtn').addEventListener('click', async function () {
+    await supabaseClient.auth.signOut();
+    try { localStorage.setItem('gria_entry_mode', 'guest'); } catch (_) {}
+    window.location.href = 'index.html';
+  });
+})();
+</script>
+
+<script src="pwa.js" defer></script>
+</body>
+</html>

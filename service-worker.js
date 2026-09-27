@@ -1,13 +1,15 @@
-/* GRIA PWA service worker */
-const VERSION = 'gria-pwa-v1';
+/* GRIA PWA service worker v2 */
+const VERSION = 'gria-pwa-v2';
 const STATIC_CACHE = `${VERSION}-static`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 const scopeUrl = self.registration.scope;
 const sameOrigin = new URL(scopeUrl).origin;
+
 const PRECACHE = [
   'offline.html',
   'shared.css',
   'pwa.js',
+  'manifest.webmanifest',
   'icon-192.png',
   'icon-512.png',
   'apple-touch-icon.png'
@@ -16,7 +18,9 @@ const PRECACHE = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(STATIC_CACHE)
-      .then((cache) => cache.addAll(PRECACHE))
+      .then(async (cache) => {
+        await Promise.allSettled(PRECACHE.map((url) => cache.add(url)));
+      })
       .then(() => self.skipWaiting())
   );
 });
@@ -37,6 +41,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const request = event.request;
   if (request.method !== 'GET') return;
+
   const url = new URL(request.url);
   if (url.origin !== sameOrigin) return;
 
@@ -72,6 +77,7 @@ self.addEventListener('fetch', (event) => {
             return response;
           })
           .catch(() => cached);
+
         return cached || network;
       })
     );
