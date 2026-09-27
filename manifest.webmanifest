@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "GRIA Pemulihan Palu",
+  "short_name": "GRIA",
+  "description": "Aplikasi jemaat Gereja Injili Agape Pemulihan Palu untuk warta, komunitas, jadwal, dan layanan jemaat.",
+  "lang": "id-ID",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0a0a0c",
+  "theme_color": "#0a0a0c",
+  "icons": [
+    {"src":"icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+  ],
+  "shortcuts": [
+    {"name":"Warta Jemaat","short_name":"Warta","url":"warta.html"},
+    {"name":"Komunitas","short_name":"Komunitas","url":"komunitas.html"},
+    {"name":"Daftar Jemaat","short_name":"Daftar","url":"daftar.html"}
+  ]
+}
