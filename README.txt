@@ -1,33 +1,42 @@
-GRIA V4 — JEMAAT + WARTA SWIPE
+GRIA V5 — ALKITAB + PERSEKUTUAN + WARTA
 
-UPLOAD / REPLACE DI ROOT REPOSITORY:
-1. pwa.js                  -> replace
-2. warta-mobile.js         -> replace
-3. service-worker.js       -> replace
-4. manifest.webmanifest    -> replace
-5. jemaat.html             -> file baru
-6. user.html               -> replace (redirect ke jemaat.html)
-7. daftar.html             -> replace (redirect ke jemaat.html)
-8. dashboard.html          -> replace (redirect ke jemaat.html)
+UPLOAD / REPLACE FILE DI ROOT REPOSITORY:
+1. jemaat.html           -> replace
+2. alkitab.html          -> file baru
+3. persekutuan.html      -> replace
+4. warta-mobile.js       -> replace
+5. service-worker.js     -> replace
 
-TIDAK PERLU EDIT warta.html.
+TIDAK PERLU EDIT:
+- warta.html
+- pwa.js
+- index.html
 
 HASIL:
-- Bottom nav: Home | Warta | Persekutuan | Jemaat
-- Akses Jemaat memakai kode GRIA2026
-- Keterangan: tanyakan kode di grup WhatsApp GRIA
-- Tracker bacaan disimpan lokal di HP
-- Jadwal Pelayanan = swipe cards
-- Laporan Persembahan = swipe cards + Total Minggu + Total Periode
-- Informasi Umum = swipe cards
-- Font card Warta = Manrope
+JEMAAT
+- Bible Reading Tracker dihapus dari fitur aktif.
+- Fitur utama sekarang: Alkitab.
+- Alkitab: English KJV, Hebrew WLC (PL), Greek Textus Receptus/TR (PB).
+- Bible Reading Tracker 2027 = Coming Soon.
+- Bank Ayat Tahunan by Member = Coming Soon.
+- Alkitab hanya bisa dibuka jika kode jemaat sudah dimasukkan.
 
-CATATAN KEAMANAN:
-Kode GRIA2026 berada di JavaScript frontend, sehingga ini adalah gate sederhana,
-bukan autentikasi aman untuk data sensitif.
+PERSEKUTUAN
+- Pendalaman Alkitab -> alkitab.html
+- Persekutuan Doa -> warta.html#informasi-umum
+
+WARTA
+- Ulang Tahun Bulan Ini disembunyikan sementara.
+- Jadwal, Persembahan, Informasi Umum tetap swipe cards.
+- Smooth scroll + scroll snap.
+- Card yang berada di tengah sedikit membesar/fokus.
+- Total Minggu + Total Periode tetap aktif.
 
 COMMIT MESSAGE:
-Switch to Jemaat access and improve Warta swipe cards
+Add member Bible and refine fellowship and Warta UX
 
 SETELAH COMMIT:
-Tunggu 1-3 menit, refresh website dari Safari, lalu tutup PWA dari app switcher dan buka ulang.
+1. Tunggu GitHub Pages 1-3 menit.
+2. Buka website di Safari dan refresh.
+3. Tutup PWA GRIA dari app switcher.
+4. Buka lagi agar service worker v5 aktif.

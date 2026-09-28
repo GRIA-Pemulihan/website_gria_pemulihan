@@ -2,186 +2,36 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0a0a0c">
 <title>Persekutuan — GRIA Pemulihan Palu</title>
-<meta name="description" content="Pendalaman Alkitab, persekutuan doa, dan kehidupan komunitas GRIA Pemulihan Palu.">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-  .fellowship-wrap{
-    max-width:900px;
-    margin:0 auto;
-    padding:120px var(--pad) 110px;
-    position:relative;
-    z-index:2;
-  }
-  .fellowship-head{margin-bottom:36px;}
-  .fellowship-head h1{
-    font-size:clamp(34px,6vw,58px);
-    letter-spacing:-.04em;
-  }
-  .fellowship-head p{
-    color:var(--text-mute);
-    max-width:620px;
-    margin-top:14px;
-    line-height:1.75;
-  }
-  .feature-grid{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:18px;
-  }
-  .feature-card{
-    background:linear-gradient(155deg,var(--bg-elevated),var(--bg-soft));
-    border:1px solid var(--card-border);
-    border-radius:var(--r-xl);
-    padding:26px;
-    position:relative;
-    overflow:hidden;
-  }
-  .feature-card::before{
-    content:'';
-    position:absolute;
-    width:220px;height:220px;
-    right:-100px;top:-110px;
-    background:radial-gradient(circle,rgba(204,255,0,.10),transparent 68%);
-    pointer-events:none;
-  }
-  .feature-icon{
-    width:48px;height:48px;
-    display:flex;align-items:center;justify-content:center;
-    border-radius:15px;
-    color:var(--neon);
-    background:rgba(204,255,0,.08);
-    border:1px solid rgba(204,255,0,.18);
-    margin-bottom:20px;
-  }
-  .feature-icon svg{width:23px;height:23px;}
-  .feature-card h2{font-size:22px;margin-bottom:9px;}
-  .feature-card p{color:var(--text-mute);font-size:14px;line-height:1.7;}
-  .feature-meta{
-    margin-top:20px;
-    padding-top:18px;
-    border-top:1px solid var(--card-border);
-    display:flex;
-    flex-wrap:wrap;
-    gap:9px;
-  }
-  .feature-chip{
-    padding:8px 11px;
-    border-radius:999px;
-    background:rgba(255,255,255,.045);
-    border:1px solid var(--card-border);
-    color:#d8d8da;
-    font-size:12px;
-    font-weight:600;
-  }
-  .feature-actions{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:20px;
-  }
-  .feature-link{
-    display:inline-flex;
-    min-height:44px;
-    align-items:center;
-    justify-content:center;
-    padding:10px 16px;
-    border-radius:13px;
-    color:#080808;
-    background:var(--neon);
-    font-size:13px;
-    font-weight:700;
-  }
-  .feature-link.secondary{
-    color:var(--text);
-    background:rgba(255,255,255,.05);
-    border:1px solid var(--card-border);
-  }
-  @media(min-width:720px){
-    .feature-grid{grid-template-columns:1fr 1fr;}
-    .feature-card.wide{grid-column:1/-1;}
-  }
-  @media(max-width:768px){
-    .fellowship-wrap{padding-top:90px;}
-  }
+html{scroll-behavior:smooth}
+.fellowship-wrap{max-width:920px;margin:0 auto;padding:110px var(--pad) 120px;position:relative;z-index:2}.fellowship-head{margin-bottom:28px}.fellowship-head h1{font:800 clamp(34px,7vw,54px)/1.03 Syne,sans-serif;letter-spacing:-.045em}.fellowship-head p{max-width:620px;margin-top:11px;color:#8f9096;font:500 13.5px/1.7 Manrope,sans-serif}
+.feature-grid{display:grid;grid-template-columns:1fr;gap:14px}.feature-card{position:relative;overflow:hidden;padding:25px;border-radius:24px;background:linear-gradient(155deg,#141417,#0d0d0f);border:1px solid rgba(255,255,255,.075);opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s cubic-bezier(.2,.8,.2,1),border-color .25s ease,box-shadow .25s ease}.feature-card.is-visible{opacity:1;transform:translateY(0)}.feature-card:hover{border-color:rgba(204,255,0,.16);box-shadow:0 18px 45px rgba(0,0,0,.18)}.feature-card:before{content:'';position:absolute;width:190px;height:190px;right:-90px;top:-100px;background:radial-gradient(circle,rgba(204,255,0,.10),transparent 68%);pointer-events:none}
+.feature-icon{width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:15px;color:var(--neon);background:rgba(204,255,0,.07);border:1px solid rgba(204,255,0,.16);margin-bottom:19px}.feature-icon svg{width:23px;height:23px}.feature-card h2{font:800 22px/1.15 Syne,sans-serif;letter-spacing:-.03em}.feature-card p{margin-top:8px;color:#8f9096;font:500 13px/1.65 Manrope,sans-serif}.feature-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:17px}.feature-chip{padding:6px 9px;border-radius:999px;color:#aaa;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.065);font:700 9.5px Manrope,sans-serif}.feature-actions{display:flex;gap:9px;margin-top:19px}.feature-link{display:flex;min-height:46px;align-items:center;justify-content:center;padding:10px 15px;border-radius:14px;color:#050505;background:var(--neon);font:800 12px Manrope,sans-serif;transition:transform .18s ease}.feature-link:active{transform:scale(.98)}.feature-link.secondary{color:#ddd;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
+@media(min-width:720px){.feature-grid{grid-template-columns:1fr 1fr}.feature-card.wide{grid-column:1/-1}}@media(max-width:768px){.fellowship-wrap{padding-top:86px}}
 </style>
 </head>
 <body>
-
-<nav class="navbar" id="navbar">
-  <div id="scrollProgress"></div>
-  <div class="navbar-inner">
-    <a href="index.html" class="logo" aria-label="GRIA — Beranda">
-      GRI<span>A</span>
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="warta.html">Warta</a></li>
-      <li><a href="persekutuan.html">Persekutuan</a></li>
-      <li><a href="user.html">User</a></li>
-    </ul>
-  </div>
-</nav>
-
+<nav class="navbar"><div class="navbar-inner"><a href="index.html" class="logo">GRI<span>A</span></a></div></nav>
 <main class="fellowship-wrap">
-  <header class="fellowship-head">
-    <span class="eyebrow">Bertumbuh Bersama</span>
-    <h1>Persekutuan <span style="color:var(--neon)">GRIA</span></h1>
-    <p>Ruang untuk belajar firman, berdoa, dan bertumbuh bersama sebagai keluarga GRIA.</p>
-  </header>
-
-  <div class="feature-grid">
-    <article class="feature-card">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
-      </div>
-      <h2>Pendalaman Alkitab</h2>
-      <p>Mendalami firman Tuhan bersama, berdiskusi, dan membawa kebenaran Alkitab ke dalam kehidupan sehari-hari.</p>
-      <div class="feature-meta">
-        <span class="feature-chip">Selasa</span>
-        <span class="feature-chip">19.00 WITA</span>
-      </div>
-      <div class="feature-actions">
-        <a class="feature-link" href="warta.html">Lihat Warta</a>
-      </div>
-    </article>
-
-    <article class="feature-card">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-6-4.35-6-10a6 6 0 0 1 12 0c0 5.65-6 10-6 10Z"/><path d="M9 11h6M12 8v6"/></svg>
-      </div>
-      <h2>Persekutuan Doa</h2>
-      <p>Ruang untuk membawa pergumulan dalam doa, saling menguatkan, dan membangun kehidupan doa bersama.</p>
-      <div class="feature-meta">
-        <span class="feature-chip">Jadwal melalui Warta</span>
-        <span class="feature-chip">Info grup WhatsApp</span>
-      </div>
-      <div class="feature-actions">
-        <a class="feature-link" href="warta.html">Cek Jadwal</a>
-      </div>
-    </article>
-
-    <article class="feature-card wide">
-      <div class="feature-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
-      </div>
-      <h2>Komunitas &amp; KKR</h2>
-      <p>Kenali kehidupan komunitas GRIA, Kelompok Konseling Restorasi, dan berbagai ruang pertumbuhan bersama.</p>
-      <div class="feature-actions">
-        <a class="feature-link" href="komunitas.html">Lihat Komunitas</a>
-        <a class="feature-link secondary" href="index.html#worship">Jadwal Ibadah</a>
-      </div>
-    </article>
-  </div>
+<header class="fellowship-head"><span class="eyebrow">Bertumbuh Bersama</span><h1>Persekutuan <span style="color:var(--neon)">GRIA</span></h1><p>Ruang untuk belajar firman, berdoa, dan bertumbuh bersama sebagai keluarga GRIA.</p></header>
+<div class="feature-grid">
+<article class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></div><h2>Pendalaman Alkitab</h2><p>Mendalami firman Tuhan bersama dan membaca teks Alkitab dalam beberapa bahasa.</p><div class="feature-meta"><span class="feature-chip">Selasa</span><span class="feature-chip">19.00 WITA</span></div><div class="feature-actions"><a class="feature-link" href="alkitab.html">Buka Alkitab</a></div></article>
+<article class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-6-4.35-6-10a6 6 0 0 1 12 0c0 5.65-6 10-6 10Z"/><path d="M9 11h6M12 8v6"/></svg></div><h2>Persekutuan Doa</h2><p>Cek jadwal pemimpin doa dan Pendalaman Alkitab langsung pada Informasi Umum di Warta.</p><div class="feature-meta"><span class="feature-chip">Jadwal melalui Warta</span><span class="feature-chip">Info grup WhatsApp</span></div><div class="feature-actions"><a class="feature-link" href="warta.html#informasi-umum">Cek Jadwal di Warta</a></div></article>
+<article class="feature-card wide"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div><h2>Komunitas &amp; KKR</h2><p>Kenali kehidupan komunitas GRIA, Kelompok Konseling Restorasi, dan berbagai ruang pertumbuhan bersama.</p><div class="feature-actions"><a class="feature-link" href="komunitas.html">Lihat Komunitas</a><a class="feature-link secondary" href="index.html#worship">Jadwal Ibadah</a></div></article>
+</div>
 </main>
-
+<script>
+(function(){const cards=document.querySelectorAll('.feature-card');const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.15});cards.forEach((c,i)=>{c.style.transitionDelay=(i*80)+'ms';io.observe(c)})})();
+</script>
 <script src="pwa.js" defer></script>
 </body>
 </html>
