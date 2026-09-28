@@ -13,17 +13,26 @@
 <link rel="stylesheet" href="shared.css">
 <style>
 html{scroll-behavior:smooth}
-body{background:radial-gradient(circle at 50% -5%,rgba(204,255,0,.07),transparent 27%),var(--bg-base)}
-.b-wrap{max-width:980px;margin:0 auto;padding:100px var(--pad) 120px;position:relative;z-index:2}.b-head{margin-bottom:24px}.b-head h1{font:800 clamp(34px,7vw,52px)/1.02 Syne,sans-serif;letter-spacing:-.045em}.b-head p{max-width:650px;margin-top:10px;color:#8e8f95;font:500 13px/1.65 Manrope,sans-serif}
-.b-controls{position:sticky;top:72px;z-index:30;padding:12px;margin:0 0 20px;border-radius:20px;background:rgba(14,14,17,.88);border:1px solid rgba(255,255,255,.07);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 12px 35px rgba(0,0,0,.16)}
-.b-selects{display:grid;grid-template-columns:1.6fr .7fr;gap:8px}.b-selects select{width:100%;min-height:44px;padding:10px 12px;border-radius:13px;color:#eee;background:#08080a;border:1px solid rgba(255,255,255,.09);font:700 12px Manrope,sans-serif;outline:none}
-.lang-tabs{display:flex;gap:7px;margin-top:9px;overflow-x:auto;scrollbar-width:none}.lang-tabs::-webkit-scrollbar{display:none}.lang-tab{flex:0 0 auto;min-height:38px;padding:8px 11px;border-radius:999px;color:#93949a;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);font:800 10.5px Manrope,sans-serif;transition:.2s ease}.lang-tab.active{color:#050505;background:var(--neon);border-color:var(--neon)}.lang-tab:disabled{opacity:.34}
-.b-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0 10px}.b-meta h2{font:800 20px Manrope,sans-serif;letter-spacing:-.03em}.b-meta span{color:#73747a;font:700 10px Manrope,sans-serif}
-.b-reader{display:grid;gap:9px}.verse{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:15px 16px;border-radius:17px;background:linear-gradient(155deg,#121215,#0d0d0f);border:1px solid rgba(255,255,255,.055);opacity:0;transform:translateY(8px);transition:opacity .35s ease,transform .35s cubic-bezier(.2,.8,.2,1),border-color .2s ease}.verse.show{opacity:1;transform:translateY(0)}.verse:active{border-color:rgba(204,255,0,.18)}
-.vnum{width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:var(--neon);background:rgba(204,255,0,.07);font:800 10px Manrope,sans-serif}.vtext{color:#ededee;font:500 15px/1.75 Manrope,sans-serif}.vtext.hebrew{font-family:'Noto Sans Hebrew',sans-serif;font-size:20px;line-height:1.8;text-align:right;direction:rtl}.vtext.greek{font-family:'Noto Serif',serif;font-size:17px;line-height:1.8}
-.loading,.empty{padding:34px 20px;border-radius:20px;color:#8d8e94;background:#111114;border:1px solid rgba(255,255,255,.06);text-align:center;font:600 12px/1.6 Manrope,sans-serif}.source-note{margin-top:18px;padding:14px 15px;border-radius:15px;color:#73747a;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);font:500 10.5px/1.6 Manrope,sans-serif}.source-note a{color:#a8d400;text-decoration:underline}
-.access-lock{max-width:500px;margin:50px auto 0;padding:26px 22px;border-radius:26px;background:#111114;border:1px solid rgba(255,255,255,.07)}.access-lock h1{font:800 30px/1.05 Syne,sans-serif}.access-lock p{margin-top:10px;color:#8e8f95;font:500 13px/1.6 Manrope,sans-serif}.access-lock a{display:flex;margin-top:18px;min-height:48px;align-items:center;justify-content:center;border-radius:14px;background:var(--neon);color:#050505;font:800 12px Manrope,sans-serif}
-@media(max-width:768px){.b-wrap{padding-top:84px}.b-controls{top:66px}.b-head p{font-size:12.5px}.vtext{font-size:14px}}
+body{background:radial-gradient(circle at 50% -5%,rgba(204,255,0,.075),transparent 26%),var(--bg-base);font-family:Manrope,Inter,sans-serif}
+.b-wrap{max-width:920px;margin:0 auto;padding:86px var(--pad) 118px;position:relative;z-index:2}
+.b-back{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:9px 13px;margin-bottom:24px;border-radius:999px;color:#d8d8db;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.075);font:700 11px Manrope,sans-serif;transition:.2s ease}
+.b-back:active{transform:translateX(-3px)}.b-back svg{width:17px;height:17px}
+.b-head{margin-bottom:23px}.b-kicker{color:var(--neon);font:800 10px Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.b-head h1{margin-top:10px;font:800 clamp(34px,8vw,54px)/1 Syne,sans-serif;letter-spacing:-.05em}.b-head p{max-width:620px;margin-top:11px;color:#8d8e94;font:500 13px/1.65 Manrope,sans-serif}
+.b-shell{border-radius:26px;background:linear-gradient(155deg,#121215,#0c0c0e);border:1px solid rgba(255,255,255,.07);overflow:hidden;box-shadow:0 24px 65px rgba(0,0,0,.2)}
+.b-controls{position:sticky;top:68px;z-index:30;padding:14px;background:rgba(15,15,18,.93);border-bottom:1px solid rgba(255,255,255,.065);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.b-selects{display:grid;grid-template-columns:1.35fr .72fr .72fr;gap:8px}.b-selects label{display:block;margin:0 0 5px 4px;color:#73747a;font:800 8.5px Manrope,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.b-selects select{width:100%;min-height:46px;padding:10px 11px;border-radius:13px;color:#eee;background:#070709;border:1px solid rgba(255,255,255,.09);font:700 11.5px Manrope,sans-serif;outline:none}
+.lang-tabs{display:flex;gap:7px;margin-top:10px;overflow-x:auto;scrollbar-width:none}.lang-tabs::-webkit-scrollbar{display:none}
+.lang-tab{flex:0 0 auto;min-height:38px;padding:8px 11px;border-radius:999px;color:#97989e;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);font:800 10px Manrope,sans-serif;transition:transform .18s ease,background .18s ease,color .18s ease}.lang-tab:active{transform:scale(.97)}.lang-tab.active{color:#050505;background:var(--neon);border-color:var(--neon)}.lang-tab:disabled{opacity:.3}
+.b-content{padding:20px 15px 18px}.b-meta{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:0 2px 13px}.b-meta h2{font:800 23px/1.1 Manrope,sans-serif;letter-spacing:-.035em}.b-meta-right{text-align:right}.b-meta-right span{display:block;color:#77787e;font:700 9px Manrope,sans-serif}.b-source{margin-top:3px!important;color:#a8d400!important}
+.b-reader{display:grid;gap:8px}.verse{position:relative;display:grid;grid-template-columns:34px 1fr;gap:12px;padding:15px 15px;border-radius:17px;background:#0c0c0f;border:1px solid rgba(255,255,255,.055);opacity:0;transform:translateY(8px);transition:opacity .32s ease,transform .32s cubic-bezier(.2,.8,.2,1),border-color .22s ease,background .22s ease}.verse.show{opacity:1;transform:translateY(0)}.verse.selected{border-color:rgba(204,255,0,.32);background:linear-gradient(145deg,rgba(204,255,0,.07),#0c0c0f);box-shadow:0 0 0 1px rgba(204,255,0,.06) inset}.verse:active{border-color:rgba(204,255,0,.2)}
+.vnum{width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:var(--neon);background:rgba(204,255,0,.07);font:800 10px Manrope,sans-serif}.vtext{color:#ededee;font:500 14.5px/1.78 Manrope,sans-serif}.vtext.hebrew{font-family:'Noto Sans Hebrew',sans-serif;font-size:20px;line-height:1.9;text-align:right;direction:rtl}.vtext.greek{font-family:'Noto Serif',serif;font-size:17px;line-height:1.85}
+.loading,.empty{padding:40px 20px;border-radius:18px;color:#8d8e94;background:#0c0c0f;border:1px solid rgba(255,255,255,.05);text-align:center;font:600 12px/1.65 Manrope,sans-serif}.loading:before{content:'';display:block;width:23px;height:23px;margin:0 auto 13px;border-radius:50%;border:2px solid rgba(255,255,255,.1);border-top-color:var(--neon);animation:spin .75s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.b-chapter-nav{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:15px}.b-chapter-nav button{min-height:44px;border-radius:14px;color:#d5d5d8;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.065);font:750 11px Manrope,sans-serif}.b-chapter-nav button:disabled{opacity:.3}
+.b-note{margin-top:15px;padding:13px 14px;border-radius:15px;color:#74757b;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);font:500 10px/1.6 Manrope,sans-serif}
+.access-lock{max-width:500px;margin:35px auto 0;padding:27px 22px;border-radius:26px;background:#111114;border:1px solid rgba(255,255,255,.07)}.access-lock h1{font:800 30px/1.05 Syne,sans-serif}.access-lock p{margin-top:10px;color:#8e8f95;font:500 13px/1.6 Manrope,sans-serif}.access-lock a{display:flex;margin-top:18px;min-height:48px;align-items:center;justify-content:center;border-radius:14px;background:var(--neon);color:#050505;font:800 12px Manrope,sans-serif}
+@media(max-width:600px){.b-wrap{padding-top:78px}.b-selects{grid-template-columns:1fr 1fr}.b-book-field{grid-column:1/-1}.b-controls{top:64px}.b-content{padding:18px 12px}.b-head p{font-size:12.5px}.vtext{font-size:14px}}
 </style>
 </head>
 <body>
@@ -31,21 +40,167 @@ body{background:radial-gradient(circle at 50% -5%,rgba(204,255,0,.07),transparen
 <main class="b-wrap" id="root"></main>
 <script>
 (function(){
+  'use strict';
   const ACCESS_KEY='gria_member_access_v1';
   const root=document.getElementById('root');
-  const BOOKS=[['GEN','Kejadian',50,'old'],['EXO','Keluaran',40,'old'],['LEV','Imamat',27,'old'],['NUM','Bilangan',36,'old'],['DEU','Ulangan',34,'old'],['JOS','Yosua',24,'old'],['JDG','Hakim-hakim',21,'old'],['RUT','Rut',4,'old'],['1SA','1 Samuel',31,'old'],['2SA','2 Samuel',24,'old'],['1KI','1 Raja-raja',22,'old'],['2KI','2 Raja-raja',25,'old'],['1CH','1 Tawarikh',29,'old'],['2CH','2 Tawarikh',36,'old'],['EZR','Ezra',10,'old'],['NEH','Nehemia',13,'old'],['EST','Ester',10,'old'],['JOB','Ayub',42,'old'],['PSA','Mazmur',150,'old'],['PRO','Amsal',31,'old'],['ECC','Pengkhotbah',12,'old'],['SNG','Kidung Agung',8,'old'],['ISA','Yesaya',66,'old'],['JER','Yeremia',52,'old'],['LAM','Ratapan',5,'old'],['EZK','Yehezkiel',48,'old'],['DAN','Daniel',12,'old'],['HOS','Hosea',14,'old'],['JOL','Yoel',3,'old'],['AMO','Amos',9,'old'],['OBA','Obaja',1,'old'],['JON','Yunus',4,'old'],['MIC','Mikha',7,'old'],['NAM','Nahum',3,'old'],['HAB','Habakuk',3,'old'],['ZEP','Zefanya',3,'old'],['HAG','Hagai',2,'old'],['ZEC','Zakharia',14,'old'],['MAL','Maleakhi',4,'old'],['MAT','Matius',28,'new'],['MRK','Markus',16,'new'],['LUK','Lukas',24,'new'],['JHN','Yohanes',21,'new'],['ACT','Kisah Para Rasul',28,'new'],['ROM','Roma',16,'new'],['1CO','1 Korintus',16,'new'],['2CO','2 Korintus',13,'new'],['GAL','Galatia',6,'new'],['EPH','Efesus',6,'new'],['PHP','Filipi',4,'new'],['COL','Kolose',4,'new'],['1TH','1 Tesalonika',5,'new'],['2TH','2 Tesalonika',3,'new'],['1TI','1 Timotius',6,'new'],['2TI','2 Timotius',4,'new'],['TIT','Titus',3,'new'],['PHM','Filemon',1,'new'],['HEB','Ibrani',13,'new'],['JAS','Yakobus',5,'new'],['1PE','1 Petrus',5,'new'],['2PE','2 Petrus',3,'new'],['1JN','1 Yohanes',5,'new'],['2JN','2 Yohanes',1,'new'],['3JN','3 Yohanes',1,'new'],['JUD','Yudas',1,'new'],['REV','Wahyu',22,'new']];
-  function member(){try{return localStorage.getItem(ACCESS_KEY)==='yes'}catch(_){return false}}
-  if(!member()){root.innerHTML='<section class="access-lock"><h1>Fitur Jemaat</h1><p>Alkitab multibahasa tersedia khusus untuk Jemaat GRIA. Masukkan kode jemaat terlebih dahulu.</p><a href="jemaat.html">Masukkan Kode Jemaat</a></section>';return}
-  root.innerHTML=`<header class="b-head"><h1>Alkitab</h1><p>Baca dan bandingkan teks Bahasa Inggris, Ibrani Perjanjian Lama, dan Yunani Perjanjian Baru.</p></header><section class="b-controls"><div class="b-selects"><select id="bookSel" aria-label="Pilih kitab"></select><select id="chapterSel" aria-label="Pilih pasal"></select></div><div class="lang-tabs"><button class="lang-tab active" data-lang="kjv">English · KJV</button><button class="lang-tab" data-lang="wlc">עברית · WLC</button><button class="lang-tab" data-lang="tr">Ελληνικά · TR</button></div></section><div class="b-meta"><h2 id="chapterTitle">Yohanes 3</h2><span id="langLabel">English · KJV</span></div><section class="b-reader" id="reader"><div class="loading">Memuat teks Alkitab...</div></section><div class="source-note">Sumber teks publik: KJV (English), Westminster Leningrad Codex/WLC (Hebrew, Perjanjian Lama), dan Textus Receptus/TR (Greek, Perjanjian Baru) melalui <a href="https://originsapi.com/" target="_blank" rel="noopener">OriginsAPI</a>.</div>`;
-  const bookSel=document.getElementById('bookSel'),chapterSel=document.getElementById('chapterSel'),reader=document.getElementById('reader'),tabs=[...document.querySelectorAll('.lang-tab')];let lang='kjv';
-  BOOKS.forEach(([code,name])=>{const o=document.createElement('option');o.value=code;o.textContent=name;bookSel.appendChild(o)});bookSel.value='JHN';
-  function bookInfo(){return BOOKS.find(b=>b[0]===bookSel.value)}
-  function fillChapters(){const [,name,count,testament]=bookInfo();chapterSel.innerHTML='';for(let i=1;i<=count;i++){const o=document.createElement('option');o.value=i;o.textContent='Pasal '+i;chapterSel.appendChild(o)}chapterSel.value=Math.min(parseInt(chapterSel.dataset.last||'3',10),count);updateTabs(testament)}
-  function updateTabs(testament){tabs.forEach(btn=>{const l=btn.dataset.lang;btn.disabled=(l==='wlc'&&testament!=='old')||(l==='tr'&&testament!=='new')});if((lang==='wlc'&&testament!=='old')||(lang==='tr'&&testament!=='new'))lang='kjv';tabs.forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===lang))}
-  async function load(){const [code,name,,testament]=bookInfo();updateTabs(testament);const chapter=chapterSel.value;document.getElementById('chapterTitle').textContent=name+' '+chapter;const labels={kjv:'English · KJV',wlc:'Hebrew · WLC',tr:'Greek · TR'};document.getElementById('langLabel').textContent=labels[lang];reader.innerHTML='<div class="loading">Memuat teks Alkitab...</div>';const url=`https://bible-${lang}.originsapi.com/${code}.${chapter}.json`;try{const res=await fetch(url,{cache:'force-cache'});if(!res.ok)throw new Error('not available');const data=await res.json();if(!Array.isArray(data)||!data.length)throw new Error('empty');reader.innerHTML='';data.forEach((v,i)=>{const el=document.createElement('article');el.className='verse';const extra=lang==='wlc'?' hebrew':lang==='tr'?' greek':'';el.innerHTML=`<div class="vnum">${v.verse}</div><div class="vtext${extra}">${escapeHtml(v.text||'')}</div>`;reader.appendChild(el);setTimeout(()=>el.classList.add('show'),Math.min(i*24,420))})}catch(e){const msg=lang==='wlc'?'Teks WLC tersedia untuk Perjanjian Lama saja.':lang==='tr'?'Teks Textus Receptus tersedia untuk Perjanjian Baru saja.':'Teks belum dapat dimuat. Periksa koneksi internet.';reader.innerHTML=`<div class="empty">${msg}</div>`}}
-  tabs.forEach(btn=>btn.addEventListener('click',()=>{if(btn.disabled)return;lang=btn.dataset.lang;tabs.forEach(b=>b.classList.toggle('active',b===btn));load()}));bookSel.addEventListener('change',()=>{chapterSel.dataset.last='1';fillChapters();load()});chapterSel.addEventListener('change',()=>{chapterSel.dataset.last=chapterSel.value;load()});
+  const BOOKS=[
+    [1,'Genesis','Kejadian',50,'old'],[2,'Exodus','Keluaran',40,'old'],[3,'Leviticus','Imamat',27,'old'],[4,'Numbers','Bilangan',36,'old'],[5,'Deuteronomy','Ulangan',34,'old'],
+    [6,'Joshua','Yosua',24,'old'],[7,'Judges','Hakim-hakim',21,'old'],[8,'Ruth','Rut',4,'old'],[9,'1 Samuel','1 Samuel',31,'old'],[10,'2 Samuel','2 Samuel',24,'old'],
+    [11,'1 Kings','1 Raja-raja',22,'old'],[12,'2 Kings','2 Raja-raja',25,'old'],[13,'1 Chronicles','1 Tawarikh',29,'old'],[14,'2 Chronicles','2 Tawarikh',36,'old'],[15,'Ezra','Ezra',10,'old'],
+    [16,'Nehemiah','Nehemia',13,'old'],[17,'Esther','Ester',10,'old'],[18,'Job','Ayub',42,'old'],[19,'Psalms','Mazmur',150,'old'],[20,'Proverbs','Amsal',31,'old'],
+    [21,'Ecclesiastes','Pengkhotbah',12,'old'],[22,'Song of Solomon','Kidung Agung',8,'old'],[23,'Isaiah','Yesaya',66,'old'],[24,'Jeremiah','Yeremia',52,'old'],[25,'Lamentations','Ratapan',5,'old'],
+    [26,'Ezekiel','Yehezkiel',48,'old'],[27,'Daniel','Daniel',12,'old'],[28,'Hosea','Hosea',14,'old'],[29,'Joel','Yoel',3,'old'],[30,'Amos','Amos',9,'old'],
+    [31,'Obadiah','Obaja',1,'old'],[32,'Jonah','Yunus',4,'old'],[33,'Micah','Mikha',7,'old'],[34,'Nahum','Nahum',3,'old'],[35,'Habakkuk','Habakuk',3,'old'],
+    [36,'Zephaniah','Zefanya',3,'old'],[37,'Haggai','Hagai',2,'old'],[38,'Zechariah','Zakharia',14,'old'],[39,'Malachi','Maleakhi',4,'old'],
+    [40,'Matthew','Matius',28,'new'],[41,'Mark','Markus',16,'new'],[42,'Luke','Lukas',24,'new'],[43,'John','Yohanes',21,'new'],[44,'Acts','Kisah Para Rasul',28,'new'],
+    [45,'Romans','Roma',16,'new'],[46,'1 Corinthians','1 Korintus',16,'new'],[47,'2 Corinthians','2 Korintus',13,'new'],[48,'Galatians','Galatia',6,'new'],[49,'Ephesians','Efesus',6,'new'],
+    [50,'Philippians','Filipi',4,'new'],[51,'Colossians','Kolose',4,'new'],[52,'1 Thessalonians','1 Tesalonika',5,'new'],[53,'2 Thessalonians','2 Tesalonika',3,'new'],[54,'1 Timothy','1 Timotius',6,'new'],
+    [55,'2 Timothy','2 Timotius',4,'new'],[56,'Titus','Titus',3,'new'],[57,'Philemon','Filemon',1,'new'],[58,'Hebrews','Ibrani',13,'new'],[59,'James','Yakobus',5,'new'],
+    [60,'1 Peter','1 Petrus',5,'new'],[61,'2 Peter','2 Petrus',3,'new'],[62,'1 John','1 Yohanes',5,'new'],[63,'2 John','2 Yohanes',1,'new'],[64,'3 John','3 Yohanes',1,'new'],
+    [65,'Jude','Yudas',1,'new'],[66,'Revelation','Wahyu',22,'new']
+  ];
+
+  function isMember(){try{return localStorage.getItem(ACCESS_KEY)==='yes'}catch(_){return false}}
+  if(!isMember()){
+    root.innerHTML='<a class="b-back" href="jemaat.html">← Kembali</a><section class="access-lock"><h1>Fitur Jemaat</h1><p>Alkitab multibahasa tersedia khusus untuk Jemaat GRIA. Masukkan kode jemaat terlebih dahulu.</p><a href="jemaat.html">Masukkan Kode Jemaat</a></section>';
+    return;
+  }
+
+  root.innerHTML=`
+    <a class="b-back" href="jemaat.html" aria-label="Kembali ke Jemaat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Kembali ke Jemaat</a>
+    <header class="b-head"><div class="b-kicker">Khusus Jemaat</div><h1>Alkitab</h1><p>Pilih kitab, pasal, dan ayat. Bandingkan teks Inggris KJV, Ibrani WLC untuk Perjanjian Lama, dan Yunani Textus Receptus untuk Perjanjian Baru.</p></header>
+    <section class="b-shell">
+      <div class="b-controls">
+        <div class="b-selects">
+          <div class="b-book-field"><label for="bookSel">Kitab</label><select id="bookSel"></select></div>
+          <div><label for="chapterSel">Pasal</label><select id="chapterSel"></select></div>
+          <div><label for="verseSel">Ayat</label><select id="verseSel"><option value="all">Semua</option></select></div>
+        </div>
+        <div class="lang-tabs">
+          <button class="lang-tab active" data-lang="kjv">English · KJV</button>
+          <button class="lang-tab" data-lang="wlc">עברית · WLC</button>
+          <button class="lang-tab" data-lang="tr">Ελληνικά · TR</button>
+        </div>
+      </div>
+      <div class="b-content">
+        <div class="b-meta"><h2 id="chapterTitle">Yohanes 3</h2><div class="b-meta-right"><span id="langLabel">English · KJV</span><span class="b-source" id="sourceLabel"></span></div></div>
+        <section class="b-reader" id="reader"><div class="loading">Memuat teks Alkitab...</div></section>
+        <div class="b-chapter-nav"><button id="prevChapter">← Pasal Sebelumnya</button><button id="nextChapter">Pasal Berikutnya →</button></div>
+      </div>
+    </section>
+    <div class="b-note">Teks dimuat dari sumber publik. Jika sumber utama sedang bermasalah, GRIA otomatis mencoba sumber cadangan.</div>`;
+
+  const bookSel=document.getElementById('bookSel');
+  const chapterSel=document.getElementById('chapterSel');
+  const verseSel=document.getElementById('verseSel');
+  const reader=document.getElementById('reader');
+  const tabs=[...document.querySelectorAll('.lang-tab')];
+  const prevBtn=document.getElementById('prevChapter');
+  const nextBtn=document.getElementById('nextChapter');
+  let lang='kjv', currentVerses=[];
+
+  BOOKS.forEach(([id,en,idn])=>{const o=document.createElement('option');o.value=id;o.textContent=idn;bookSel.appendChild(o)});
+  bookSel.value='43';
+
+  function book(){return BOOKS.find(b=>String(b[0])===bookSel.value)}
+  function slugify(name){return name.toLowerCase().replace(/\s+/g,'-')}
+  function fillChapters(preferred){
+    const b=book();chapterSel.innerHTML='';
+    for(let i=1;i<=b[3];i++){const o=document.createElement('option');o.value=i;o.textContent='Pasal '+i;chapterSel.appendChild(o)}
+    chapterSel.value=String(Math.min(Math.max(preferred||1,1),b[3]));
+    updateLanguageAvailability();
+  }
+  function updateLanguageAvailability(){
+    const testament=book()[4];
+    tabs.forEach(btn=>{const l=btn.dataset.lang;btn.disabled=(l==='wlc'&&testament!=='old')||(l==='tr'&&testament!=='new')});
+    if((lang==='wlc'&&testament!=='old')||(lang==='tr'&&testament!=='new'))lang='kjv';
+    tabs.forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===lang));
+  }
+  function normalizeVerses(payload){
+    const d=payload&&payload.data!==undefined?payload.data:payload;
+    const candidates=[d?.verses,d?.chapter?.verses,d?.data?.verses,Array.isArray(d)?d:null];
+    const arr=candidates.find(Array.isArray);
+    if(!arr||!arr.length)throw new Error('No verses');
+    return arr.map((v,i)=>({verse:Number(v.number??v.verse??v.verse_number??(i+1)),text:stripHtml(v.text??v.content??v.value??'')})).filter(v=>v.text);
+  }
+  function stripHtml(value){const el=document.createElement('div');el.innerHTML=String(value??'');return (el.textContent||'').trim()}
+
+  async function fromMidvash(){
+    const b=book(),version=lang,slug=slugify(b[1]),chapter=chapterSel.value;
+    const res=await fetch(`https://api.midvash.com/v1/${version}/${encodeURIComponent(slug)}/${chapter}`,{headers:{accept:'application/json'}});
+    if(!res.ok)throw new Error('Midvash '+res.status);
+    return normalizeVerses(await res.json());
+  }
+  async function fromBolls(){
+    const code={kjv:'KJV',wlc:'WLC',tr:'TR'}[lang],b=book(),chapter=chapterSel.value;
+    const res=await fetch(`https://bolls.life/get-text/${code}/${b[0]}/${chapter}/`,{headers:{accept:'application/json'}});
+    if(!res.ok)throw new Error('Bolls '+res.status);
+    return normalizeVerses(await res.json());
+  }
+  function cacheKey(){return `gria_bible_v6_${lang}_${book()[0]}_${chapterSel.value}`}
+  function readCache(){try{const x=JSON.parse(localStorage.getItem(cacheKey())||'null');return Array.isArray(x)&&x.length?x:null}catch(_){return null}}
+  function writeCache(v){try{localStorage.setItem(cacheKey(),JSON.stringify(v))}catch(_){}}
+
+  async function fetchVerses(){
+    const cached=readCache();
+    try{const v=await fromMidvash();writeCache(v);return{verses:v,source:'Midvash'}}catch(e1){
+      try{const v=await fromBolls();writeCache(v);return{verses:v,source:'Bolls'}}catch(e2){
+        if(cached)return{verses:cached,source:'Cache'};
+        throw e2;
+      }
+    }
+  }
+
+  function fillVerseSelect(){
+    const selected=verseSel.value;
+    verseSel.innerHTML='<option value="all">Semua</option>';
+    currentVerses.forEach(v=>{const o=document.createElement('option');o.value=v.verse;o.textContent='Ayat '+v.verse;verseSel.appendChild(o)});
+    if([...verseSel.options].some(o=>o.value===selected))verseSel.value=selected;
+  }
+  function renderVerses(selected='all'){
+    reader.innerHTML='';
+    currentVerses.forEach((v,i)=>{
+      const el=document.createElement('article');el.className='verse';el.dataset.verse=v.verse;
+      if(String(selected)===String(v.verse))el.classList.add('selected');
+      const extra=lang==='wlc'?' hebrew':lang==='tr'?' greek':'';
+      el.innerHTML=`<div class="vnum">${v.verse}</div><div class="vtext${extra}">${escapeHtml(v.text)}</div>`;
+      el.addEventListener('click',()=>{verseSel.value=String(v.verse);focusVerse(v.verse)});
+      reader.appendChild(el);setTimeout(()=>el.classList.add('show'),Math.min(i*18,360));
+    });
+    if(selected!=='all')setTimeout(()=>focusVerse(selected,false),120);
+  }
+  function focusVerse(v,scroll=true){
+    reader.querySelectorAll('.verse').forEach(el=>el.classList.toggle('selected',el.dataset.verse===String(v)));
+    const target=reader.querySelector(`[data-verse="${CSS.escape(String(v))}"]`);
+    if(target&&scroll)target.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+
+  async function loadChapter(){
+    updateLanguageAvailability();
+    const b=book(),chapter=chapterSel.value;
+    document.getElementById('chapterTitle').textContent=b[2]+' '+chapter;
+    document.getElementById('langLabel').textContent={kjv:'English · KJV',wlc:'Hebrew · WLC',tr:'Greek · TR'}[lang];
+    document.getElementById('sourceLabel').textContent='';
+    reader.innerHTML='<div class="loading">Memuat teks Alkitab...</div>';
+    verseSel.innerHTML='<option value="all">Semua</option>';verseSel.disabled=true;
+    prevBtn.disabled=Number(chapter)<=1;nextBtn.disabled=Number(chapter)>=b[3];
+    try{
+      const result=await fetchVerses();currentVerses=result.verses;document.getElementById('sourceLabel').textContent='Source: '+result.source;
+      verseSel.disabled=false;fillVerseSelect();renderVerses('all');
+    }catch(e){
+      currentVerses=[];reader.innerHTML='<div class="empty"><strong>Teks belum dapat dimuat.</strong><br>Coba lagi beberapa saat atau ganti terjemahan.</div>';
+    }
+  }
+
+  tabs.forEach(btn=>btn.addEventListener('click',()=>{if(btn.disabled)return;lang=btn.dataset.lang;tabs.forEach(b=>b.classList.toggle('active',b===btn));loadChapter()}));
+  bookSel.addEventListener('change',()=>{fillChapters(1);loadChapter()});
+  chapterSel.addEventListener('change',loadChapter);
+  verseSel.addEventListener('change',()=>{if(verseSel.value==='all'){reader.querySelectorAll('.verse').forEach(el=>el.classList.remove('selected'));reader.scrollIntoView({behavior:'smooth',block:'start'})}else focusVerse(verseSel.value)});
+  prevBtn.addEventListener('click',()=>{const n=Number(chapterSel.value)-1;if(n>=1){chapterSel.value=String(n);loadChapter();document.querySelector('.b-shell').scrollIntoView({behavior:'smooth',block:'start'})}});
+  nextBtn.addEventListener('click',()=>{const n=Number(chapterSel.value)+1;if(n<=book()[3]){chapterSel.value=String(n);loadChapter();document.querySelector('.b-shell').scrollIntoView({behavior:'smooth',block:'start'})}});
   function escapeHtml(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;')}
-  fillChapters();chapterSel.value='3';load();
+
+  fillChapters(3);chapterSel.value='3';loadChapter();
 })();
 </script>
 <script src="pwa.js" defer></script>

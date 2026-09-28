@@ -1,42 +1,33 @@
-GRIA V5 — ALKITAB + PERSEKUTUAN + WARTA
+GRIA V6 — HOME RESPONSIVE + ALKITAB REBUILD
 
-UPLOAD / REPLACE FILE DI ROOT REPOSITORY:
-1. jemaat.html           -> replace
-2. alkitab.html          -> file baru
-3. persekutuan.html      -> replace
-4. warta-mobile.js       -> replace
-5. service-worker.js     -> replace
+UPLOAD / REPLACE DI ROOT REPOSITORY:
+1. pwa.js              -> replace
+2. alkitab.html        -> replace
+3. service-worker.js   -> replace
 
-TIDAK PERLU EDIT:
-- warta.html
-- pwa.js
-- index.html
+TIDAK PERLU EDIT FILE LAIN.
 
-HASIL:
-JEMAAT
-- Bible Reading Tracker dihapus dari fitur aktif.
-- Fitur utama sekarang: Alkitab.
-- Alkitab: English KJV, Hebrew WLC (PL), Greek Textus Receptus/TR (PB).
-- Bible Reading Tracker 2027 = Coming Soon.
-- Bank Ayat Tahunan by Member = Coming Soon.
-- Alkitab hanya bisa dibuka jika kode jemaat sudah dimasukkan.
+PERBAIKAN HOME:
+- Tulisan besar GRIA dipaksa satu baris pada semua ukuran HP.
+- Ukuran otomatis menyesuaikan lebar layar.
+- Tidak ada lagi huruf A turun ke baris bawah.
 
-PERSEKUTUAN
-- Pendalaman Alkitab -> alkitab.html
-- Persekutuan Doa -> warta.html#informasi-umum
-
-WARTA
-- Ulang Tahun Bulan Ini disembunyikan sementara.
-- Jadwal, Persembahan, Informasi Umum tetap swipe cards.
-- Smooth scroll + scroll snap.
-- Card yang berada di tengah sedikit membesar/fokus.
-- Total Minggu + Total Periode tetap aktif.
+PERBAIKAN ALKITAB:
+- Tombol Kembali ke Jemaat.
+- Selector Kitab, Pasal, dan Ayat.
+- Pilihan English KJV, Hebrew WLC (PL), Greek TR (PB).
+- Ayat pilihan otomatis highlight + smooth scroll.
+- Previous / Next chapter.
+- Primary source Midvash Bible API.
+- Automatic fallback ke Bolls Bible.
+- Cache lokal chapter yang pernah berhasil dibuka.
+- Loading dan error state baru.
 
 COMMIT MESSAGE:
-Add member Bible and refine fellowship and Warta UX
+Fix responsive GRIA hero and rebuild Bible reader
 
 SETELAH COMMIT:
-1. Tunggu GitHub Pages 1-3 menit.
-2. Buka website di Safari dan refresh.
-3. Tutup PWA GRIA dari app switcher.
-4. Buka lagi agar service worker v5 aktif.
+1. Tunggu 1-3 menit.
+2. Refresh website melalui Safari.
+3. Tutup PWA dari app switcher.
+4. Buka kembali agar service worker v6 aktif.
