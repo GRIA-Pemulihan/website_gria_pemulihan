@@ -2,276 +2,126 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0a0a0c">
-<title>Masuk / Daftar Jemaat — GRIA Pemulihan Palu</title>
-<meta name="description" content="Bergabung dengan keluarga GRIA Pemulihan Palu. Daftar jadi anggota jemaat dan ikut program pertumbuhan rohani.">
-
+<title>Masuk Jemaat — GRIA Pemulihan Palu</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
-  .login-wrap{
-    padding: 130px var(--pad) 100px;
-    max-width: 480px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .login-card{
-    background: linear-gradient(155deg, var(--bg-elevated), var(--bg-soft));
-    border: 1px solid var(--card-border);
-    border-radius: var(--r-2xl);
-    padding: 44px clamp(24px, 4vw, 40px);
-    position: relative;
-    overflow: hidden;
-  }
-  .login-card::before{
-    content: '';
-    position: absolute;
-    top: -60%; right: -20%;
-    width: 70%; height: 120%;
-    background: radial-gradient(ellipse, rgba(204,255,0,0.1), transparent 70%);
-    filter: blur(40px);
-    pointer-events: none;
-  }
-  .login-card h1{
-    font-size: clamp(26px, 4vw, 34px);
-    letter-spacing: -0.03em;
-    margin-bottom: 8px;
-    position: relative;
-  }
-  .login-card .subtitle{
-    color: var(--text-mute);
-    font-size: 14.5px;
-    line-height: 1.7;
-    margin-bottom: 32px;
-    position: relative;
-  }
-  .form-group{ margin-bottom: 20px; position: relative; }
-  .form-group label{
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-mute);
-    margin-bottom: 8px;
-    letter-spacing: 0.02em;
-  }
-  .form-group input{
-    width: 100%;
-    padding: 14px 16px;
-    background: var(--bg-deep);
-    border: 1px solid var(--card-border-strong);
-    border-radius: var(--r-md);
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: 15px;
-    transition: border-color var(--dur-mid) var(--ease-out), box-shadow var(--dur-mid) var(--ease-out);
-    outline: none;
-  }
-  .form-group input:focus{
-    border-color: var(--neon);
-    box-shadow: 0 0 0 3px var(--neon-soft);
-  }
-  .form-group input::placeholder{ color: var(--grey-dim); }
-  .btn-login{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    padding: 16px 24px;
-    background: var(--neon);
-    color: #000;
-    font-family: var(--font-body);
-    font-size: 15px;
-    font-weight: 700;
-    border: none;
-    border-radius: var(--r-md);
-    cursor: pointer;
-    transition: transform var(--dur-mid) var(--ease-spring), box-shadow var(--dur-mid) var(--ease-out);
-    position: relative;
-  }
-  .btn-login:hover{ transform: translateY(-2px); box-shadow: var(--shadow-glow); }
-  .btn-login:active{ transform: translateY(0); }
-  .btn-login:disabled{
-    opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none;
-  }
-  .login-message{
-    margin-top: 16px;
-    padding: 14px 16px;
-    border-radius: var(--r-sm);
-    font-size: 14px;
-    line-height: 1.6;
-    display: none;
-    position: relative;
-  }
-  .login-message.success{
-    display: block;
-    background: rgba(204,255,0,0.1);
-    border: 1px solid rgba(204,255,0,0.25);
-    color: var(--neon);
-  }
-  .login-message.error{
-    display: block;
-    background: rgba(255,80,80,0.1);
-    border: 1px solid rgba(255,80,80,0.25);
-    color: #ff6b6b;
-  }
-  .back-home{
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--text-mute);
-    font-size: 13px;
-    margin-top: 20px;
-    transition: color var(--dur-mid) var(--ease-out);
-    position: relative;
-  }
-  .back-home:hover{ color: var(--neon); }
-  .login-foot{
-    margin-top: 18px;
-    font-size: 12.5px;
-    color: var(--grey-dim);
-    line-height: 1.6;
-    position: relative;
-  }
+body{min-height:100dvh;background:radial-gradient(circle at 50% -10%,rgba(204,255,0,.09),transparent 32%),var(--bg-base)}
+.login-shell{min-height:100dvh;position:relative;z-index:2}
+.login-top{height:76px;padding:max(14px,env(safe-area-inset-top)) 20px 0;display:flex;align-items:center;justify-content:space-between}
+.login-brand{font-family:var(--font-display);font-size:26px;font-weight:800;letter-spacing:-.05em}.login-brand span{color:var(--neon)}
+.guest{min-height:40px;display:flex;align-items:center;padding:8px 13px;border-radius:999px;color:#bbb;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);font-size:12px;font-weight:650}
+.login-main{max-width:520px;margin:0 auto;padding:28px 20px calc(30px + env(safe-area-inset-bottom));}
+.login-card{position:relative;overflow:hidden;padding:28px 22px 24px;border-radius:28px;background:radial-gradient(circle at 90% 0%,rgba(204,255,0,.09),transparent 30%),linear-gradient(155deg,#141417,#0d0d0f);border:1px solid rgba(255,255,255,.085);box-shadow:0 26px 70px rgba(0,0,0,.35)}
+.login-card:before{content:'';position:absolute;left:0;top:0;width:88px;height:3px;background:var(--neon);box-shadow:0 0 18px rgba(204,255,0,.4)}
+.kicker{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;color:var(--neon);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.kicker:before{content:'';width:7px;height:7px;border-radius:50%;background:var(--neon)}
+h1{font-size:clamp(31px,8vw,42px);line-height:1.03;letter-spacing:-.045em}
+.subtitle{margin:14px 0 24px;color:#9b9ca2;font-size:13.5px;line-height:1.65}
+.perks{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:23px}
+.perk{min-height:58px;padding:9px 7px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;border-radius:14px;color:#aaa;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.065);font-size:9.5px;font-weight:600}.perk svg{width:17px;height:17px;stroke:var(--neon)}
+label{display:block;margin-bottom:7px;color:#bbb;font-size:12px;font-weight:650}
+.field{position:relative}.field svg{position:absolute;left:15px;top:50%;width:18px;height:18px;transform:translateY(-50%);stroke:#73747a}
+input{width:100%;min-height:54px;padding:14px 15px 14px 44px;border-radius:16px;color:#f4f4f5;background:#08080a;border:1px solid rgba(255,255,255,.11);outline:none;font:500 15px var(--font-body)}input:focus{border-color:rgba(204,255,0,.72);box-shadow:0 0 0 3px rgba(204,255,0,.08)}
+.btn{width:100%;min-height:54px;margin-top:14px;display:flex;align-items:center;justify-content:center;gap:9px;border-radius:16px;color:#050505;background:var(--neon);font-size:14px;font-weight:800}.btn:disabled{opacity:.55}
+.spin{display:none;width:17px;height:17px;border:2px solid rgba(0,0,0,.25);border-top-color:#050505;border-radius:50%;animation:spin .75s linear infinite}.btn.loading .spin{display:block}@keyframes spin{to{transform:rotate(360deg)}}
+.msg{display:none;margin-top:14px;padding:14px 15px;border-radius:15px;font-size:12.5px;line-height:1.55}.msg.error{display:block;color:#ff9696;background:rgba(255,90,90,.07);border:1px solid rgba(255,90,90,.2)}.msg.success{display:block;color:#eafdb0;background:rgba(204,255,0,.055);border:1px solid rgba(204,255,0,.17)}
+.actions{display:flex;gap:8px;margin-top:11px}.actions button,.actions a{min-height:38px;display:flex;align-items:center;justify-content:center;padding:8px 11px;border-radius:11px;font-size:11px;font-weight:700}.actions button{color:#111;background:#fff}.actions a{color:#ddd;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09)}
+.help{display:flex;gap:9px;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.065);color:#77787f;font-size:11px;line-height:1.55}.help svg{width:16px;height:16px;flex:0 0 auto;stroke:#85868c}
+@media(max-width:380px){.perks{grid-template-columns:1fr}.perk{min-height:44px;flex-direction:row}}
 </style>
 </head>
 <body>
+<div class="login-shell">
+<header class="login-top">
+  <a href="index.html" class="login-brand">GRI<span>A</span></a>
+  <a href="index.html" class="guest">Lanjut sebagai tamu</a>
+</header>
+<main class="login-main">
+<section class="login-card">
+  <div class="kicker">Akses Jemaat</div>
+  <h1>Masuk ke akun GRIA</h1>
+  <p class="subtitle">Gunakan email Anda untuk menerima link masuk. Jemaat lama akan langsung masuk; pengguna baru dapat melanjutkan pendaftaran.</p>
 
-<nav class="navbar" id="navbar">
-  <div id="scrollProgress"></div>
-  <div class="navbar-inner">
-    <a href="index.html" class="logo" aria-label="GRIA — Beranda">
-      <img src="logo-gria.png" alt="" onerror="this.style.display='none'">
-      GRI<span>A</span>
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html#home">Home</a></li>
-      <li><a href="about-us.html">About Us</a></li>
-      <li><a href="komunitas.html">Komunitas</a></li>
-      <li><a href="warta.html">Warta</a></li>
-      <li><a href="index.html#kontak">Kontak</a></li>
-      <li><a href="daftar.html" class="nav-login-link">Daftar Jemaat</a></li>
-    </ul>
-    <a href="daftar.html" class="nav-cta">
-      Daftar Jemaat
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>
-    </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="navLinks">
-      <span></span><span></span><span></span>
-    </button>
+  <div class="perks">
+    <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>Alkitab Saya</div>
+    <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>Progress</div>
+    <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Profil Jemaat</div>
   </div>
-</nav>
 
-<main class="login-wrap">
-  <div class="login-card">
-    <span class="eyebrow">Akses Jemaat GRIA</span>
-    <h1>Masuk / Daftar Jemaat GRIA</h1>
-    <p class="subtitle">Masukkan email Anda. Jika sudah terdaftar, link ini akan membawa Anda langsung ke dashboard. Jika belum, link ini akan memulai proses pendaftaran. Satu pintu untuk keduanya.</p>
+  <form id="loginForm" novalidate>
+    <label for="email">Alamat email</label>
+    <div class="field">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+      <input type="email" id="email" placeholder="nama@email.com" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" required>
+    </div>
+    <button class="btn" id="btnLogin" type="submit"><span class="spin"></span><span id="btnText">Kirim Link Masuk</span></button>
+  </form>
 
-    <form id="loginForm">
-      <div class="form-group">
-        <label for="email">Alamat Email</label>
-        <input type="email" id="email" name="email" placeholder="nama@email.com" required autocomplete="email">
-      </div>
-      <button type="submit" class="btn-login" id="btnLogin">
-        Lanjutkan dengan Email
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </button>
-    </form>
+  <div class="msg" id="loginMessage" role="status" aria-live="polite"></div>
 
-    <div class="login-message" id="loginMessage"></div>
-
-    <p class="login-foot">Kami tidak memakai password. Setiap kali masuk, kami kirim link sekali pakai ke email Anda.</p>
-
-    <a href="index.html" class="back-home">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
-      Kembali ke Beranda
-    </a>
+  <div class="help">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+    <span>Kami tidak menyimpan password. Link sekali pakai dikirim ke email Anda.</span>
   </div>
+</section>
 </main>
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" onerror="this.onerror=null;this.src='https://unpkg.com/@supabase/supabase-js@2'"></script>
 <script src="js/supabase-config.js"></script>
 <script src="js/auth.js"></script>
 <script>
 (function(){
-  var navToggle = document.getElementById('navToggle');
-  var navLinks = document.getElementById('navLinks');
-  if(navToggle && navLinks){
-    navToggle.addEventListener('click', function(){
-      var open = navLinks.classList.toggle('is-open');
-      navToggle.classList.toggle('is-open', open);
-      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    navLinks.querySelectorAll('a').forEach(function(link){
-      link.addEventListener('click', function(){
-        navLinks.classList.remove('is-open');
-        navToggle.classList.remove('is-open');
-        navToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
+  'use strict';
+  const form=document.getElementById('loginForm'), input=document.getElementById('email'),
+        btn=document.getElementById('btnLogin'), btnText=document.getElementById('btnText'),
+        msg=document.getElementById('loginMessage');
+
+  function loading(v){btn.disabled=v;btn.classList.toggle('loading',v);btnText.textContent=v?'Mengirim...':'Kirim Link Masuk'}
+  function show(type,html){msg.className='msg '+type;msg.innerHTML=html}
+  function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;')}
+  function friendly(e){
+    const s=(e?.message||String(e||'')).toLowerCase();
+    if(s.includes('load failed')||s.includes('failed to fetch')||s.includes('network')||s.includes('fetch')||s.includes('timeout'))
+      return ['Tidak dapat terhubung ke layanan login.','Periksa koneksi internet lalu coba lagi. Anda tetap dapat membuka GRIA sebagai tamu.'];
+    if(s.includes('rate')||s.includes('too many')) return ['Terlalu banyak percobaan.','Tunggu beberapa menit sebelum meminta link baru.'];
+    return ['Link masuk belum dapat dikirim.',e?.message||'Silakan coba lagi beberapa saat.'];
   }
-  var nav = document.getElementById('navbar');
-  var progressBar = document.getElementById('scrollProgress');
-  function onScroll(){
-    if(nav) nav.classList.toggle('is-scrolled', window.scrollY > 40);
-    if(progressBar){
-      var max = document.body.scrollHeight - window.innerHeight;
-      progressBar.style.width = max > 0 ? (window.scrollY / max * 100) + '%' : '0%';
+
+  async function send(){
+    const email=input.value.trim();
+    if(!email||!input.checkValidity()){input.focus();show('error','<strong>Masukkan alamat email yang valid.</strong>');return}
+    if(typeof supabaseClient==='undefined'||!supabaseClient.auth){
+      show('error','<strong>Layanan login belum siap.</strong><br>Muat ulang halaman lalu coba lagi.<div class="actions"><button type="button" onclick="location.reload()">Muat Ulang</button><a href="index.html">Tamu</a></div>');return
+    }
+
+    loading(true); msg.className='msg'; msg.innerHTML='';
+    try{
+      const redirectUrl=new URL('user.html',location.href).href;
+      const result=await Promise.race([
+        supabaseClient.auth.signInWithOtp({email,options:{emailRedirectTo:redirectUrl,shouldCreateUser:true}}),
+        new Promise((_,reject)=>setTimeout(()=>reject(new Error('Network timeout')),18000))
+      ]);
+      if(result?.error) throw result.error;
+      show('success','<strong>✓ Link masuk sudah dikirim.</strong><br>Cek inbox atau spam untuk <strong>'+esc(email)+'</strong>.<br><br>Buka link menggunakan Safari agar sesi tersimpan.');
+      btnText.textContent='Link Terkirim';btn.classList.remove('loading');btn.disabled=true;
+    }catch(e){
+      const [title,detail]=friendly(e);
+      show('error','<strong>'+esc(title)+'</strong><br>'+esc(detail)+'<div class="actions"><button type="button" id="retry">Coba Lagi</button><a href="index.html">Lanjut sebagai Tamu</a></div>');
+      loading(false);
+      document.getElementById('retry')?.addEventListener('click',send,{once:true});
     }
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+
+  form.addEventListener('submit',e=>{e.preventDefault();send()});
+  if(typeof getSession==='function') getSession().then(s=>{if(s)location.replace('user.html')}).catch(()=>{});
 })();
-
-  redirectIfLoggedIn();
-
-  const form = document.getElementById('loginForm');
-  const btn = document.getElementById('btnLogin');
-  const msg = document.getElementById('loginMessage');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('email').value.trim();
-    if (!email) return;
-
-    btn.disabled = true;
-    btn.textContent = 'Memproses...';
-    msg.style.display = 'none';
-
-    // Magic link membawa user kembali ke dashboard.html; dashboard akan
-    // mengecek profile.onboarding_selesai dan meneruskan ke onboarding.html
-    // bila perlu.
-    const { error } = await supabaseClient.auth.signInWithOtp({
-      email,
-      options: {
-        emailRedirectTo: window.location.origin + window.location.pathname.replace(/daftar\.html$/, 'dashboard.html')
-      }
-    });
-
-    if (error) {
-      msg.className = 'login-message error';
-      msg.textContent = 'Gagal mengirim link: ' + error.message;
-      msg.style.display = 'block';
-      btn.disabled = false;
-      btn.textContent = 'Lanjutkan dengan Email';
-    } else {
-      msg.className = 'login-message success';
-      msg.innerHTML = '✓ Link sudah dikirim ke <strong>' + email + '</strong>. Silakan cek inbox (atau folder spam) dan klik link untuk lanjut.<br><br><strong>Penting (pengguna HP):</strong> Jika Anda membuka email di aplikasi Gmail atau aplikasi email bawaan, klik link lalu pilih <em>"Buka di Chrome"</em> atau <em>"Buka di Safari"</em> — jangan biarkan terbuka di browser dalam aplikasi, karena sesi tidak akan tersimpan di sana.';
-      msg.style.display = 'block';
-      btn.disabled = true;
-      btn.textContent = 'Link Terkirim';
-    }
-  });
 </script>
-
 </body>
 </html>
