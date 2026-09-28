@@ -1,29 +1,22 @@
-GRIA V7 — ALKITAB AYT LOKAL
+GRIA V8 — Bible Reader Polish
 
-Repository sumber: AYT (Alkitab Yang Terbuka) yang Anda upload.
+UPLOAD / REPLACE:
+1. alkitab.html
+2. service-worker.js
 
-UPLOAD / REPLACE DI ROOT REPOSITORY website-gria:
-1. alkitab.html          -> replace
-2. jemaat.html           -> replace
-3. service-worker.js     -> replace
-4. ayt-data.min.json     -> file baru (~4.9 MB)
-5. AYT-LICENSE.html      -> file baru
+Tidak perlu upload ulang ayt-data.min.json.
 
-Tidak perlu edit pwa.js, persekutuan.html, atau warta.html.
-
-HASIL:
-- Tidak memakai API Alkitab eksternal.
-- 66 kitab / 31.102 ayat AYT ada di repo GRIA sendiri.
-- Pilih kitab -> semua pasal kitab terbuka berurutan.
-- Scroll ke bawah untuk pindah pasal secara natural.
-- Dropdown Kitab / Pasal / Ayat untuk lompat cepat.
-- Ayat yang dipilih mendapat highlight.
-- Posisi terakhir tersimpan di perangkat.
-- Tombol Kembali ke Jemaat tersedia.
-- Setelah data pertama kali termuat, service worker v7 menyimpannya di cache.
-- Lisensi/atribusi AYT ikut disertakan.
+PERUBAHAN:
+- Filter Kitab/Pasal/Ayat TIDAK sticky lagi.
+- Hanya satu pasal dirender setiap saat.
+- Swipe horizontal kiri/kanan pada area bacaan untuk pindah pasal.
+- Tombol Pasal Sebelumnya / Berikutnya tetap tersedia.
+- Dropdown Ayat untuk lompat cepat dan highlight.
+- Dark Mode / Light Mode khusus halaman Alkitab.
+- Pilihan tema disimpan di localStorage.
+- Posisi terakhir Kitab/Pasal/Ayat tetap disimpan.
+- Animasi transisi pasal dibuat halus.
+- Service worker naik ke v8 untuk membersihkan cache halaman Alkitab lama.
 
 COMMIT:
-Integrate local AYT Bible reader
-
-Setelah commit: tunggu deploy, refresh Safari, tutup PWA, lalu buka lagi.
+Refine Bible reader with chapter swipe and themes

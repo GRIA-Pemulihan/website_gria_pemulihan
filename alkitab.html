@@ -3,180 +3,767 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0a0a0c">
+<meta name="theme-color" content="#0a0a0c" id="themeColor">
 <title>Alkitab AYT — GRIA Pemulihan Palu</title>
-<meta name="description" content="Alkitab Yang Terbuka (AYT) untuk Jemaat GRIA Palu — pilih kitab, pasal, dan ayat lalu scroll membaca pasal demi pasal.">
+<meta name="description" content="Alkitab Yang Terbuka (AYT) untuk Jemaat GRIA Palu. Pilih kitab, pasal, dan ayat; geser untuk berpindah pasal.">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
+
 <style>
 html{scroll-behavior:smooth}
-body{background:radial-gradient(circle at 50% -8%,rgba(204,255,0,.07),transparent 28%),var(--bg-base);font-family:Manrope,Inter,sans-serif}
-.b-wrap{max-width:900px;margin:0 auto;padding:88px var(--pad) 120px;position:relative;z-index:2}
-.b-back{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:9px 13px;margin-bottom:22px;border-radius:999px;color:#d9d9dc;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font:700 11.5px Manrope,sans-serif;transition:transform .18s ease,background .18s ease}
-.b-back:active{transform:scale(.97);background:rgba(255,255,255,.07)}
-.b-head{margin-bottom:22px}.b-kicker{display:flex;align-items:center;gap:7px;color:var(--neon);font:800 10.5px Manrope,sans-serif;text-transform:uppercase;letter-spacing:.1em}.b-kicker:before{content:'';width:7px;height:7px;border-radius:50%;background:var(--neon);box-shadow:0 0 12px rgba(204,255,0,.4)}
-.b-head h1{font:800 clamp(36px,9vw,56px)/1 Syne,sans-serif;letter-spacing:-.05em;margin:10px 0 9px}.b-head p{max-width:650px;color:#919299;font:500 13px/1.65 Manrope,sans-serif}
-.b-controls{position:sticky;top:66px;z-index:35;padding:11px;margin:0 0 18px;border-radius:20px;background:rgba(13,13,16,.9);border:1px solid rgba(255,255,255,.075);box-shadow:0 14px 36px rgba(0,0,0,.2);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.b-selects{display:grid;grid-template-columns:1.35fr .72fr .72fr;gap:7px}.b-selects select{width:100%;min-width:0;min-height:43px;padding:9px 10px;border-radius:13px;color:#eee;background:#08080a;border:1px solid rgba(255,255,255,.09);outline:none;font:700 11px Manrope,sans-serif}
-.b-progress{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:9px;padding:0 2px;color:#77787e;font:700 9.5px Manrope,sans-serif}.b-progress strong{color:var(--neon);font-weight:800}
-.b-loading{padding:34px 20px;border-radius:20px;background:#111114;border:1px solid rgba(255,255,255,.06);text-align:center;color:#929399;font:600 12px/1.6 Manrope,sans-serif}.pulse{display:inline-flex;gap:5px;margin-bottom:9px}.pulse i{width:6px;height:6px;border-radius:50%;background:var(--neon);animation:pulse 1s ease-in-out infinite}.pulse i:nth-child(2){animation-delay:.14s}.pulse i:nth-child(3){animation-delay:.28s}@keyframes pulse{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
-.book-reader{display:grid;gap:18px}
-.chapter{scroll-margin-top:190px;padding:20px 17px 15px;border-radius:23px;background:linear-gradient(155deg,#121215,#0d0d0f);border:1px solid rgba(255,255,255,.06);box-shadow:0 12px 30px rgba(0,0,0,.1)}
-.chapter-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.055)}
-.chapter-head h2{font:800 22px/1.1 Syne,sans-serif;letter-spacing:-.035em}.chapter-head span{color:#67686e;font:800 9px Manrope,sans-serif;text-transform:uppercase;letter-spacing:.08em}
-.chapter-title{margin:0 0 13px;padding:10px 12px;border-radius:12px;color:#d8f781;background:rgba(204,255,0,.045);border:1px solid rgba(204,255,0,.09);font:700 11px/1.5 Manrope,sans-serif}
-.verse-list{display:grid;gap:2px}.verse{position:relative;display:grid;grid-template-columns:31px 1fr;gap:10px;padding:10px 9px;border-radius:13px;scroll-margin-top:190px;transition:background .22s ease,border-color .22s ease,transform .22s ease;border:1px solid transparent}.verse:hover{background:rgba(255,255,255,.025)}.verse.selected{background:rgba(204,255,0,.075);border-color:rgba(204,255,0,.18);transform:translateX(2px)}
-.vnum{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:9px;color:#a7cb16;background:rgba(204,255,0,.055);font:800 9.5px Manrope,sans-serif}.vtext{color:#e6e6e8;font:500 14.5px/1.75 Manrope,sans-serif}.verse.selected .vnum{color:#050505;background:var(--neon)}
-.b-source{margin-top:20px;padding:14px 15px;border-radius:15px;color:#73747a;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05);font:500 10.5px/1.6 Manrope,sans-serif}.b-source a{color:#a9d000;text-decoration:underline}
-.access-lock{max-width:500px;margin:45px auto 0;padding:27px 22px;border-radius:26px;background:#111114;border:1px solid rgba(255,255,255,.07)}.access-lock h1{font:800 30px/1.05 Syne,sans-serif}.access-lock p{margin-top:10px;color:#8e8f95;font:500 13px/1.6 Manrope,sans-serif}.access-lock a{display:flex;margin-top:18px;min-height:48px;align-items:center;justify-content:center;border-radius:14px;background:var(--neon);color:#050505;font:800 12px Manrope,sans-serif}
-@media(max-width:600px){.b-wrap{padding-top:82px}.b-selects{grid-template-columns:1.25fr .75fr}.b-selects #verseSel{grid-column:1/-1}.b-controls{top:64px}.chapter{padding:18px 13px 13px}.chapter-head h2{font-size:20px}.vtext{font-size:14px;line-height:1.72}.verse{padding:9px 6px}.b-head p{font-size:12.5px}}
+body{
+  --b-bg:#09090b;
+  --b-surface:#111114;
+  --b-surface-2:#161619;
+  --b-border:rgba(255,255,255,.075);
+  --b-border-strong:rgba(255,255,255,.12);
+  --b-text:#f1f1f2;
+  --b-muted:#888990;
+  --b-soft:#6f7077;
+  --b-accent:#ccff00;
+  --b-accent-soft:rgba(204,255,0,.075);
+  --b-shadow:0 22px 60px rgba(0,0,0,.22);
+  background:
+    radial-gradient(circle at 50% -8%,rgba(204,255,0,.07),transparent 30%),
+    var(--b-bg);
+  color:var(--b-text);
+  font-family:Manrope,Inter,sans-serif;
+  transition:background .3s ease,color .3s ease;
+}
+
+body[data-bible-theme="light"]{
+  --b-bg:#f5f5f1;
+  --b-surface:#ffffff;
+  --b-surface-2:#f0f0ec;
+  --b-border:rgba(15,15,18,.08);
+  --b-border-strong:rgba(15,15,18,.13);
+  --b-text:#171719;
+  --b-muted:#66676d;
+  --b-soft:#85868b;
+  --b-accent:#9fc900;
+  --b-accent-soft:rgba(159,201,0,.11);
+  --b-shadow:0 20px 50px rgba(24,24,28,.09);
+  background:
+    radial-gradient(circle at 50% -8%,rgba(159,201,0,.11),transparent 30%),
+    var(--b-bg);
+}
+
+/* Keep the generic GRIA navbar visually coherent in both themes */
+body[data-bible-theme="light"] .navbar{
+  background:rgba(245,245,241,.90)!important;
+  border-color:rgba(15,15,18,.08)!important;
+}
+body[data-bible-theme="light"] .navbar .logo{color:#171719!important}
+
+.b-wrap{
+  max-width:900px;
+  margin:0 auto;
+  padding:88px var(--pad) 120px;
+  position:relative;
+  z-index:2;
+}
+
+.b-topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:24px;
+}
+
+.b-back{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  min-height:42px;
+  padding:9px 13px;
+  border-radius:999px;
+  color:var(--b-text);
+  background:var(--b-surface);
+  border:1px solid var(--b-border);
+  font:700 11.5px Manrope,sans-serif;
+  transition:transform .18s ease,background .18s ease,border-color .18s ease;
+}
+.b-back:active{transform:scale(.97)}
+
+.theme-toggle{
+  min-height:42px;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:5px;
+  border-radius:999px;
+  background:var(--b-surface);
+  border:1px solid var(--b-border);
+}
+.theme-toggle button{
+  min-width:62px;
+  min-height:32px;
+  padding:6px 10px;
+  border-radius:999px;
+  color:var(--b-muted);
+  font:800 10px Manrope,sans-serif;
+  transition:.2s ease;
+}
+.theme-toggle button.active{
+  color:#09090b;
+  background:var(--b-accent);
+}
+
+.b-head{margin-bottom:24px}
+.b-kicker{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:var(--b-accent);
+  font:800 10.5px Manrope,sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
+.b-kicker:before{
+  content:'';
+  width:7px;height:7px;border-radius:50%;
+  background:var(--b-accent);
+  box-shadow:0 0 12px color-mix(in srgb,var(--b-accent) 45%,transparent);
+}
+.b-head h1{
+  font:800 clamp(36px,9vw,56px)/1 Syne,sans-serif;
+  letter-spacing:-.05em;
+  margin:10px 0 9px;
+  color:var(--b-text);
+}
+.b-head p{
+  max-width:650px;
+  color:var(--b-muted);
+  font:500 13px/1.65 Manrope,sans-serif;
+}
+
+/* IMPORTANT: not sticky — user asked it to stay in normal document flow */
+.b-controls{
+  position:relative;
+  z-index:2;
+  padding:12px;
+  margin:0 0 18px;
+  border-radius:22px;
+  background:var(--b-surface);
+  border:1px solid var(--b-border);
+  box-shadow:var(--b-shadow);
+}
+
+.b-selects{
+  display:grid;
+  grid-template-columns:1.35fr .72fr .72fr;
+  gap:7px;
+}
+.b-selects select{
+  width:100%;
+  min-width:0;
+  min-height:44px;
+  padding:9px 10px;
+  border-radius:13px;
+  color:var(--b-text);
+  background:var(--b-bg);
+  border:1px solid var(--b-border-strong);
+  outline:none;
+  font:700 11px Manrope,sans-serif;
+}
+
+.b-status{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:10px;
+  padding:0 2px;
+  color:var(--b-muted);
+  font:700 9.5px Manrope,sans-serif;
+}
+.b-status strong{
+  color:var(--b-accent);
+  font-weight:800;
+}
+
+/* chapter shell */
+.reader-shell{
+  position:relative;
+  overflow:hidden;
+  border-radius:25px;
+  background:var(--b-surface);
+  border:1px solid var(--b-border);
+  box-shadow:var(--b-shadow);
+}
+
+.chapter-stage{
+  will-change:transform,opacity;
+  transition:
+    transform .34s cubic-bezier(.2,.8,.2,1),
+    opacity .28s ease;
+}
+.chapter-stage.slide-out-left{transform:translateX(-30px);opacity:0}
+.chapter-stage.slide-out-right{transform:translateX(30px);opacity:0}
+.chapter-stage.slide-in-left{animation:slideInLeft .36s cubic-bezier(.2,.8,.2,1)}
+.chapter-stage.slide-in-right{animation:slideInRight .36s cubic-bezier(.2,.8,.2,1)}
+
+@keyframes slideInLeft{
+  from{transform:translateX(-28px);opacity:0}
+  to{transform:translateX(0);opacity:1}
+}
+@keyframes slideInRight{
+  from{transform:translateX(28px);opacity:0}
+  to{transform:translateX(0);opacity:1}
+}
+
+.chapter{
+  padding:21px 17px 17px;
+}
+.chapter-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:13px;
+  padding-bottom:13px;
+  border-bottom:1px solid var(--b-border);
+}
+.chapter-head h2{
+  color:var(--b-text);
+  font:800 23px/1.1 Syne,sans-serif;
+  letter-spacing:-.035em;
+}
+.chapter-head span{
+  color:var(--b-soft);
+  font:800 9px Manrope,sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.chapter-title{
+  margin:0 0 14px;
+  padding:11px 12px;
+  border-radius:13px;
+  color:color-mix(in srgb,var(--b-accent) 72%,var(--b-text));
+  background:var(--b-accent-soft);
+  border:1px solid color-mix(in srgb,var(--b-accent) 17%,transparent);
+  font:700 11px/1.5 Manrope,sans-serif;
+}
+
+.verse-list{display:grid;gap:2px}
+.verse{
+  position:relative;
+  display:grid;
+  grid-template-columns:31px 1fr;
+  gap:10px;
+  padding:10px 9px;
+  border-radius:13px;
+  border:1px solid transparent;
+  scroll-margin-top:24px;
+  transition:background .22s ease,border-color .22s ease,transform .22s ease;
+}
+.verse:active{background:var(--b-surface-2)}
+.verse.selected{
+  background:var(--b-accent-soft);
+  border-color:color-mix(in srgb,var(--b-accent) 22%,transparent);
+  transform:translateX(2px);
+}
+.vnum{
+  width:28px;height:28px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:9px;
+  color:color-mix(in srgb,var(--b-accent) 70%,var(--b-text));
+  background:var(--b-accent-soft);
+  font:800 9.5px Manrope,sans-serif;
+}
+.verse.selected .vnum{color:#09090b;background:var(--b-accent)}
+.vtext{
+  color:var(--b-text);
+  font:500 14.5px/1.76 Manrope,sans-serif;
+}
+
+/* chapter navigation */
+.chapter-nav{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:10px;
+  padding:14px 15px 16px;
+  border-top:1px solid var(--b-border);
+  background:var(--b-surface-2);
+}
+.chapter-nav button{
+  min-height:42px;
+  padding:9px 12px;
+  border-radius:13px;
+  color:var(--b-text);
+  background:var(--b-surface);
+  border:1px solid var(--b-border);
+  font:800 10.5px Manrope,sans-serif;
+}
+.chapter-nav button:last-child{text-align:right}
+.chapter-nav button:disabled{opacity:.3}
+.chapter-index{
+  text-align:center;
+  color:var(--b-muted);
+  font:800 9.5px Manrope,sans-serif;
+  white-space:nowrap;
+}
+
+.swipe-hint{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin:12px 0 0;
+  color:var(--b-soft);
+  font:700 9.5px Manrope,sans-serif;
+}
+.swipe-hint span{color:var(--b-accent)}
+
+.b-loading{
+  padding:44px 20px;
+  text-align:center;
+  color:var(--b-muted);
+  font:600 12px/1.6 Manrope,sans-serif;
+}
+.pulse{display:inline-flex;gap:5px;margin-bottom:9px}
+.pulse i{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--b-accent);
+  animation:pulse 1s ease-in-out infinite;
+}
+.pulse i:nth-child(2){animation-delay:.14s}
+.pulse i:nth-child(3){animation-delay:.28s}
+@keyframes pulse{
+  0%,100%{opacity:.25;transform:translateY(0)}
+  50%{opacity:1;transform:translateY(-3px)}
+}
+
+.b-source{
+  margin-top:18px;
+  padding:14px 15px;
+  border-radius:15px;
+  color:var(--b-soft);
+  background:var(--b-surface);
+  border:1px solid var(--b-border);
+  font:500 10.5px/1.6 Manrope,sans-serif;
+}
+.b-source a{color:var(--b-accent);text-decoration:underline}
+
+.access-lock{
+  max-width:500px;
+  margin:45px auto 0;
+  padding:27px 22px;
+  border-radius:26px;
+  background:var(--b-surface);
+  border:1px solid var(--b-border);
+}
+.access-lock h1{font:800 30px/1.05 Syne,sans-serif;color:var(--b-text)}
+.access-lock p{margin-top:10px;color:var(--b-muted);font:500 13px/1.6 Manrope,sans-serif}
+.access-lock a{
+  display:flex;
+  margin-top:18px;
+  min-height:48px;
+  align-items:center;
+  justify-content:center;
+  border-radius:14px;
+  background:var(--b-accent);
+  color:#050505;
+  font:800 12px Manrope,sans-serif;
+}
+
+@media(max-width:600px){
+  .b-wrap{padding-top:82px}
+  .b-topbar{align-items:center}
+  .theme-toggle button{min-width:54px}
+  .b-selects{grid-template-columns:1.25fr .75fr}
+  .b-selects #verseSel{grid-column:1/-1}
+  .chapter{padding:18px 13px 14px}
+  .chapter-head h2{font-size:21px}
+  .vtext{font-size:14px;line-height:1.74}
+  .verse{padding:9px 6px}
+  .b-head p{font-size:12.5px}
+  .chapter-nav{padding:12px}
+  .chapter-nav button{padding:8px 9px}
+}
 </style>
 </head>
-<body>
-<nav class="navbar"><div class="navbar-inner"><a href="index.html" class="logo">GRI<span>A</span></a></div></nav>
+
+<body data-bible-theme="dark">
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="logo">GRI<span>A</span></a>
+  </div>
+</nav>
+
 <main class="b-wrap" id="root"></main>
+
 <script>
 (function(){
   'use strict';
-  const ACCESS_KEY='gria_member_access_v1';
-  const root=document.getElementById('root');
-  let bible=null,currentBook=null,chapterObserver=null;
 
-  function member(){try{return localStorage.getItem(ACCESS_KEY)==='yes'}catch(_){return false}}
-  function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;')}
+  const ACCESS_KEY='gria_member_access_v1';
+  const THEME_KEY='gria_bible_theme_v1';
+  const LOCATION_KEY='gria_ayt_location';
+  const root=document.getElementById('root');
+  const themeColor=document.getElementById('themeColor');
+
+  let bible=null;
+  let currentBook=null;
+  let currentChapter=1;
+  let selectedVerse=null;
+  let touchStartX=0;
+  let touchStartY=0;
+  let touchEndX=0;
+  let touchEndY=0;
+  let changing=false;
+
+  function member(){
+    try{return localStorage.getItem(ACCESS_KEY)==='yes'}catch(_){return false}
+  }
+
+  function esc(v){
+    return String(v??'')
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#039;');
+  }
+
+  function applyTheme(theme){
+    const safe=theme==='light'?'light':'dark';
+    document.body.dataset.bibleTheme=safe;
+    if(themeColor)themeColor.content=safe==='light'?'#f5f5f1':'#0a0a0c';
+    try{localStorage.setItem(THEME_KEY,safe)}catch(_){}
+    document.querySelectorAll('[data-theme-choice]').forEach(btn=>{
+      btn.classList.toggle('active',btn.dataset.themeChoice===safe);
+    });
+  }
+
+  let savedTheme='dark';
+  try{savedTheme=localStorage.getItem(THEME_KEY)||'dark'}catch(_){}
+  applyTheme(savedTheme);
 
   if(!member()){
-    root.innerHTML='<section class="access-lock"><h1>Fitur Jemaat</h1><p>Alkitab tersedia khusus untuk Jemaat GRIA. Masukkan kode jemaat terlebih dahulu.</p><a href="jemaat.html">Masukkan Kode Jemaat</a></section>';
+    root.innerHTML=`
+      <section class="access-lock">
+        <h1>Fitur Jemaat</h1>
+        <p>Alkitab tersedia khusus untuk Jemaat GRIA. Masukkan kode jemaat terlebih dahulu.</p>
+        <a href="jemaat.html">Masukkan Kode Jemaat</a>
+      </section>`;
     return;
   }
 
   root.innerHTML=`
-    <a class="b-back" href="jemaat.html" aria-label="Kembali ke halaman Jemaat">← Kembali ke Jemaat</a>
+    <div class="b-topbar">
+      <a class="b-back" href="jemaat.html" aria-label="Kembali ke halaman Jemaat">← Kembali</a>
+      <div class="theme-toggle" aria-label="Pilih mode tampilan">
+        <button type="button" data-theme-choice="dark">Dark</button>
+        <button type="button" data-theme-choice="light">Light</button>
+      </div>
+    </div>
+
     <header class="b-head">
       <div class="b-kicker">Alkitab Yang Terbuka</div>
       <h1>Alkitab AYT</h1>
-      <p>Pilih kitab, pasal, atau ayat. Semua pasal dalam kitab yang dipilih terbuka berurutan sehingga Anda bisa terus scroll membaca tanpa pindah halaman.</p>
+      <p>Pilih kitab, pasal, atau ayat. Setelah selesai satu pasal, geser kiri atau kanan untuk berpindah pasal.</p>
     </header>
+
     <section class="b-controls" aria-label="Navigasi Alkitab">
       <div class="b-selects">
         <select id="bookSel" aria-label="Pilih kitab"></select>
         <select id="chapterSel" aria-label="Pilih pasal"></select>
-        <select id="verseSel" aria-label="Pilih ayat"><option value="">Semua ayat</option></select>
+        <select id="verseSel" aria-label="Pilih ayat">
+          <option value="">Semua ayat</option>
+        </select>
       </div>
-      <div class="b-progress"><span id="locationLabel">Memuat...</span><strong>Scroll ↓ pasal berikutnya</strong></div>
+      <div class="b-status">
+        <span id="locationLabel">Memuat...</span>
+        <strong>Geser ← → antar pasal</strong>
+      </div>
     </section>
-    <div id="reader" class="book-reader"><div class="b-loading"><span class="pulse"><i></i><i></i><i></i></span><br>Memuat Alkitab dari data lokal GRIA...</div></div>
-    <div class="b-source">Teks: <strong>Alkitab Yang Terbuka (AYT)</strong> © YLSA-AYT 2011–2024. Penggunaan non-komersial dan atribusi mengikuti lisensi AYT. <a href="AYT-LICENSE.html" target="_blank" rel="noopener">Lihat lisensi</a>.</div>`;
+
+    <section class="reader-shell" id="readerShell" aria-live="polite">
+      <div id="readerStage" class="chapter-stage">
+        <div class="b-loading">
+          <span class="pulse"><i></i><i></i><i></i></span><br>
+          Memuat Alkitab dari data lokal GRIA...
+        </div>
+      </div>
+      <div class="chapter-nav">
+        <button type="button" id="prevChapter">← Pasal sebelumnya</button>
+        <span class="chapter-index" id="chapterIndex">—</span>
+        <button type="button" id="nextChapter">Pasal berikutnya →</button>
+      </div>
+    </section>
+
+    <div class="swipe-hint">Swipe horizontal pada bacaan <span>← →</span></div>
+
+    <div class="b-source">
+      Teks: <strong>Alkitab Yang Terbuka (AYT)</strong> © YLSA-AYT 2011–2024.
+      Penggunaan non-komersial dan atribusi mengikuti lisensi AYT.
+      <a href="AYT-LICENSE.html" target="_blank" rel="noopener">Lihat lisensi</a>.
+    </div>`;
 
   const bookSel=document.getElementById('bookSel');
   const chapterSel=document.getElementById('chapterSel');
   const verseSel=document.getElementById('verseSel');
-  const reader=document.getElementById('reader');
+  const readerShell=document.getElementById('readerShell');
+  const readerStage=document.getElementById('readerStage');
+  const prevBtn=document.getElementById('prevChapter');
+  const nextBtn=document.getElementById('nextChapter');
+  const chapterIndex=document.getElementById('chapterIndex');
   const locationLabel=document.getElementById('locationLabel');
 
+  document.querySelectorAll('[data-theme-choice]').forEach(btn=>{
+    btn.addEventListener('click',()=>applyTheme(btn.dataset.themeChoice));
+  });
+  applyTheme(savedTheme);
+
   fetch('ayt-data.min.json',{cache:'force-cache'})
-    .then(r=>{if(!r.ok)throw new Error('Data Alkitab tidak ditemukan');return r.json()})
-    .then(data=>{bible=data;initBible()})
-    .catch(err=>{reader.innerHTML='<div class="b-loading">Data Alkitab belum dapat dimuat. Pastikan file <strong>ayt-data.min.json</strong> sudah ada di repository dan refresh halaman.</div>';console.error(err)});
+    .then(r=>{
+      if(!r.ok)throw new Error('Data Alkitab tidak ditemukan');
+      return r.json();
+    })
+    .then(data=>{
+      bible=data;
+      initBible();
+    })
+    .catch(err=>{
+      readerStage.innerHTML=`
+        <div class="b-loading">
+          Data Alkitab belum dapat dimuat. Pastikan file <strong>ayt-data.min.json</strong>
+          ada di repository lalu refresh halaman.
+        </div>`;
+      console.error(err);
+    });
 
   function initBible(){
-    bible.books.forEach(book=>{const o=document.createElement('option');o.value=book[0];o.textContent=book[2];bookSel.appendChild(o)});
-    let saved={};try{saved=JSON.parse(localStorage.getItem('gria_ayt_location')||'{}')}catch(_){}
+    bible.books.forEach(book=>{
+      const o=document.createElement('option');
+      o.value=book[0];
+      o.textContent=book[2];
+      bookSel.appendChild(o);
+    });
+
+    let saved={};
+    try{saved=JSON.parse(localStorage.getItem(LOCATION_KEY)||'{}')}catch(_){}
+
     const validBook=bible.books.some(b=>String(b[0])===String(saved.book));
     bookSel.value=validBook?String(saved.book):'43';
-    renderBook(parseInt(saved.chapter||3,10),parseInt(saved.verse||16,10));
-  }
 
-  function getBook(){return bible.books.find(b=>String(b[0])===String(bookSel.value))}
-
-  function fillSelectors(book,targetChapter,targetVerse){
-    chapterSel.innerHTML='';
-    book[3].forEach(ch=>{const o=document.createElement('option');o.value=ch[0];o.textContent='Pasal '+ch[0];chapterSel.appendChild(o)});
-    const chapterExists=book[3].some(ch=>ch[0]===targetChapter);
-    chapterSel.value=String(chapterExists?targetChapter:book[3][0][0]);
-    fillVerseSelector(parseInt(chapterSel.value,10),targetVerse);
-  }
-
-  function fillVerseSelector(chapterNo,targetVerse){
-    const book=getBook();
-    const ch=book[3].find(x=>x[0]===chapterNo);
-    verseSel.innerHTML='<option value="">Semua ayat</option>';
-    if(ch)ch[1].forEach(v=>{const o=document.createElement('option');o.value=v[0];o.textContent='Ayat '+v[0];verseSel.appendChild(o)});
-    if(targetVerse&&ch&&ch[1].some(v=>v[0]===targetVerse))verseSel.value=String(targetVerse);
-  }
-
-  function renderBook(targetChapter,targetVerse){
     currentBook=getBook();
-    if(!currentBook)return;
-    fillSelectors(currentBook,targetChapter,targetVerse);
-    reader.innerHTML='';
-    const frag=document.createDocumentFragment();
+    currentChapter=chapterExists(parseInt(saved.chapter||1,10))
+      ? parseInt(saved.chapter||1,10)
+      : currentBook[3][0][0];
+    selectedVerse=parseInt(saved.verse||0,10)||null;
 
+    fillChapterSelector();
+    fillVerseSelector();
+    renderCurrentChapter('none');
+  }
+
+  function getBook(){
+    return bible.books.find(b=>String(b[0])===String(bookSel.value));
+  }
+
+  function getChapter(no=currentChapter){
+    return currentBook?.[3]?.find(ch=>ch[0]===no);
+  }
+
+  function chapterExists(no){
+    return currentBook?.[3]?.some(ch=>ch[0]===no);
+  }
+
+  function currentChapterIndex(){
+    return currentBook[3].findIndex(ch=>ch[0]===currentChapter);
+  }
+
+  function fillChapterSelector(){
+    chapterSel.innerHTML='';
     currentBook[3].forEach(ch=>{
-      const sec=document.createElement('section');sec.className='chapter';sec.id=`chapter-${ch[0]}`;sec.dataset.chapter=ch[0];
-      const firstTitle=ch[1].find(v=>v[2])?.[2]||'';
-      sec.innerHTML=`<div class="chapter-head"><h2>${esc(currentBook[2])} ${ch[0]}</h2><span>${ch[1].length} ayat</span></div>${firstTitle?`<div class="chapter-title">${esc(firstTitle)}</div>`:''}<div class="verse-list"></div>`;
-      const list=sec.querySelector('.verse-list');
-      ch[1].forEach(v=>{
-        const article=document.createElement('article');article.className='verse';article.id=`verse-${ch[0]}-${v[0]}`;article.dataset.chapter=ch[0];article.dataset.verse=v[0];
-        article.innerHTML=`<div class="vnum">${v[0]}</div><div class="vtext">${esc(v[1])}</div>`;
-        article.addEventListener('click',()=>selectVerse(ch[0],v[0],false));
-        list.appendChild(article);
-      });
-      frag.appendChild(sec);
+      const o=document.createElement('option');
+      o.value=ch[0];
+      o.textContent='Pasal '+ch[0];
+      chapterSel.appendChild(o);
     });
-    reader.appendChild(frag);
-    setupChapterObserver();
+    chapterSel.value=String(currentChapter);
+  }
+
+  function fillVerseSelector(){
+    const ch=getChapter();
+    verseSel.innerHTML='<option value="">Semua ayat</option>';
+    if(!ch)return;
+
+    ch[1].forEach(v=>{
+      const o=document.createElement('option');
+      o.value=v[0];
+      o.textContent='Ayat '+v[0];
+      verseSel.appendChild(o);
+    });
+
+    if(selectedVerse && ch[1].some(v=>v[0]===selectedVerse)){
+      verseSel.value=String(selectedVerse);
+    }else{
+      selectedVerse=null;
+      verseSel.value='';
+    }
+  }
+
+  function renderCurrentChapter(direction){
+    const ch=getChapter();
+    if(!ch)return;
+
+    const firstTitle=ch[1].find(v=>v[2])?.[2]||'';
+    const verses=ch[1].map(v=>`
+      <article class="verse${selectedVerse===v[0]?' selected':''}" id="verse-${v[0]}" data-verse="${v[0]}">
+        <div class="vnum">${v[0]}</div>
+        <div class="vtext">${esc(v[1])}</div>
+      </article>`).join('');
+
+    readerStage.innerHTML=`
+      <article class="chapter">
+        <div class="chapter-head">
+          <h2>${esc(currentBook[2])} ${ch[0]}</h2>
+          <span>${ch[1].length} ayat</span>
+        </div>
+        ${firstTitle?`<div class="chapter-title">${esc(firstTitle)}</div>`:''}
+        <div class="verse-list">${verses}</div>
+      </article>`;
+
+    readerStage.className='chapter-stage';
+    if(direction==='next')readerStage.classList.add('slide-in-right');
+    if(direction==='prev')readerStage.classList.add('slide-in-left');
+
+    chapterSel.value=String(currentChapter);
+    fillVerseSelector();
+    updateMeta();
+    bindVerses();
+    saveLocation();
+
     requestAnimationFrame(()=>{
-      const chapter=parseInt(chapterSel.value,10);
-      if(targetVerse)selectVerse(chapter,targetVerse,true);else jumpChapter(chapter,true);
+      if(selectedVerse){
+        const target=document.getElementById(`verse-${selectedVerse}`);
+        if(target){
+          setTimeout(()=>target.scrollIntoView({behavior:'smooth',block:'center'}),80);
+        }
+      }else{
+        readerShell.scrollIntoView({behavior:'smooth',block:'start'});
+      }
     });
   }
 
-  function setupChapterObserver(){
-    if(chapterObserver)chapterObserver.disconnect();
-    chapterObserver=new IntersectionObserver(entries=>{
-      const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
-      if(!visible)return;
-      const chapter=parseInt(visible.target.dataset.chapter,10);
-      if(String(chapterSel.value)!==String(chapter)){
-        chapterSel.value=String(chapter);
-        fillVerseSelector(chapter,null);
-        locationLabel.textContent=`${currentBook[2]} ${chapter}`;
-        saveLocation(chapter,null);
+  function bindVerses(){
+    readerStage.querySelectorAll('.verse').forEach(el=>{
+      el.addEventListener('click',()=>{
+        selectedVerse=parseInt(el.dataset.verse,10);
+        readerStage.querySelectorAll('.verse.selected').forEach(v=>v.classList.remove('selected'));
+        el.classList.add('selected');
+        verseSel.value=String(selectedVerse);
+        locationLabel.textContent=`${currentBook[2]} ${currentChapter}:${selectedVerse}`;
+        saveLocation();
+      });
+    });
+  }
+
+  function updateMeta(){
+    const idx=currentChapterIndex();
+    const total=currentBook[3].length;
+
+    chapterIndex.textContent=`${idx+1} / ${total}`;
+    prevBtn.disabled=idx<=0;
+    nextBtn.disabled=idx>=total-1;
+
+    locationLabel.textContent=selectedVerse
+      ?`${currentBook[2]} ${currentChapter}:${selectedVerse}`
+      :`${currentBook[2]} ${currentChapter}`;
+  }
+
+  function saveLocation(){
+    try{
+      localStorage.setItem(LOCATION_KEY,JSON.stringify({
+        book:parseInt(bookSel.value,10),
+        chapter:currentChapter,
+        verse:selectedVerse||null
+      }));
+    }catch(_){}
+  }
+
+  function changeChapter(delta,source='button'){
+    if(changing)return;
+
+    const idx=currentChapterIndex();
+    const newIdx=idx+delta;
+    if(newIdx<0||newIdx>=currentBook[3].length)return;
+
+    changing=true;
+    const dir=delta>0?'next':'prev';
+
+    readerStage.classList.add(delta>0?'slide-out-left':'slide-out-right');
+
+    setTimeout(()=>{
+      currentChapter=currentBook[3][newIdx][0];
+      selectedVerse=null;
+      renderCurrentChapter(dir);
+      changing=false;
+
+      /* When swiping, keep user at the beginning of the new chapter */
+      if(source==='swipe'){
+        setTimeout(()=>readerShell.scrollIntoView({behavior:'smooth',block:'start'}),60);
       }
-    },{rootMargin:'-180px 0px -58% 0px',threshold:[0,.2,.5,.8]});
-    reader.querySelectorAll('.chapter').forEach(c=>chapterObserver.observe(c));
+    },220);
   }
 
-  function jumpChapter(chapter,smooth){
-    document.querySelectorAll('.verse.selected').forEach(v=>v.classList.remove('selected'));
-    const target=document.getElementById(`chapter-${chapter}`);if(!target)return;
-    locationLabel.textContent=`${currentBook[2]} ${chapter}`;
-    fillVerseSelector(chapter,null);
-    saveLocation(chapter,null);
-    target.scrollIntoView({behavior:smooth?'smooth':'auto',block:'start'});
-  }
+  bookSel.addEventListener('change',()=>{
+    currentBook=getBook();
+    currentChapter=currentBook[3][0][0];
+    selectedVerse=null;
+    fillChapterSelector();
+    fillVerseSelector();
+    renderCurrentChapter('none');
+  });
 
-  function selectVerse(chapter,verse,smooth){
-    document.querySelectorAll('.verse.selected').forEach(v=>v.classList.remove('selected'));
-    const target=document.getElementById(`verse-${chapter}-${verse}`);if(!target)return;
-    chapterSel.value=String(chapter);fillVerseSelector(chapter,verse);verseSel.value=String(verse);
-    target.classList.add('selected');locationLabel.textContent=`${currentBook[2]} ${chapter}:${verse}`;saveLocation(chapter,verse);
-    target.scrollIntoView({behavior:smooth?'smooth':'auto',block:'center'});
-  }
+  chapterSel.addEventListener('change',()=>{
+    currentChapter=parseInt(chapterSel.value,10);
+    selectedVerse=null;
+    fillVerseSelector();
+    renderCurrentChapter('none');
+  });
 
-  function saveLocation(chapter,verse){try{localStorage.setItem('gria_ayt_location',JSON.stringify({book:parseInt(bookSel.value,10),chapter,verse:verse||null}))}catch(_){}}
+  verseSel.addEventListener('change',()=>{
+    selectedVerse=verseSel.value?parseInt(verseSel.value,10):null;
+    renderCurrentChapter('none');
+  });
 
-  bookSel.addEventListener('change',()=>{renderBook(1,null);window.scrollTo({top:0,behavior:'smooth'})});
-  chapterSel.addEventListener('change',()=>jumpChapter(parseInt(chapterSel.value,10),true));
-  verseSel.addEventListener('change',()=>{const chapter=parseInt(chapterSel.value,10);if(verseSel.value)selectVerse(chapter,parseInt(verseSel.value,10),true);else jumpChapter(chapter,true)});
+  prevBtn.addEventListener('click',()=>changeChapter(-1));
+  nextBtn.addEventListener('click',()=>changeChapter(1));
+
+  /* Horizontal swipe. Vertical reading scroll is left untouched. */
+  readerShell.addEventListener('touchstart',e=>{
+    const t=e.changedTouches[0];
+    touchStartX=t.clientX;
+    touchStartY=t.clientY;
+  },{passive:true});
+
+  readerShell.addEventListener('touchend',e=>{
+    const t=e.changedTouches[0];
+    touchEndX=t.clientX;
+    touchEndY=t.clientY;
+
+    const dx=touchEndX-touchStartX;
+    const dy=touchEndY-touchStartY;
+
+    if(Math.abs(dx)<58 || Math.abs(dx)<Math.abs(dy)*1.25)return;
+
+    if(dx<0)changeChapter(1,'swipe');
+    else changeChapter(-1,'swipe');
+  },{passive:true});
+
 })();
 </script>
+
 <script src="pwa.js" defer></script>
 </body>
 </html>
