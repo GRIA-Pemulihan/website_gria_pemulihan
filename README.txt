@@ -1,33 +1,29 @@
-GRIA V6 — HOME RESPONSIVE + ALKITAB REBUILD
+GRIA V7 — ALKITAB AYT LOKAL
 
-UPLOAD / REPLACE DI ROOT REPOSITORY:
-1. pwa.js              -> replace
-2. alkitab.html        -> replace
-3. service-worker.js   -> replace
+Repository sumber: AYT (Alkitab Yang Terbuka) yang Anda upload.
 
-TIDAK PERLU EDIT FILE LAIN.
+UPLOAD / REPLACE DI ROOT REPOSITORY website-gria:
+1. alkitab.html          -> replace
+2. jemaat.html           -> replace
+3. service-worker.js     -> replace
+4. ayt-data.min.json     -> file baru (~4.9 MB)
+5. AYT-LICENSE.html      -> file baru
 
-PERBAIKAN HOME:
-- Tulisan besar GRIA dipaksa satu baris pada semua ukuran HP.
-- Ukuran otomatis menyesuaikan lebar layar.
-- Tidak ada lagi huruf A turun ke baris bawah.
+Tidak perlu edit pwa.js, persekutuan.html, atau warta.html.
 
-PERBAIKAN ALKITAB:
-- Tombol Kembali ke Jemaat.
-- Selector Kitab, Pasal, dan Ayat.
-- Pilihan English KJV, Hebrew WLC (PL), Greek TR (PB).
-- Ayat pilihan otomatis highlight + smooth scroll.
-- Previous / Next chapter.
-- Primary source Midvash Bible API.
-- Automatic fallback ke Bolls Bible.
-- Cache lokal chapter yang pernah berhasil dibuka.
-- Loading dan error state baru.
+HASIL:
+- Tidak memakai API Alkitab eksternal.
+- 66 kitab / 31.102 ayat AYT ada di repo GRIA sendiri.
+- Pilih kitab -> semua pasal kitab terbuka berurutan.
+- Scroll ke bawah untuk pindah pasal secara natural.
+- Dropdown Kitab / Pasal / Ayat untuk lompat cepat.
+- Ayat yang dipilih mendapat highlight.
+- Posisi terakhir tersimpan di perangkat.
+- Tombol Kembali ke Jemaat tersedia.
+- Setelah data pertama kali termuat, service worker v7 menyimpannya di cache.
+- Lisensi/atribusi AYT ikut disertakan.
 
-COMMIT MESSAGE:
-Fix responsive GRIA hero and rebuild Bible reader
+COMMIT:
+Integrate local AYT Bible reader
 
-SETELAH COMMIT:
-1. Tunggu 1-3 menit.
-2. Refresh website melalui Safari.
-3. Tutup PWA dari app switcher.
-4. Buka kembali agar service worker v6 aktif.
+Setelah commit: tunggu deploy, refresh Safari, tutup PWA, lalu buka lagi.
