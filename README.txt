@@ -1,21 +1,25 @@
-GRIA V9
+GRIA V10 — MULTI BIBLE
 
 UPLOAD / REPLACE:
 1. alkitab.html
 2. service-worker.js
 
-OPTIONAL:
-3. GRIA-APP-REPOSITION-BLUEPRINT.md
-   This is planning/documentation only; it does not affect the website.
+OPTIONAL DOCUMENTATION:
+3. BIBLE-SOURCES.md
 
-WHAT CHANGED IN BIBLE:
-- ONLY Kitab + Pasal filter is frozen/sticky.
-- Header, back button, theme switch, Ayat selector, reader, and source info scroll normally.
-- Ayat is now a separate compact jump control below the frozen filter.
-- One chapter at a time remains.
-- Horizontal swipe remains.
-- Dark/Light remains.
-- Service worker updated to v9.
+DO NOT DELETE:
+- ayt-data.min.json
+- AYT-LICENSE.html
 
-COMMIT MESSAGE:
-Freeze Bible book chapter filter and add GRIA app blueprint
+VERSIONS:
+- AYT: local/offline
+- Hebrew WLC: fetched from openscriptures/morphhb
+- Greek SBLGNT: fetched from Faithlife/SBLGNT
+- NIV: opens selected reference through official YouVersion page; full NIV is not copied into GRIA
+
+FILTER:
+- Only Kitab + Pasal is sticky/frozen.
+- Version, Dark/Light, Ayat selector and reading content scroll normally.
+
+COMMIT:
+Add Hebrew and Greek Bible sources with licensed NIV access
