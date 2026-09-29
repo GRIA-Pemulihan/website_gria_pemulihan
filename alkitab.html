@@ -144,19 +144,22 @@ body[data-bible-theme="light"] .navbar .logo{color:#171719!important}
 
 /* IMPORTANT: not sticky — user asked it to stay in normal document flow */
 .b-controls{
-  position:relative;
-  z-index:2;
-  padding:12px;
-  margin:0 0 18px;
-  border-radius:22px;
-  background:var(--b-surface);
+  position:sticky;
+  top:calc(64px + env(safe-area-inset-top,0px));
+  z-index:45;
+  padding:9px;
+  margin:0 0 14px;
+  border-radius:18px;
+  background:color-mix(in srgb,var(--b-surface) 91%,transparent);
   border:1px solid var(--b-border);
-  box-shadow:var(--b-shadow);
+  box-shadow:0 12px 34px rgba(0,0,0,.16);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
 }
 
 .b-selects{
   display:grid;
-  grid-template-columns:1.35fr .72fr .72fr;
+  grid-template-columns:minmax(0,1.45fr) minmax(112px,.72fr);
   gap:7px;
 }
 .b-selects select{
@@ -177,7 +180,7 @@ body[data-bible-theme="light"] .navbar .logo{color:#171719!important}
   align-items:center;
   justify-content:space-between;
   gap:12px;
-  margin-top:10px;
+  margin:0 2px 12px;
   padding:0 2px;
   color:var(--b-muted);
   font:700 9.5px Manrope,sans-serif;
@@ -185,6 +188,38 @@ body[data-bible-theme="light"] .navbar .logo{color:#171719!important}
 .b-status strong{
   color:var(--b-accent);
   font-weight:800;
+}
+
+/* Ayat selector stays in normal flow; only Kitab + Pasal are frozen */
+.verse-jump{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:0 0 13px;
+  padding:10px 12px;
+  border-radius:16px;
+  background:var(--b-surface);
+  border:1px solid var(--b-border);
+}
+.verse-jump label{
+  color:var(--b-muted);
+  font:800 9.5px Manrope,sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  white-space:nowrap;
+}
+.verse-jump select{
+  flex:1;
+  max-width:220px;
+  min-height:38px;
+  padding:8px 10px;
+  border-radius:11px;
+  color:var(--b-text);
+  background:var(--b-bg);
+  border:1px solid var(--b-border-strong);
+  outline:none;
+  font:700 10.5px Manrope,sans-serif;
 }
 
 /* chapter shell */
@@ -377,8 +412,13 @@ body[data-bible-theme="light"] .navbar .logo{color:#171719!important}
   .b-wrap{padding-top:82px}
   .b-topbar{align-items:center}
   .theme-toggle button{min-width:54px}
-  .b-selects{grid-template-columns:1.25fr .75fr}
-  .b-selects #verseSel{grid-column:1/-1}
+  .b-selects{grid-template-columns:minmax(0,1.35fr) minmax(104px,.72fr)}
+  .b-controls{
+    top:calc(62px + env(safe-area-inset-top,0px));
+    margin-left:-2px;
+    margin-right:-2px;
+  }
+  .verse-jump select{max-width:190px}
   .chapter{padding:18px 13px 14px}
   .chapter-head h2{font-size:21px}
   .vtext{font-size:14px;line-height:1.74}
@@ -468,22 +508,27 @@ body[data-bible-theme="light"] .navbar .logo{color:#171719!important}
     <header class="b-head">
       <div class="b-kicker">Alkitab Yang Terbuka</div>
       <h1>Alkitab AYT</h1>
-      <p>Pilih kitab, pasal, atau ayat. Setelah selesai satu pasal, geser kiri atau kanan untuk berpindah pasal.</p>
+      <p>Pilih kitab, pasal, atau ayat. Kitab dan pasal tetap terlihat saat membaca. Pilih ayat untuk lompat cepat, lalu geser kiri atau kanan untuk berpindah pasal.</p>
     </header>
 
-    <section class="b-controls" aria-label="Navigasi Alkitab">
+    <section class="b-controls" aria-label="Filter Kitab dan Pasal">
       <div class="b-selects">
         <select id="bookSel" aria-label="Pilih kitab"></select>
         <select id="chapterSel" aria-label="Pilih pasal"></select>
-        <select id="verseSel" aria-label="Pilih ayat">
-          <option value="">Semua ayat</option>
-        </select>
-      </div>
-      <div class="b-status">
-        <span id="locationLabel">Memuat...</span>
-        <strong>Geser ← → antar pasal</strong>
       </div>
     </section>
+
+    <div class="verse-jump">
+      <label for="verseSel">Lompat Ayat</label>
+      <select id="verseSel" aria-label="Pilih ayat">
+        <option value="">Semua ayat</option>
+      </select>
+    </div>
+
+    <div class="b-status">
+      <span id="locationLabel">Memuat...</span>
+      <strong>Geser ← → antar pasal</strong>
+    </div>
 
     <section class="reader-shell" id="readerShell" aria-live="polite">
       <div id="readerStage" class="chapter-stage">

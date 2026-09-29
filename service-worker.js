@@ -1,5 +1,5 @@
-/* GRIA PWA service worker v8 — AYT Bible reader */
-const VERSION='gria-pwa-v8';
+/* GRIA PWA service worker v9 — AYT Bible reader */
+const VERSION='gria-pwa-v9';
 const STATIC_CACHE=`${VERSION}-static`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const scopeUrl=self.registration.scope;

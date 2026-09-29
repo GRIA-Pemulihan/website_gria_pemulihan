@@ -1,22 +1,21 @@
-GRIA V8 — Bible Reader Polish
+GRIA V9
 
 UPLOAD / REPLACE:
 1. alkitab.html
 2. service-worker.js
 
-Tidak perlu upload ulang ayt-data.min.json.
+OPTIONAL:
+3. GRIA-APP-REPOSITION-BLUEPRINT.md
+   This is planning/documentation only; it does not affect the website.
 
-PERUBAHAN:
-- Filter Kitab/Pasal/Ayat TIDAK sticky lagi.
-- Hanya satu pasal dirender setiap saat.
-- Swipe horizontal kiri/kanan pada area bacaan untuk pindah pasal.
-- Tombol Pasal Sebelumnya / Berikutnya tetap tersedia.
-- Dropdown Ayat untuk lompat cepat dan highlight.
-- Dark Mode / Light Mode khusus halaman Alkitab.
-- Pilihan tema disimpan di localStorage.
-- Posisi terakhir Kitab/Pasal/Ayat tetap disimpan.
-- Animasi transisi pasal dibuat halus.
-- Service worker naik ke v8 untuk membersihkan cache halaman Alkitab lama.
+WHAT CHANGED IN BIBLE:
+- ONLY Kitab + Pasal filter is frozen/sticky.
+- Header, back button, theme switch, Ayat selector, reader, and source info scroll normally.
+- Ayat is now a separate compact jump control below the frozen filter.
+- One chapter at a time remains.
+- Horizontal swipe remains.
+- Dark/Light remains.
+- Service worker updated to v9.
 
-COMMIT:
-Refine Bible reader with chapter swipe and themes
+COMMIT MESSAGE:
+Freeze Bible book chapter filter and add GRIA app blueprint
