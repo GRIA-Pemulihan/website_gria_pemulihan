@@ -99,10 +99,20 @@ body{
 }
 
 .brand{
-  font:800 25px/1 Syne,sans-serif;
-  letter-spacing:-.06em;
+  display:inline-flex;
+  align-items:center;
+  white-space:nowrap;
+  font:800 25px/.9 Syne,sans-serif;
+  letter-spacing:-.09em;
+  font-kerning:normal;
+  font-feature-settings:"kern" 1,"liga" 1;
 }
-.brand span{color:var(--home-accent)}
+.brand span{
+  display:inline-block;
+  color:var(--home-accent);
+  margin-left:-.055em;
+  letter-spacing:-.09em;
+}
 
 .header-actions{display:flex;gap:8px}
 
@@ -337,7 +347,6 @@ main{padding:31px 17px 16px}
     <section class="home-intro">
       <small>GRIA Pemulihan Palu</small>
       <h1>Shalom, <span id="homeGreeting">Keluarga GRIA</span></h1>
-      <p>Satu hal yang perlu Anda tahu hari ini: kapan dan di mana kita beribadah bersama.</p>
     </section>
 
     <section class="sunday-card" aria-label="Informasi Ibadah Minggu">
@@ -377,7 +386,6 @@ main{padding:31px 17px 16px}
       </div>
     </section>
 
-    <p class="home-note">Gunakan navigasi bawah untuk Warta, Persekutuan, dan Ruang Jemaat.</p>
   </main>
 </div>
 
@@ -410,6 +418,6 @@ main{padding:31px 17px 16px}
 })();
 </script>
 
-<script src="pwa.js" defer></script>
+<script src="pwa-v16.js" defer></script>
 </body>
 </html>

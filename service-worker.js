@@ -1,5 +1,5 @@
-/* GRIA PWA service worker v15 — header cleanup */
-const VERSION='gria-pwa-v15';
+/* GRIA PWA service worker v16 — hard cache bust */
+const VERSION='gria-pwa-v16';
 const STATIC_CACHE=`${VERSION}-static`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const scopeUrl=self.registration.scope;
@@ -8,7 +8,7 @@ const origin=new URL(scopeUrl).origin;
 const PRECACHE=[
   'index.html',
   'offline.html',
-  'pwa.js',
+  'pwa-v16.js',
   'warta-mobile.js',
   'manifest.webmanifest',
   'icon-192.png',
@@ -45,7 +45,14 @@ self.addEventListener('activate',event=>{
 });
 
 function injectPwaScript(html){
-  if(/<script[^>]+src=["'][^"']*pwa\.js/i.test(html))return html;
+  /* Force every HTML page onto the new shell filename.
+     This avoids iOS/PWA serving an old cached pwa.js. */
+  html=html.replace(
+    /<script([^>]*?)src=["'][^"']*pwa\.js(?:\?[^"']*)?["']([^>]*)><\/script>/gi,
+    '<script$1src="pwa-v16.js"$2></script>'
+  );
+
+  if(/<script[^>]+src=["'][^"']*pwa-v16\.js/i.test(html))return html;
 
   const themeBoot=`<script>
   (function(){
@@ -55,7 +62,7 @@ function injectPwaScript(html){
     }catch(_){}
   })();
   <\/script>
-  <script src="pwa.js" defer><\/script>`;
+  <script src="pwa-v16.js" defer><\/script>`;
 
   return /<\/body>/i.test(html)
     ? html.replace(/<\/body>/i,themeBoot+'</body>')
@@ -113,6 +120,18 @@ self.addEventListener('fetch',event=>{
           return await caches.match(req) ||
             caches.match(new URL('offline.html',scopeUrl).href);
         })
+    );
+    return;
+  }
+
+  if(req.destination==='script' && url.pathname.endsWith('/pwa-v16.js')){
+    event.respondWith(
+      fetch(req)
+        .then(res=>{
+          if(res&&res.ok)caches.open(STATIC_CACHE).then(c=>c.put(req,res.clone()));
+          return res;
+        })
+        .catch(()=>caches.match(req))
     );
     return;
   }
