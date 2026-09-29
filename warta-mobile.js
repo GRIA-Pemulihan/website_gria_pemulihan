@@ -1,14 +1,384 @@
-/* GRIA — Warta Mobile v5 */
+/* GRIA — Warta Mobile Clean v14 */
 (function(){
   'use strict';
-  if(window.__griaWartaV5)return;window.__griaWartaV5=true;
-  if(!document.getElementById('griaManropeFont')){const f=document.createElement('link');f.id='griaManropeFont';f.rel='stylesheet';f.href='https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap';document.head.appendChild(f)}
-  const style=document.createElement('style');style.textContent=`html{scroll-behavior:smooth}#ulang-tahun{display:none!important}.warta-mobile-jump,.warta-mobile-cards,.warta-summary{display:none}@media(max-width:768px){.warta-wrap{padding:calc(78px + env(safe-area-inset-top,0px)) 16px calc(118px + env(safe-area-inset-bottom,0px));max-width:680px}.back-link{display:none!important}.warta-wrap,.warta-wrap *{font-family:'Manrope',Inter,sans-serif}.warta-hero{margin:0 0 14px;padding:23px 19px 21px;border-radius:24px;background:radial-gradient(circle at 90% 8%,rgba(204,255,0,.10),transparent 30%),linear-gradient(155deg,#151518,#0d0d0f)}.warta-hero h1{font-family:'Manrope',Inter,sans-serif!important;font-size:36px;font-weight:800;letter-spacing:-.045em}.warta-hero p{font-size:12.5px;line-height:1.65;color:#909198}.warta-freshness{display:inline-flex;margin-top:15px;color:#babac0;font-size:10.5px;font-weight:650}.warta-freshness:before{content:'';width:6px;height:6px;margin-right:7px;border-radius:50%;background:var(--neon)}.warta-mobile-jump{position:sticky;top:calc(62px + env(safe-area-inset-top,0px));z-index:40;display:flex;gap:7px;margin:0 -16px 25px;padding:9px 16px;overflow-x:auto;scrollbar-width:none;background:rgba(10,10,12,.91);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}.warta-mobile-jump::-webkit-scrollbar,.warta-mobile-cards::-webkit-scrollbar{display:none}.warta-mobile-jump a{flex:0 0 auto;min-height:36px;display:flex;align-items:center;padding:8px 11px;border-radius:999px;color:#a6a7ad;background:#121215;border:1px solid rgba(255,255,255,.07);font-size:10.5px;font-weight:700;transition:.2s ease}.warta-mobile-jump a:active{transform:scale(.96)}.warta-block{margin-bottom:34px;scroll-margin-top:120px}.warta-block h2{font-family:'Manrope',Inter,sans-serif!important;font-size:20px;font-weight:800;letter-spacing:-.03em}.warta-block .badge-num{width:30px!important;height:30px!important;border-radius:10px!important;font-size:10px!important}.warta-block .block-lead{margin-bottom:13px;font-size:11.5px;line-height:1.55;color:#85868d}.warta-block .warta-scroll{display:none!important}.warta-mobile-cards{display:flex;gap:11px;margin:0 -16px;padding:2px 16px 12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.warta-mobile-card{flex:0 0 min(86vw,340px);scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;border-radius:21px;background:linear-gradient(155deg,#141417,#0d0d0f);border:1px solid rgba(255,255,255,.075);box-shadow:0 12px 30px rgba(0,0,0,.14);transform:scale(.975);opacity:.74;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .35s ease,border-color .35s ease}.warta-mobile-card.is-centered{transform:scale(1);opacity:1;border-color:rgba(204,255,0,.14)}.warta-mobile-card-head{padding:16px 16px 13px;border-bottom:1px solid rgba(255,255,255,.06);background:linear-gradient(135deg,rgba(204,255,0,.055),transparent 60%)}.warta-mobile-card-title{font-size:15px;font-weight:800;line-height:1.35;letter-spacing:-.025em}.warta-mobile-card-tag{display:inline-flex;margin-top:7px;padding:4px 7px;border-radius:999px;color:var(--neon);background:rgba(204,255,0,.07);border:1px solid rgba(204,255,0,.14);font-size:8.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}.warta-mobile-card-body{padding:4px 16px 7px}.warta-mobile-row{display:grid;grid-template-columns:minmax(94px,.9fr) 1.1fr;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)}.warta-mobile-row:last-child{border-bottom:0}.warta-mobile-label{color:#808188;font-size:10.5px;line-height:1.45}.warta-mobile-value{color:#f2f2f3;font-size:12px;font-weight:650;line-height:1.45;text-align:right;overflow-wrap:anywhere}.warta-mobile-value.empty{color:#5f6066;font-weight:500}.warta-card-total{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:0 16px 15px;padding-top:13px;border-top:1px solid rgba(204,255,0,.12)}.warta-card-total span{color:#77787e;font-size:9.5px;text-transform:uppercase;letter-spacing:.07em;font-weight:750}.warta-card-total strong{color:var(--neon);font-size:17px;font-weight:800}.warta-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:4px;padding:15px 16px;border-radius:17px;background:rgba(204,255,0,.055);border:1px solid rgba(204,255,0,.13)}.warta-summary span{color:#9a9ba1;font-size:10.5px;font-weight:650}.warta-summary strong{color:var(--neon);font-size:18px;font-weight:800}.swipe-note{display:flex;justify-content:flex-end;margin:-6px 0 8px;color:#66676d;font-size:9.5px;font-weight:650;letter-spacing:.06em}.swipe-note b{color:var(--neon)}.agape-card{border-radius:22px}footer{padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}}`;
+  if(window.__griaWartaV14)return;
+  window.__griaWartaV14=true;
+
+  if(!document.getElementById('griaManropeFont')){
+    const f=document.createElement('link');
+    f.id='griaManropeFont';f.rel='stylesheet';
+    f.href='https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap';
+    document.head.appendChild(f);
+  }
+
+  const style=document.createElement('style');
+  style.textContent=`
+    html{scroll-behavior:smooth}
+    #ulang-tahun{display:none!important}
+    .warta-mobile-jump,.warta-mobile-cards,.warta-summary{display:none}
+
+    @media(max-width:768px){
+      .warta-wrap{
+        max-width:680px;
+        padding:calc(78px + env(safe-area-inset-top,0px)) 16px calc(118px + env(safe-area-inset-bottom,0px));
+      }
+      .back-link{display:none!important}
+      .warta-wrap,.warta-wrap *{font-family:'Manrope',Inter,sans-serif}
+
+      .warta-hero{
+        margin:0 0 13px;
+        padding:7px 2px 15px;
+        background:none!important;
+        border:0!important;
+      }
+      .warta-hero .eyebrow{margin-bottom:9px;font-size:9px}
+      .warta-hero h1{
+        margin:0;
+        color:var(--text)!important;
+        font-family:'Manrope',Inter,sans-serif!important;
+        font-size:31px!important;
+        font-weight:800;
+        letter-spacing:-.045em;
+      }
+      .warta-hero p{
+        max-width:38ch;
+        margin-top:7px;
+        color:var(--text-mute)!important;
+        font-size:11px;
+        line-height:1.6;
+      }
+      .warta-freshness{
+        display:inline-flex;
+        align-items:center;
+        margin-top:10px;
+        color:var(--grey)!important;
+        font-size:9px;
+        font-weight:700;
+      }
+      .warta-freshness:before{
+        content:'';
+        width:6px;height:6px;margin-right:6px;border-radius:50%;
+        background:var(--neon);
+      }
+
+      .warta-mobile-jump{
+        position:sticky;
+        top:calc(62px + env(safe-area-inset-top,0px));
+        z-index:50;
+        display:flex;
+        gap:6px;
+        margin:0 -16px 25px;
+        padding:8px 16px;
+        overflow-x:auto;
+        scrollbar-width:none;
+        background:color-mix(in srgb,var(--bg-base) 91%,transparent);
+        border-top:1px solid var(--card-border);
+        border-bottom:1px solid var(--card-border);
+        backdrop-filter:blur(18px);
+        -webkit-backdrop-filter:blur(18px);
+      }
+      .warta-mobile-jump::-webkit-scrollbar,.warta-mobile-cards::-webkit-scrollbar{display:none}
+      .warta-mobile-jump a{
+        flex:0 0 auto;
+        min-height:33px;
+        display:flex;align-items:center;
+        padding:7px 10px;
+        border-radius:999px;
+        color:var(--text-mute);
+        background:var(--bg-elevated);
+        border:1px solid var(--card-border);
+        font-size:9.5px;font-weight:750;
+      }
+
+      .warta-block{
+        margin-bottom:30px;
+        scroll-margin-top:118px;
+      }
+      .warta-block>div:first-child,
+      .warta-block .block-title-row{
+        margin-bottom:10px!important;
+      }
+      .warta-block h2{
+        color:var(--text)!important;
+        font-family:'Manrope',Inter,sans-serif!important;
+        font-size:18px!important;
+        font-weight:800;
+        letter-spacing:-.03em;
+      }
+      .warta-block .badge-num{display:none!important}
+      .warta-block .block-lead{
+        margin:5px 0 11px!important;
+        color:var(--text-mute)!important;
+        font-size:10.5px!important;
+        line-height:1.55;
+      }
+      .warta-block .warta-scroll{display:none!important}
+
+      .swipe-note{
+        display:flex;
+        justify-content:flex-end;
+        margin:-2px 1px 7px;
+        color:var(--grey-dim);
+        font-size:8.5px;
+        font-weight:700;
+      }
+      .swipe-note b{color:var(--neon);margin-left:4px}
+
+      .warta-mobile-cards{
+        display:flex;
+        gap:9px;
+        margin:0 -16px;
+        padding:1px 16px 10px;
+        overflow-x:auto;
+        scroll-snap-type:x mandatory;
+        scroll-padding-left:16px;
+        scrollbar-width:none;
+        -webkit-overflow-scrolling:touch;
+      }
+
+      .warta-mobile-card{
+        flex:0 0 min(84vw,326px);
+        scroll-snap-align:start;
+        overflow:hidden;
+        border-radius:18px;
+        background:var(--bg-elevated);
+        border:1px solid var(--card-border);
+        box-shadow:0 10px 26px rgba(0,0,0,.07);
+        transition:transform .24s ease,border-color .24s ease;
+      }
+      .warta-mobile-card.is-centered{
+        border-color:color-mix(in srgb,var(--neon) 18%,var(--card-border));
+      }
+
+      .warta-mobile-card-head{
+        padding:14px 14px 11px;
+        border-bottom:1px solid var(--card-border);
+        background:none;
+      }
+      .warta-mobile-card-title{
+        color:var(--text);
+        font-size:13.5px;
+        font-weight:800;
+        line-height:1.35;
+      }
+      .warta-mobile-card-tag{
+        display:inline-flex;
+        margin-top:6px;
+        padding:4px 7px;
+        border-radius:999px;
+        color:var(--neon-dim);
+        background:var(--neon-soft);
+        font-size:7.5px;
+        font-weight:800;
+        text-transform:uppercase;
+        letter-spacing:.07em;
+      }
+
+      .warta-mobile-card-body{padding:3px 14px 5px}
+      .warta-mobile-row{
+        display:grid;
+        grid-template-columns:minmax(92px,.9fr) 1.1fr;
+        gap:12px;
+        padding:9px 0;
+        border-bottom:1px solid var(--card-border);
+      }
+      .warta-mobile-row:last-child{border-bottom:0}
+      .warta-mobile-label{
+        color:var(--grey);
+        font-size:9.5px;
+        line-height:1.45;
+      }
+      .warta-mobile-value{
+        color:var(--text);
+        font-size:10.8px;
+        font-weight:700;
+        line-height:1.45;
+        text-align:right;
+        overflow-wrap:anywhere;
+      }
+      .warta-mobile-value.empty{color:var(--grey-dim);font-weight:500}
+
+      .warta-card-total{
+        display:flex;
+        align-items:end;
+        justify-content:space-between;
+        gap:10px;
+        margin:0 14px 13px;
+        padding-top:11px;
+        border-top:1px solid color-mix(in srgb,var(--neon) 13%,var(--card-border));
+      }
+      .warta-card-total span{
+        color:var(--grey);
+        font-size:8px;
+        text-transform:uppercase;
+        letter-spacing:.07em;
+        font-weight:800;
+      }
+      .warta-card-total strong{
+        color:var(--neon-dim);
+        font-size:15px;
+        font-weight:800;
+      }
+
+      .warta-summary{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        margin-top:2px;
+        padding:13px 14px;
+        border-radius:15px;
+        background:var(--neon-soft);
+        border:1px solid color-mix(in srgb,var(--neon) 15%,var(--card-border));
+      }
+      .warta-summary span{
+        max-width:20ch;
+        color:var(--text-mute);
+        font-size:9px;
+        font-weight:650;
+        line-height:1.45;
+      }
+      .warta-summary strong{
+        color:var(--neon-dim);
+        font-size:15px;
+        font-weight:800;
+        white-space:nowrap;
+      }
+
+      .agape-card{
+        border-radius:18px!important;
+        background:var(--bg-elevated)!important;
+        border-color:var(--card-border)!important;
+        box-shadow:none!important;
+      }
+      .agape-card *{color:var(--text)}
+      .agape-card p{color:var(--text-mute)!important}
+
+      footer{padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}
+    }
+  `;
   document.head.appendChild(style);
-  const main=document.querySelector('.warta-wrap');if(!main)return;
-  const hero=main.querySelector('.warta-hero');if(hero&&!hero.querySelector('.warta-freshness')){const d=document.createElement('div');d.className='warta-freshness';d.textContent='Warta aktif • diperbarui mingguan';hero.appendChild(d)}
-  const blocks=Array.from(main.querySelectorAll('.warta-block')),ids=['jadwal-pelayanan','laporan-persembahan','informasi-umum','ulang-tahun','kasih-agape'];blocks.forEach((b,i)=>{if(!b.id&&ids[i])b.id=ids[i]});
-  if(!main.querySelector('.warta-mobile-jump')){const nav=document.createElement('nav');nav.className='warta-mobile-jump';nav.innerHTML='<a href="#jadwal-pelayanan">Jadwal</a><a href="#laporan-persembahan">Persembahan</a><a href="#informasi-umum">Info</a><a href="#kasih-agape">Kasih Agape</a>';hero?hero.insertAdjacentElement('afterend',nav):main.prepend(nav)}
-  main.querySelectorAll('.warta-table').forEach(function(table,tableIndex){const holder=table.closest('.warta-scroll');if(!holder||holder.nextElementSibling?.classList.contains('warta-mobile-cards'))return;const rows=Array.from(table.rows);if(!rows.length)return;const headers=Array.from(rows[0].cells).map(c=>c.textContent.trim()),data=rows.slice(1).map(r=>Array.from(r.cells).map(c=>c.textContent.trim()));if(headers.length<2)return;const cards=document.createElement('div');cards.className='warta-mobile-cards';let periodTotal=0;for(let col=1;col<headers.length;col++){let cardTotal=0;const body=data.map(cells=>{const label=cells[0]||'—',raw=cells[col]||'',value=raw||'—';if(tableIndex===1)cardTotal+=moneyToNumber(raw);return `<div class="warta-mobile-row"><div class="warta-mobile-label">${esc(label)}</div><div class="warta-mobile-value ${!raw||raw==='-'?'empty':''}">${esc(value)}</div></div>`}).join('');if(tableIndex===1)periodTotal+=cardTotal;const card=document.createElement('article');card.className='warta-mobile-card';const type=tableIndex===0?'Pelayanan':tableIndex===1?'Persembahan':'PA & Doa';card.innerHTML=`<div class="warta-mobile-card-head"><div class="warta-mobile-card-title">${esc(headers[col]||'Informasi')}</div><span class="warta-mobile-card-tag">${type}</span></div><div class="warta-mobile-card-body">${body}</div>${tableIndex===1?`<div class="warta-card-total"><span>Total Minggu</span><strong>${formatRupiah(cardTotal)}</strong></div>`:''}`;cards.appendChild(card)}const note=document.createElement('div');note.className='swipe-note';note.innerHTML='Geser kartu <b>→</b>';holder.insertAdjacentElement('afterend',cards);cards.insertAdjacentElement('beforebegin',note);const observer=new IntersectionObserver(entries=>entries.forEach(e=>e.target.classList.toggle('is-centered',e.intersectionRatio>.72)),{root:cards,threshold:[.4,.72,.9]});cards.querySelectorAll('.warta-mobile-card').forEach(c=>observer.observe(c));if(tableIndex===1){const summary=document.createElement('div');summary.className='warta-summary';summary.innerHTML=`<span>Total persembahan pada periode yang ditampilkan</span><strong>${formatRupiah(periodTotal)}</strong>`;cards.insertAdjacentElement('afterend',summary)}});
-  function moneyToNumber(v){if(!v||v==='-')return 0;const digits=String(v).replace(/[^\d]/g,'');return digits?parseInt(digits,10):0}function formatRupiah(n){return 'Rp '+Number(n||0).toLocaleString('id-ID')}function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;')}
+
+  const main=document.querySelector('.warta-wrap');
+  if(!main)return;
+
+  const hero=main.querySelector('.warta-hero');
+  if(hero&&!hero.querySelector('.warta-freshness')){
+    const d=document.createElement('div');
+    d.className='warta-freshness';
+    d.textContent='Diperbarui mingguan';
+    hero.appendChild(d);
+  }
+
+  const blocks=Array.from(main.querySelectorAll('.warta-block'));
+  const ids=['jadwal-pelayanan','laporan-persembahan','informasi-umum','ulang-tahun','kasih-agape'];
+  blocks.forEach((b,i)=>{if(!b.id&&ids[i])b.id=ids[i]});
+
+  if(!main.querySelector('.warta-mobile-jump')){
+    const nav=document.createElement('nav');
+    nav.className='warta-mobile-jump';
+    nav.innerHTML=
+      '<a href="#jadwal-pelayanan">Pelayanan</a>'+
+      '<a href="#laporan-persembahan">Persembahan</a>'+
+      '<a href="#informasi-umum">Informasi</a>'+
+      '<a href="#kasih-agape">Kasih Agape</a>';
+    hero?hero.insertAdjacentElement('afterend',nav):main.prepend(nav);
+  }
+
+  main.querySelectorAll('.warta-table').forEach(function(table,tableIndex){
+    const holder=table.closest('.warta-scroll');
+    if(!holder||holder.nextElementSibling?.classList.contains('warta-mobile-cards'))return;
+
+    const rows=Array.from(table.rows);
+    if(!rows.length)return;
+
+    const headers=Array.from(rows[0].cells).map(c=>c.textContent.trim());
+    const data=rows.slice(1).map(r=>Array.from(r.cells).map(c=>c.textContent.trim()));
+    if(headers.length<2)return;
+
+    const cards=document.createElement('div');
+    cards.className='warta-mobile-cards';
+
+    let periodTotal=0;
+
+    for(let col=1;col<headers.length;col++){
+      let cardTotal=0;
+
+      const body=data.map(cells=>{
+        const label=cells[0]||'—';
+        const raw=cells[col]||'';
+        const value=raw||'—';
+
+        if(tableIndex===1)cardTotal+=moneyToNumber(raw);
+
+        return `<div class="warta-mobile-row">
+          <div class="warta-mobile-label">${esc(label)}</div>
+          <div class="warta-mobile-value ${!raw||raw==='-'?'empty':''}">${esc(value)}</div>
+        </div>`;
+      }).join('');
+
+      if(tableIndex===1)periodTotal+=cardTotal;
+
+      const card=document.createElement('article');
+      card.className='warta-mobile-card';
+
+      const type=
+        tableIndex===0?'Pelayanan':
+        tableIndex===1?'Persembahan':
+        'PA & Doa';
+
+      card.innerHTML=`
+        <div class="warta-mobile-card-head">
+          <div class="warta-mobile-card-title">${esc(headers[col]||'Informasi')}</div>
+          <span class="warta-mobile-card-tag">${type}</span>
+        </div>
+        <div class="warta-mobile-card-body">${body}</div>
+        ${tableIndex===1?`
+          <div class="warta-card-total">
+            <span>Total Minggu</span>
+            <strong>${formatRupiah(cardTotal)}</strong>
+          </div>`:''}`;
+
+      cards.appendChild(card);
+    }
+
+    const note=document.createElement('div');
+    note.className='swipe-note';
+    note.innerHTML='Geser <b>→</b>';
+
+    holder.insertAdjacentElement('afterend',cards);
+    cards.insertAdjacentElement('beforebegin',note);
+
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(e=>e.target.classList.toggle('is-centered',e.intersectionRatio>.7));
+    },{root:cards,threshold:[.4,.7,.9]});
+
+    cards.querySelectorAll('.warta-mobile-card').forEach(c=>observer.observe(c));
+
+    if(tableIndex===1){
+      const summary=document.createElement('div');
+      summary.className='warta-summary';
+      summary.innerHTML=`
+        <span>Total persembahan periode yang ditampilkan</span>
+        <strong>${formatRupiah(periodTotal)}</strong>`;
+      cards.insertAdjacentElement('afterend',summary);
+    }
+  });
+
+  function moneyToNumber(v){
+    if(!v||v==='-')return 0;
+    const digits=String(v).replace(/[^\d]/g,'');
+    return digits?parseInt(digits,10):0;
+  }
+  function formatRupiah(n){
+    return 'Rp '+Number(n||0).toLocaleString('id-ID');
+  }
+  function esc(v){
+    return String(v??'')
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#039;');
+  }
 })();

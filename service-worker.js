@@ -1,5 +1,5 @@
-/* GRIA PWA service worker v13 — app-style home */
-const VERSION='gria-pwa-v13';
+/* GRIA PWA service worker v14 — global theme injection */
+const VERSION='gria-pwa-v14';
 const STATIC_CACHE=`${VERSION}-static`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const scopeUrl=self.registration.scope;
@@ -14,15 +14,14 @@ const PRECACHE=[
   'icon-192.png',
   'icon-512.png',
   'apple-touch-icon.png',
-  'foto-kebersamaan-gria.png',
-  'foto-komunitas-hero.png',
-  'foto-hut-gria.png',
   'warta.html',
   'persekutuan.html',
   'komunitas.html',
   'about-us.html',
+  'yayasan.html',
   'jemaat.html',
-  'alkitab.html'
+  'alkitab.html',
+  'foto-komunitas-hero.png'
 ].map(p=>new URL(p,scopeUrl).href);
 
 self.addEventListener('install',event=>{
@@ -44,6 +43,24 @@ self.addEventListener('activate',event=>{
       .then(()=>self.clients.claim())
   );
 });
+
+function injectPwaScript(html){
+  if(/<script[^>]+src=["'][^"']*pwa\.js/i.test(html))return html;
+
+  const themeBoot=`<script>
+  (function(){
+    try{
+      var t=localStorage.getItem('gria_theme_v1');
+      if(t)document.documentElement.setAttribute('data-gria-theme',t);
+    }catch(_){}
+  })();
+  <\/script>
+  <script src="pwa.js" defer><\/script>`;
+
+  return /<\/body>/i.test(html)
+    ? html.replace(/<\/body>/i,themeBoot+'</body>')
+    : html+themeBoot;
+}
 
 self.addEventListener('fetch',event=>{
   const req=event.request;
@@ -67,11 +84,35 @@ self.addEventListener('fetch',event=>{
   if(req.mode==='navigate'||req.destination==='document'){
     event.respondWith(
       fetch(req)
-        .then(res=>{
-          if(res&&res.ok)caches.open(RUNTIME_CACHE).then(c=>c.put(req,res.clone()));
-          return res;
+        .then(async res=>{
+          if(!res||!res.ok)return res;
+
+          const type=res.headers.get('content-type')||'';
+          if(!type.includes('text/html')){
+            caches.open(RUNTIME_CACHE).then(c=>c.put(req,res.clone()));
+            return res;
+          }
+
+          const raw=await res.text();
+          const html=injectPwaScript(raw);
+
+          const headers=new Headers(res.headers);
+          headers.delete('content-length');
+          headers.delete('content-encoding');
+
+          const transformed=new Response(html,{
+            status:res.status,
+            statusText:res.statusText,
+            headers
+          });
+
+          caches.open(RUNTIME_CACHE).then(c=>c.put(req,transformed.clone()));
+          return transformed;
         })
-        .catch(async()=>await caches.match(req)||caches.match(new URL('offline.html',scopeUrl).href))
+        .catch(async()=>{
+          return await caches.match(req) ||
+            caches.match(new URL('offline.html',scopeUrl).href);
+        })
     );
     return;
   }
