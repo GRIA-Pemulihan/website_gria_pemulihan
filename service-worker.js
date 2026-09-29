@@ -1,5 +1,5 @@
-/* GRIA PWA service worker v14 — global theme injection */
-const VERSION='gria-pwa-v14';
+/* GRIA PWA service worker v15 — header cleanup */
+const VERSION='gria-pwa-v15';
 const STATIC_CACHE=`${VERSION}-static`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const scopeUrl=self.registration.scope;

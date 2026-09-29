@@ -1,4 +1,4 @@
-/* GRIA PWA — Global Theme + Universal Navigation v14 */
+/* GRIA PWA — Global Theme + Header Polish v15 */
 (function(){
   'use strict';
 
@@ -29,7 +29,7 @@
   }
 
   const style=document.createElement('style');
-  style.id='gria-global-app-shell-v14';
+  style.id='gria-global-app-shell-v15';
   style.textContent=`
     html[data-gria-theme="light"]{
       --bg-deep:#f0f1eb;
@@ -167,6 +167,100 @@
     html[data-gria-theme="light"] .gria-theme-icon-moon{display:none}
 
     .gria-bottom-nav,.gria-entry-gate{display:none}
+
+
+    /* ===== v15: precise futuristic headers + tighter GRIA wordmark ===== */
+    .navbar .navbar-inner{
+      align-items:center!important;
+    }
+
+    .navbar .logo,
+    .brand,
+    .gria-entry-wordmark{
+      display:inline-flex!important;
+      align-items:center!important;
+      white-space:nowrap!important;
+      font-family:'Syne',var(--font-display),sans-serif!important;
+      font-weight:800!important;
+      font-kerning:normal!important;
+      font-feature-settings:"kern" 1,"liga" 1!important;
+      letter-spacing:-.085em!important;
+      line-height:.88!important;
+    }
+
+    .navbar .logo span,
+    .brand span,
+    .gria-entry-wordmark span{
+      display:inline-block!important;
+      margin-left:-.055em!important;
+      letter-spacing:-.085em!important;
+      color:var(--neon,#ccff00)!important;
+    }
+
+    .navbar .logo img{
+      margin-right:9px!important;
+      letter-spacing:normal!important;
+    }
+
+    .navbar .logo{
+      transform:translateY(-1px);
+    }
+
+    .home-header .brand{
+      transform:translateY(-1px);
+    }
+
+    .warta-hero h1,
+    .fellowship-head h1,
+    .j-head h1,
+    .b-head h1,
+    .about-hero h1,
+    .yy-hero-body h1{
+      font-family:'Syne',var(--font-display),sans-serif!important;
+      font-weight:800!important;
+      line-height:.96!important;
+      letter-spacing:-.055em!important;
+      text-wrap:balance;
+      font-kerning:normal;
+      font-feature-settings:"kern" 1,"liga" 1;
+    }
+
+    .warta-hero .eyebrow,
+    .fellowship-head .eyebrow,
+    .b-kicker,
+    .j-brand{
+      letter-spacing:.12em!important;
+      font-weight:800!important;
+    }
+
+    /* User requested these explanatory lines removed from the UI. */
+    .home-intro > p,
+    .home-note,
+    .warta-hero > p,
+    .j-head > div > p,
+    .b-head > p{
+      display:none!important;
+    }
+
+    /* The official-version panels stay compact: badge, title, action only. */
+    .niv-panel > p{
+      display:none!important;
+    }
+
+    @media(max-width:768px){
+      .navbar .logo{
+        font-size:clamp(25px,7.3vw,31px)!important;
+      }
+
+      .warta-hero h1,
+      .fellowship-head h1,
+      .j-head h1,
+      .b-head h1{
+        max-width:100%!important;
+        overflow-wrap:normal!important;
+        word-break:keep-all!important;
+      }
+    }
 
     @media(max-width:768px){
       body.gria-has-bottom-nav{
@@ -371,11 +465,57 @@
     document.body.appendChild(nav);
   }
 
+
+  function removeUnneededCopy(){
+    const selectors=[
+      '.home-intro > p',
+      '.home-note',
+      '.warta-hero > p',
+      '.j-head > div > p',
+      '.b-head > p'
+    ];
+
+    selectors.forEach(sel=>{
+      document.querySelectorAll(sel).forEach(el=>el.remove());
+    });
+
+    document.querySelectorAll('.niv-panel > p').forEach(el=>{
+      const text=(el.textContent||'').trim();
+      if(
+        text.startsWith('TB adalah teks resmi LAI') ||
+        text.includes('GRIA tidak menyalin full-text TB')
+      ){
+        el.remove();
+      }
+    });
+
+    /* Warta Mobile previously adds a freshness sentence; keep header clean. */
+    document.querySelectorAll('.warta-freshness').forEach(el=>el.remove());
+  }
+
+  let cleanupQueued=false;
+  function queueCopyCleanup(){
+    if(cleanupQueued)return;
+    cleanupQueued=true;
+    requestAnimationFrame(()=>{
+      removeUnneededCopy();
+      cleanupQueued=false;
+    });
+  }
+
+  function observeDynamicCopy(){
+    if(!document.body)return;
+    const observer=new MutationObserver(queueCopyCleanup);
+    observer.observe(document.body,{childList:true,subtree:true});
+  }
+
   function init(){
     addThemeButton();
     bindThemeButtons();
     setupWelcomeGate();
     setupBottomNav();
+    removeUnneededCopy();
+    observeDynamicCopy();
     applyTheme(theme,false);
   }
 
