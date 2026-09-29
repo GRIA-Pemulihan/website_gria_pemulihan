@@ -1,19 +1,35 @@
-GRIA V11
+GRIA V13 — APP-STYLE HOME (DARK + LIGHT)
 
-Replace:
-- alkitab.html
-- service-worker.js
+UPLOAD / REPLACE:
+1. index.html
+2. pwa.js
+3. service-worker.js
 
-Optional:
-- BIBLE-SOURCES.md
+HASIL HOME:
+- App header: Shalom, Keluarga/Jemaat GRIA
+- Dark / Light mode
+- Banner swipe
+- Search fitur
+- 8 quick menu
+- Card Minggu Ini
+- Ayat Hari Ini
+- Komunitas highlight
+- Bottom nav Home | Warta | Persekutuan | Jemaat
+- Theme tersimpan di perangkat
 
-What changed:
-- Added TB · LAI as an official Indonesian option without illegally copying full TB into the repo.
-- TB opens the same book/chapter/verse in YouVersion TB (version 306).
-- Added link to official LAI Bible API for future licensed in-app integration.
-- Rebuilt freeze behavior: Kitab + Pasal becomes position:fixed via JavaScript on iPhone/Safari.
-- Ayat, version, theme, header and reading content keep scrolling normally.
-- Service worker v11.
+ASET YANG DIPAKAI SUDAH ADA DI REPO:
+- foto-kebersamaan-gria.png
+- foto-komunitas-hero.png
+- foto-hut-gria.png
 
-Commit:
-Add official TB access and fix Bible filter freeze
+PWA:
+Service worker naik ke v13 agar Home lama tidak tersangkut cache.
+
+COMMIT:
+Redesign GRIA home as dark light mobile app
+
+SETELAH COMMIT:
+1. Tunggu GitHub Pages 1–3 menit.
+2. Buka Home lewat Safari, refresh.
+3. Tutup PWA dari app switcher.
+4. Buka lagi.

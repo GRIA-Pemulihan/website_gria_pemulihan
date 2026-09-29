@@ -1,782 +1,992 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-home-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0a0a0c">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0d" id="themeColor">
 <title>GRIA — Gereja Injili Agape Pemulihan Palu</title>
-<meta name="description" content="Gereja Injili Agape (GRIA) Pemulihan Palu — komunitas yang memulihkan, menguatkan, dan memperlengkapi setiap individu untuk hidup dalam kasih Kristus.">
+<meta name="description" content="GRIA Pemulihan Palu — Warta, ibadah, Alkitab, persekutuan, komunitas, dan ruang jemaat dalam satu aplikasi.">
 
-<!-- ============ GRIA PWA ============ -->
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-<meta name="application-name" content="GRIA">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="GRIA">
 
-<!-- Open Graph -->
-<meta property="og:title" content="GRIA — Gereja Injili Agape Pemulihan Palu">
-<meta property="og:description" content="Komunitas yang memulihkan, menguatkan, dan memperlengkapi setiap individu untuk hidup dalam kasih Kristus.">
-<meta property="og:type" content="website">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="shared.css">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0}
+button,input{font:inherit}
+button{border:0}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+
+:root{
+  --lime:#cfff00;
+  --lime-strong:#b9e800;
+  --radius-xl:28px;
+  --radius-lg:22px;
+  --radius-md:17px;
+}
+
+html[data-home-theme="dark"]{
+  --bg:#0a0a0c;
+  --surface:#121215;
+  --surface-2:#18181c;
+  --surface-3:#202025;
+  --text:#f7f7f8;
+  --muted:#93949b;
+  --soft:#6f7077;
+  --border:rgba(255,255,255,.075);
+  --border-strong:rgba(255,255,255,.12);
+  --shadow:0 22px 58px rgba(0,0,0,.28);
+  --header:rgba(10,10,12,.86);
+  --input:#17171b;
+}
+
+html[data-home-theme="light"]{
+  --bg:#f5f6f1;
+  --surface:#ffffff;
+  --surface-2:#eff0ea;
+  --surface-3:#e7e8e1;
+  --text:#171719;
+  --muted:#686970;
+  --soft:#8d8e92;
+  --border:rgba(20,20,24,.075);
+  --border-strong:rgba(20,20,24,.12);
+  --shadow:0 18px 45px rgba(25,25,30,.08);
+  --header:rgba(245,246,241,.88);
+  --input:#ffffff;
+}
+
+body{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Manrope,Arial,sans-serif;
+  transition:background .28s ease,color .28s ease;
+  padding-bottom:110px;
+}
+
+.app{
+  width:min(100%,760px);
+  margin:0 auto;
+  min-height:100vh;
+}
+
+/* ===== APP HEADER ===== */
+.app-header{
+  position:sticky;
+  top:0;
+  z-index:120;
+  padding:
+    calc(14px + env(safe-area-inset-top,0px))
+    18px
+    13px;
+  background:var(--header);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+}
+
+.header-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+
+.greeting small{
+  display:block;
+  margin-bottom:4px;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
+
+.greeting h1{
+  margin:0;
+  font:800 clamp(24px,6.8vw,34px)/1.06 Syne,sans-serif;
+  letter-spacing:-.045em;
+}
+
+.greeting h1 span{color:var(--lime)}
+
+.header-actions{
+  display:flex;
+  gap:8px;
+}
+
+.icon-btn{
+  position:relative;
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  color:var(--text);
+  background:var(--surface);
+  border:1px solid var(--border);
+  transition:transform .18s ease,background .18s ease;
+}
+
+.icon-btn:active{transform:scale(.95)}
+.icon-btn svg{width:20px;height:20px;stroke:currentColor}
+
+.theme-btn .sun{display:none}
+html[data-home-theme="light"] .theme-btn .sun{display:block}
+html[data-home-theme="light"] .theme-btn .moon{display:none}
+
+/* ===== MAIN ===== */
+main{padding:16px 16px 12px}
+
+.section{margin-top:27px}
+.section:first-child{margin-top:0}
+
+.section-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:12px;
+}
+
+.section-head h2{
+  margin:0;
+  font:800 21px/1.1 Syne,sans-serif;
+  letter-spacing:-.035em;
+}
+
+.section-head p{
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.5;
+}
+
+.section-link{
+  color:var(--lime-strong);
+  font-size:10.5px;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+/* ===== HERO CAROUSEL ===== */
+.hero-slider{
+  display:flex;
+  gap:11px;
+  margin:0 -16px;
+  padding:0 16px 10px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+.hero-slider::-webkit-scrollbar{display:none}
+
+.hero-card{
+  position:relative;
+  flex:0 0 min(88vw,540px);
+  min-height:270px;
+  overflow:hidden;
+  border-radius:var(--radius-xl);
+  scroll-snap-align:center;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  isolation:isolate;
+  background:#18181b;
+}
+
+.hero-card img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-3;
+}
+
+.hero-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background:
+    linear-gradient(to top,rgba(5,5,6,.94) 2%,rgba(5,5,6,.46) 54%,rgba(5,5,6,.08) 100%);
+}
+
+.hero-card::after{
+  content:'';
+  position:absolute;
+  width:240px;height:240px;
+  right:-90px;top:-110px;
+  border-radius:50%;
+  background:rgba(204,255,0,.18);
+  filter:blur(25px);
+  z-index:-1;
+}
+
+.hero-copy{
+  min-height:270px;
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+
+.hero-badge{
+  align-self:flex-start;
+  margin-bottom:auto;
+  padding:7px 10px;
+  border-radius:999px;
+  color:#eefdae;
+  background:rgba(12,12,14,.64);
+  border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(10px);
+  font-size:9.5px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.hero-copy h2{
+  margin:0;
+  color:#fff;
+  font:800 clamp(29px,8vw,42px)/.98 Syne,sans-serif;
+  letter-spacing:-.05em;
+  max-width:10ch;
+}
+
+.hero-copy p{
+  max-width:36ch;
+  margin:10px 0 15px;
+  color:rgba(255,255,255,.78);
+  font-size:11.5px;
+  line-height:1.55;
+}
+
+.hero-action{
+  align-self:flex-start;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  min-height:42px;
+  padding:9px 13px;
+  border-radius:13px;
+  color:#090909;
+  background:var(--lime);
+  font-size:10.5px;
+  font-weight:800;
+}
+
+.slider-dots{
+  display:flex;
+  justify-content:center;
+  gap:5px;
+  margin-top:2px;
+}
+
+.slider-dot{
+  width:6px;height:6px;
+  border-radius:999px;
+  background:var(--border-strong);
+  transition:width .25s ease,background .25s ease;
+}
+.slider-dot.active{width:22px;background:var(--lime)}
+
+/* ===== SEARCH ===== */
+.search-shell{
+  position:relative;
+  z-index:20;
+  margin-top:14px;
+}
+
+.search-box{
+  min-height:54px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:0 15px;
+  border-radius:18px;
+  background:var(--input);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+
+.search-box svg{
+  flex:0 0 auto;
+  width:21px;height:21px;
+  stroke:var(--muted);
+}
+
+.search-box input{
+  width:100%;
+  min-width:0;
+  padding:0;
+  border:0;
+  outline:0;
+  color:var(--text);
+  background:transparent;
+  font-size:12.5px;
+  font-weight:600;
+}
+
+.search-box input::placeholder{color:var(--soft)}
+
+.search-results{
+  position:absolute;
+  left:0;right:0;
+  top:62px;
+  display:none;
+  overflow:hidden;
+  border-radius:17px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  box-shadow:0 20px 45px rgba(0,0,0,.22);
+}
+
+.search-results.show{display:block}
+
+.search-result{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 14px;
+  border-bottom:1px solid var(--border);
+}
+
+.search-result:last-child{border-bottom:0}
+.search-result strong{font-size:11px}
+.search-result span{color:var(--muted);font-size:9.5px}
+
+/* ===== QUICK MENU ===== */
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px 8px;
+}
+
+.quick-item{
+  min-width:0;
+  text-align:center;
+  color:var(--text);
+}
+
+.quick-icon{
+  width:58px;
+  height:58px;
+  margin:0 auto 8px;
+  display:grid;
+  place-items:center;
+  border-radius:20px;
+  color:var(--text);
+  background:var(--surface);
+  border:1px solid var(--border);
+  box-shadow:0 10px 25px rgba(0,0,0,.06);
+  transition:transform .18s ease,border-color .18s ease,background .18s ease;
+}
+
+.quick-item:active .quick-icon{transform:scale(.94)}
+.quick-item:nth-child(1) .quick-icon,
+.quick-item:nth-child(3) .quick-icon,
+.quick-item:nth-child(6) .quick-icon{
+  background:var(--lime);
+  color:#090909;
+  border-color:transparent;
+}
+
+.quick-icon svg{width:25px;height:25px;stroke:currentColor}
+.quick-label{font-size:9.7px;font-weight:750;line-height:1.25}
+
+/* ===== WEEK CARDS ===== */
+.week-scroll{
+  display:flex;
+  gap:10px;
+  margin:0 -16px;
+  padding:0 16px 9px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+}
+.week-scroll::-webkit-scrollbar{display:none}
+
+.week-card{
+  flex:0 0 min(72vw,280px);
+  min-height:160px;
+  padding:17px;
+  display:flex;
+  flex-direction:column;
+  scroll-snap-align:start;
+  border-radius:21px;
+  background:var(--surface);
+  border:1px solid var(--border);
+}
+
+.week-card.primary{
+  color:#0a0a0a;
+  background:var(--lime);
+  border-color:transparent;
+}
+
+.week-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.week-icon{
+  width:37px;height:37px;
+  display:grid;place-items:center;
+  border-radius:12px;
+  color:var(--lime);
+  background:var(--surface-2);
+}
+.week-card.primary .week-icon{
+  color:#090909;
+  background:rgba(0,0,0,.10);
+}
+.week-icon svg{width:19px;height:19px;stroke:currentColor}
+
+.week-chip{
+  padding:5px 8px;
+  border-radius:999px;
+  color:var(--muted);
+  background:var(--surface-2);
+  font-size:8.5px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+.week-card.primary .week-chip{
+  color:#111;
+  background:rgba(255,255,255,.28);
+}
+
+.week-card h3{
+  margin:auto 0 4px;
+  font:800 18px/1.15 Syne,sans-serif;
+  letter-spacing:-.035em;
+}
+.week-card p{
+  margin:0;
+  color:var(--muted);
+  font-size:10.5px;
+  line-height:1.5;
+}
+.week-card.primary p{color:rgba(0,0,0,.63)}
+
+/* ===== DAILY VERSE ===== */
+.verse-card{
+  position:relative;
+  overflow:hidden;
+  padding:21px;
+  border-radius:23px;
+  background:
+    radial-gradient(circle at 90% 8%,rgba(204,255,0,.11),transparent 28%),
+    var(--surface);
+  border:1px solid var(--border);
+}
+
+.verse-label{
+  color:var(--lime-strong);
+  font-size:9px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+}
+
+.verse-text{
+  margin:15px 0 11px;
+  color:var(--text);
+  font:700 clamp(18px,5.2vw,23px)/1.48 Syne,sans-serif;
+  letter-spacing:-.025em;
+}
+
+.verse-ref{
+  color:var(--muted);
+  font-size:10.5px;
+  font-style:normal;
+  font-weight:700;
+}
+
+/* ===== COMMUNITY CARD ===== */
+.community-card{
+  position:relative;
+  min-height:220px;
+  overflow:hidden;
+  border-radius:25px;
+  border:1px solid var(--border);
+  isolation:isolate;
+}
+
+.community-card img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-3;
+}
+
+.community-card:before{
+  content:'';
+  position:absolute;inset:0;z-index:-2;
+  background:linear-gradient(to top,rgba(5,5,6,.91),rgba(5,5,6,.12));
+}
+
+.community-copy{
+  min-height:220px;
+  padding:19px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+
+.community-copy span{
+  color:var(--lime);
+  font-size:9px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.community-copy h3{
+  margin:7px 0 5px;
+  color:#fff;
+  font:800 24px/1.05 Syne,sans-serif;
+  letter-spacing:-.04em;
+}
+.community-copy p{
+  margin:0 0 13px;
+  max-width:34ch;
+  color:rgba(255,255,255,.76);
+  font-size:10.5px;
+  line-height:1.5;
+}
+.community-copy a{
+  align-self:flex-start;
+  padding:8px 11px;
+  border-radius:11px;
+  color:#090909;
+  background:var(--lime);
+  font-size:9.5px;
+  font-weight:800;
+}
+
+/* ===== FOOTER ===== */
+.app-footer{
+  margin-top:31px;
+  padding:23px 4px 10px;
+  border-top:1px solid var(--border);
+  color:var(--soft);
+  text-align:center;
+  font-size:9.5px;
+  line-height:1.6;
+}
+
+/* ===== LIGHT MODE OVERRIDE FOR PWA BOTTOM NAV ===== */
+html[data-home-theme="light"] .gria-bottom-nav{
+  background:rgba(255,255,255,.92)!important;
+  border-color:rgba(20,20,24,.09)!important;
+  box-shadow:0 18px 40px rgba(25,25,30,.12)!important;
+}
+html[data-home-theme="light"] .gria-bottom-nav a{color:#8b8c91!important}
+html[data-home-theme="light"] .gria-bottom-nav a.is-active{
+  color:#6f8d00!important;
+  background:rgba(159,201,0,.12)!important;
+}
+html[data-home-theme="light"] .gria-bottom-nav a.is-active:before{
+  background:#9fc900!important;
+}
+
+/* Desktop keeps app layout, just wider */
+@media(min-width:769px){
+  body{padding-bottom:30px}
+  .app-header{border-radius:0 0 24px 24px}
+  main{padding:20px}
+  .quick-grid{gap:18px}
+  .hero-card{flex-basis:min(76%,560px)}
+  .week-card{flex-basis:270px}
+}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
+</style>
 </head>
+
 <body>
+<div class="app">
 
-<!-- ============ NAVBAR ============ -->
-<nav class="navbar" id="navbar">
-  <div id="scrollProgress"></div>
-  <div class="navbar-inner">
-    <a href="#" class="logo" aria-label="GRIA — Beranda">
-      <img src="logo-gria.png" alt="" onerror="this.style.display='none'">
-      GRI<span>A</span>
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#home">Home</a></li>
-      <li><a href="about-us.html">About Us</a></li>
-      <li><a href="komunitas.html">Komunitas</a></li>
-      <li><a href="warta.html">Warta</a></li>
-      <li><a href="#kontak">Kontak</a></li>
-      <li><a href="daftar.html" class="nav-login-link">Daftar Jemaat</a></li>
-    </ul>
-    <a href="#worship" class="nav-cta">
-      Jadwal Ibadah
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="navLinks">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<!-- ============ HERO ============ -->
-<header class="hero" id="home">
-  <div class="hero-spotlight" id="heroSpotlight"></div>
-  <div class="hero-grain"></div>
-
-  <div class="hero-live" aria-label="Status komunitas">
-    <span class="dot" aria-hidden="true"></span>
-    Ibadah Minggu • 09.00 WITA
-  </div>
-
-  <h1 class="hero-title">GR<span class="lit">I</span>A</h1>
-  <p class="hero-subtitle">Gereja Injili Agape Pemulihan Palu</p>
-  <p class="hero-tagline">"Menjadi komunitas yang memulihkan, menguatkan, dan memperlengkapi setiap individu untuk hidup dalam kasih Kristus dan menjadi terang bagi dunia"</p>
-
-  <div class="hero-actions">
-    <a href="#worship" class="btn-primary">
-      Lihat Jadwal Ibadah
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </a>
-    <a href="about-us.html" class="btn-ghost">
-      Tentang Kami
-    </a>
-  </div>
-
-  <div class="scroll-cue" aria-hidden="true"><span>Scroll</span><div class="line"></div></div>
-</header>
-
-<!-- ============ STATS STRIP ============ -->
-<section class="stats-strip reveal" aria-label="Statistik komunitas" style="padding: 50px 0;">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-num">2015</div>
-        <div class="stat-label">Berdiri Sejak</div>
+  <header class="app-header">
+    <div class="header-row">
+      <div class="greeting">
+        <small>GRIA Pemulihan Palu</small>
+        <h1 id="greetingText">Shalom, <span>Keluarga GRIA</span></h1>
       </div>
-      <div class="stat-item">
-        <div class="stat-num" data-count-to="10">10+</div>
-        <div class="stat-label">Tahun Pelayanan</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num" data-count-to="6">6</div>
-        <div class="stat-label">Bidang</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">∞</div>
-        <div class="stat-label">Kasih Kristus</div>
+
+      <div class="header-actions">
+        <a class="icon-btn" href="warta.html" aria-label="Buka Warta">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+            <path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/>
+            <path d="M7 8h10M7 12h10M7 16h6"/>
+          </svg>
+        </a>
+
+        <button class="icon-btn theme-btn" id="themeToggle" type="button" aria-label="Ganti mode tampilan">
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+          </svg>
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+        </button>
       </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<!-- ============ AYAT HARI INI ============ -->
-<section class="daily-verse-section" aria-label="Ayat Hari Ini">
-  <div class="container">
-    <div class="daily-verse-card reveal">
-      <span class="daily-verse-tag">Ayat Hari Ini</span>
-      <blockquote class="daily-verse-text" id="dailyVerseText"></blockquote>
-      <cite class="daily-verse-ref" id="dailyVerseRef"></cite>
-    </div>
-  </div>
-</section>
+  <main>
 
-<!-- ============ ABOUT ============ -->
-<section class="about" id="about">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Tentang Kami</span>
-      <h2 class="section-title">Our <span class="accent">Story</span></h2>
-      <p class="section-lead">Lebih dari satu dekade memulihkan, menguatkan, dan memperlengkapi jemaat untuk hidup dalam kasih Kristus.</p>
-    </div>
+    <!-- BANNER SLIDER -->
+    <section class="section" aria-label="Sorotan GRIA">
+      <div class="hero-slider" id="heroSlider">
 
-    <div class="about-story reveal">
-      <p>Atas kasih karunia Tuhan Yesus, GRIA Pemulihan Palu berdiri pada tahun <strong>2015</strong> di bawah sinode <strong>Gereja Injili Agape</strong>. Sejak itu, kami terus bertumbuh dan kini berkumpul secara fisik maupun online untuk menjangkau orang melampaui batasan geografis.</p>
-      <p>GRIA hadir dengan lima misi pemulihan untuk memulihkan setiap aspek kehidupan jemaat — dari doktrin, keluarga, hingga komunitas.</p>
-    </div>
-
-    <div class="bento-grid reveal-stagger">
-      <article class="bento-card bento-vision">
-        <span class="b-label">Our Vision</span>
-        <h3 class="b-title"> Iman - Percaya - Dewasa Rohani (Kristen Sejati) - Penginjilan/Misi</h3>
-        <p class="b-text">Menjadi komunitas Kristen sejati yang tidak hanya teguh secara doktrin, tetapi juga aktif bermisi memancarkan kasih dan kebenaran Allah, membawa terang transformasi dari Palu bagi bangsa-bangsa.</p>
-      </article>
-
-      <article class="bento-card bento-mission">
-        <span class="b-label">Our Mission</span>
-        <h3 class="b-title">Menghadirkan Pemulihan Holistik.</h3>
-        <p class="b-text">Memulihkan doktrin, keluarga, generasi muda, dan komunitas berlandaskan kebenaran dan kasih Kristus.</p>
-      </article>
-
-      <article class="bento-card bento-since">
-        <span class="b-label">Berdiri Sejak</span>
-        <h3 class="b-title">2015</h3>
-        <p class="b-text">Lebih dari satu dekade pelayanan di kota Palu.</p>
-      </article>
-
-      <article class="bento-card bento-impact">
-        <span class="b-label">Komunitas</span>
-        <h3 class="b-title">Ibadah onsite & online setiap minggu.</h3>
-        <p class="b-text">Hotel Wisata Palu, Jl. Letjen S. Parman No.28, Sulawesi Tengah — dan terhubung secara digital untuk jemaat di mana pun.</p>
-      </article>
-    </div>
-
-    <div class="section-head reveal">
-      <span class="eyebrow">Misi Kami</span>
-      <h2 class="section-title">Lima Pilar <span class="accent">Pemulihan</span></h2>
-    </div>
-
-    <div class="values-grid reveal-stagger" style="grid-template-columns: repeat(5, 1fr); margin-bottom: 40px;">
-      <div class="value-card">
-        <span class="num" aria-hidden="true">01</span>
-        <h3 style="font-size:16px;">Pemulihan Doktrin</h3>
-        <p>Mengembalikan pemahaman teologis yang sehat sesuai Alkitab.</p>
-      </div>
-
-      <div class="value-card">
-        <span class="num" aria-hidden="true">02</span>
-        <h3 style="font-size:16px;">Pemulihan Pasutri</h3>
-        <p>Memperkuat pernikahan Kristen melalui kasih dan kebenaran.</p>
-      </div>
-
-      <div class="value-card">
-        <span class="num" aria-hidden="true">03</span>
-        <h3 style="font-size:16px;">Pemulihan Keluarga</h3>
-        <p>Menyembuhkan dan memperkuat seluruh unit keluarga.</p>
-      </div>
-
-      <div class="value-card">
-        <span class="num" aria-hidden="true">04</span>
-        <h3 style="font-size:16px;">Pemulihan Orang Muda</h3>
-        <p>Menyalakan kembali iman generasi penerus gereja.</p>
-      </div>
-
-      <div class="value-card">
-        <span class="num" aria-hidden="true">05</span>
-        <h3 style="font-size:16px;">Pemulihan Komunitas</h3>
-        <p>Kelompok Konseling Restorasi untuk penyembuhan holistik.</p>
-      </div>
-    </div>
-
-    <div class="reveal" style="text-align:center; margin-bottom: 100px;">
-      <a href="about-us.html" class="btn-primary">
-        Selengkapnya Tentang Misi Kami
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-    </div>
-
-    <div class="section-head center reveal">
-      <span class="eyebrow">Struktur Pelayanan</span>
-      <h2 class="section-title">Hamba Tuhan &amp; <span class="accent">Pengurus Gereja</span></h2>
-    </div>
-
-    <div class="pastor-grid reveal-stagger">
-      <div class="pastor-card">
-        <div class="pastor-photo">
-          <img src="foto-ps-herry.png" alt="Ps. Herry Adijanto" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
-        </div>
-        <div class="pastor-info">
-          <h3>Ps. Herry Adijanto, Th.M</h3>
-          <span class="role">Senior Pastor</span>
-        </div>
-      </div>
-
-      <div class="pastor-card">
-        <div class="pastor-photo">
-          <img src="foto-ps-debora.png" alt="Ps. Debora Salea" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
-        </div>
-        <div class="pastor-info">
-          <h3>Ps. Debora Salea, Msi, Ag</h3>
-          <span class="role">Senior Pastor</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="values-grid values-grid-3 reveal-stagger" style="margin-top:50px;">
-      <div class="value-card">
-        <span class="num" aria-hidden="true">01</span>
-        <h3 style="font-size:17px;">Bendahara</h3>
-        <p>Sucin</p>
-      </div>
-
-      <div class="value-card">
-        <span class="num" aria-hidden="true">02</span>
-        <h3 style="font-size:17px;">Sekretaris</h3>
-        <p>Delfris</p>
-      </div>
-
-      <div class="value-card">
-        <span class="num" aria-hidden="true">03</span>
-        <h3 style="font-size:17px;">Bidang Doa &amp; Pemerhati</h3>
-        <p>Anggota: Ois, Rili, Selmi, Grace, Anggun, dan Dila</p>
-      </div>
-
-      <div class="value-card">
-        <span class="num" aria-hidden="true">04</span>
-        <h3 style="font-size:17px;">Bidang Multimedia</h3>
-        <p>Anggota: Taristha, Anggi, Therry, Delfris, Ata, dan Rut</p>
-      </div>
-
-      <div class="value-card">
-        <span class="num" aria-hidden="true">05</span>
-        <h3 style="font-size:17px;">Bidang Tim Pelayan Ibadah</h3>
-        <p>Anggota: Vinna, Nanda, Carlos, Sharon, dan Dion</p>
-      </div>
-
-      <div class="value-card">
-        <span class="num" aria-hidden="true">06</span>
-        <h3 style="font-size:17px;">Bidang KKR &amp; Misi</h3>
-        <p>Anggota: Debora, Helen, dan Thero</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ MARQUEE ============ -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item">Pemulihan <span class="dot"></span></span>
-    <span class="marquee-item"><span class="accent">Kekeluargaan</span> <span class="dot"></span></span>
-    <span class="marquee-item">Pertumbuhan <span class="dot"></span></span>
-    <span class="marquee-item"><span class="accent">Dampak</span> <span class="dot"></span></span>
-    <span class="marquee-item">Kasih Kristus <span class="dot"></span></span>
-
-    <span class="marquee-item">Pemulihan <span class="dot"></span></span>
-    <span class="marquee-item"><span class="accent">Kekeluargaan</span> <span class="dot"></span></span>
-    <span class="marquee-item">Pertumbuhan <span class="dot"></span></span>
-    <span class="marquee-item"><span class="accent">Dampak</span> <span class="dot"></span></span>
-    <span class="marquee-item">Kasih Kristus <span class="dot"></span></span>
-  </div>
-</div>
-
-<!-- ============ WORSHIP INFO ============ -->
-<section class="worship" id="worship">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Jadwal &amp; Renungan</span>
-      <h2 class="section-title">Informasi <span class="accent">Ibadah Minggu</span></h2>
-      <p class="section-lead">Bergabunglah bersama kami dalam ibadah minggu — onsite di Palu atau online dari mana pun Anda berada.</p>
-    </div>
-
-    <div class="worship-top reveal">
-      <div class="worship-info-card">
-        <span class="worship-date-badge">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
-          Minggu Ini
-        </span>
-
-        <p class="worship-date"><!-- IBADAH_TANGGAL -->Minggu, 20 September 2026<!-- /IBADAH_TANGGAL --></p>
-        <p class="worship-time">Pukul 09.00 WITA</p>
-
-        <div class="worship-meta">
-          <div class="worship-meta-row">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4-8 4-8-4 8-4zM4 11l8 4 8-4M4 15l8 4 8-4"/></svg>
-            </div>
-            <div class="meta-content">
-              <div class="meta-label">Tema Ibadah</div>
-              <div class="meta-value"><!-- IBADAH_TEMA -->Test Tema Ibadah<!-- /IBADAH_TEMA --></div>
-            </div>
+        <article class="hero-card">
+          <img src="foto-kebersamaan-gria.png" alt="Kebersamaan Jemaat GRIA">
+          <div class="hero-copy">
+            <div class="hero-badge">Minggu · 09.00 WITA</div>
+            <h2>Datang & Bertumbuh Bersama</h2>
+            <p>Ibadah Minggu GRIA Pemulihan Palu. Temukan jadwal dan informasi pelayanan minggu ini.</p>
+            <a class="hero-action" href="warta.html">Lihat Warta Minggu Ini →</a>
           </div>
+        </article>
 
-          <div class="worship-meta-row">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
-            </div>
-            <div class="meta-content">
-              <div class="meta-label">Pembicara</div>
-              <div class="meta-value"><!-- IBADAH_PEMBICARA -->Ps. Debora Salea<!-- /IBADAH_PEMBICARA --></div>
-            </div>
+        <article class="hero-card">
+          <img src="foto-komunitas-hero.png" alt="Komunitas GRIA">
+          <div class="hero-copy">
+            <div class="hero-badge">Bertumbuh Bersama</div>
+            <h2>Persekutuan yang Memulihkan</h2>
+            <p>Pendalaman Alkitab, Persekutuan Doa, dan kehidupan komunitas dalam satu ruang.</p>
+            <a class="hero-action" href="persekutuan.html">Buka Persekutuan →</a>
           </div>
+        </article>
 
-          <div class="worship-meta-row">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-7-8-13a8 8 0 1 1 16 0c0 6-8 13-8 13z"/><circle cx="12" cy="9" r="3"/></svg>
-            </div>
-            <div class="meta-content">
-              <div class="meta-label">Lokasi</div>
-              <div class="meta-value">Hotel Wisata Palu, Jl. Letjen S. Parman No.28, Sulawesi Tengah</div>
-            </div>
+        <article class="hero-card">
+          <img src="foto-hut-gria.png" alt="Keluarga GRIA">
+          <div class="hero-copy">
+            <div class="hero-badge">Khusus Jemaat</div>
+            <h2>Ruang Jemaat GRIA</h2>
+            <p>Alkitab, database jemaat, dan fitur pertumbuhan yang terus dikembangkan.</p>
+            <a class="hero-action" href="jemaat.html">Masuk Ruang Jemaat →</a>
           </div>
-        </div>
+        </article>
 
-        <div class="verse-box">
-          <p>Sebab di mana dua atau tiga orang berkumpul dalam Nama-Ku, di situ Aku ada di tengah-tengah mereka.<span>Matius 18:20</span></p>
-        </div>
       </div>
+      <div class="slider-dots" id="sliderDots" aria-hidden="true"></div>
+    </section>
 
-      <div class="verse-illustration">
-        <img src="tema-ibadah-minggu-ini.jpg" alt="Poster tema ibadah minggu ini" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <svg viewBox="0 0 100 100" fill="none" stroke="#ccff00" stroke-width="1.2" style="display:none;width:56%;" aria-hidden="true">
-          <path d="M50 90 V40 M50 40 C30 40 20 25 20 10 C32 18 42 26 50 40 C58 26 68 18 80 10 C80 25 70 40 50 40Z"/>
-          <path d="M30 90 H70" stroke-opacity="0.4"/>
+    <!-- SEARCH -->
+    <section class="search-shell" aria-label="Cari fitur">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+          <circle cx="11" cy="11" r="7"/>
+          <path d="m20 20-3.5-3.5"/>
         </svg>
+        <input id="featureSearch" type="search" placeholder="Cari Warta, Alkitab, Persekutuan..." autocomplete="off">
       </div>
-    </div>
+      <div class="search-results" id="searchResults"></div>
+    </section>
 
-    <div class="accordion reveal" id="accordion">
-      <div class="accordion-item">
-        <button class="accordion-trigger" aria-expanded="false">
-          Persekutuan Doa &amp; Pendalaman Alkitab
-          <span class="plus" aria-hidden="true"></span>
-        </button>
+    <!-- QUICK MENU -->
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Akses Cepat</h2>
+          <p>Semua yang paling sering dibutuhkan.</p>
+        </div>
+      </div>
 
-        <div class="accordion-panel">
-          <div class="accordion-panel-inner">
-            Mari bertumbuh bersama dalam firman dan doa. Persekutuan ini menjadi ruang bagi jemaat untuk saling menguatkan, mendalami Alkitab, dan membawa setiap pergumulan dalam doa bersama.
-            <br><br>
-            <strong style="color:#fff;">Jadwal:</strong> Setiap Selasa, pukul 19.00 WITA<br>
-            <strong style="color:#fff;">Tempat:</strong> Akan diinformasikan melalui grup WhatsApp jemaat
+      <div class="quick-grid" id="quickGrid">
+        <a class="quick-item" href="warta.html" data-search="warta jadwal pelayanan informasi">
+          <div class="quick-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M7 7h10M7 11h10M7 15h6"/></svg>
           </div>
-        </div>
-      </div>
+          <div class="quick-label">Warta</div>
+        </a>
 
-      <div class="accordion-item">
-        <button class="accordion-trigger" aria-expanded="false">
-          Warta Jemaat
-          <span class="plus" aria-hidden="true"></span>
-        </button>
-
-        <div class="accordion-panel">
-          <div class="accordion-panel-inner">
-            Jadwal pelayanan mingguan, laporan persembahan, dan informasi umum jemaat dimuat lengkap di halaman Warta Jemaat — diupdate setiap minggu.
-            <br><br>
-            <a href="warta.html" style="color:var(--neon);font-weight:600;">Lihat Warta Jemaat Lengkap →</a>
+        <a class="quick-item" href="warta.html#jadwal-pelayanan" data-search="jadwal ibadah pelayanan minggu">
+          <div class="quick-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
           </div>
-        </div>
-      </div>
+          <div class="quick-label">Jadwal</div>
+        </a>
 
-      <!-- PELAYAN_IBADAH:START -->
-      <div class="accordion-item">
-        <button class="accordion-trigger" aria-expanded="false">Pelayan Ibadah Raya (27 September 2026) <span class="plus" aria-hidden="true"></span></button>
-        <div class="accordion-panel">
-          <div class="accordion-panel-inner">
-            <ul class="serv-list">
-              <li><b>Khotbah</b><span>Ps. Hery Adijanto, Th.M</span></li>
-              <li><b>Liturgos</b><span>Sist Rilli</span></li>
-              <li><b>Singers</b><span>Sist ois dan Sist Rut</span></li>
-              <li><b>Operator LCD</b><span>Bro Delfris</span></li>
-              <li><b>Doa Syafaat</b><span>Sist Sucin</span></li>
-              <li><b>Usher &amp; Kolekan</b><span>Sist Anggun</span></li>
-            </ul>
+        <a class="quick-item" href="alkitab.html" data-search="alkitab ayt bible kitab pasal ayat">
+          <div class="quick-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
           </div>
+          <div class="quick-label">Alkitab</div>
+        </a>
+
+        <a class="quick-item" href="persekutuan.html" data-search="persekutuan pa doa pendalaman alkitab">
+          <div class="quick-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
+          </div>
+          <div class="quick-label">PA & Doa</div>
+        </a>
+
+        <a class="quick-item" href="komunitas.html" data-search="komunitas kelompok kkr kebersamaan">
+          <div class="quick-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><path d="M2 20a6 6 0 0 1 12 0M12 20a5 5 0 0 1 10 0"/></svg>
+          </div>
+          <div class="quick-label">Komunitas</div>
+        </a>
+
+        <a class="quick-item" href="warta.html#laporan-persembahan" data-search="persembahan kasih agape laporan">
+          <div class="quick-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><path d="M12 3v8"/></svg>
+          </div>
+          <div class="quick-label">Persembahan</div>
+        </a>
+
+        <a class="quick-item" href="jemaat.html" data-search="jemaat database anggota member">
+          <div class="quick-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          </div>
+          <div class="quick-label">Jemaat</div>
+        </a>
+
+        <a class="quick-item" href="about-us.html" data-search="tentang gria visi misi gereja">
+          <div class="quick-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></svg>
+          </div>
+          <div class="quick-label">Tentang GRIA</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- THIS WEEK -->
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Minggu Ini</h2>
+          <p>Ringkas, relevan, langsung ke informasi.</p>
+        </div>
+        <a class="section-link" href="warta.html">Lihat semua</a>
+      </div>
+
+      <div class="week-scroll">
+        <a class="week-card primary" href="warta.html#jadwal-pelayanan">
+          <div class="week-top">
+            <div class="week-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3 4 8v13h16V8l-8-5Z"/><path d="M9 21v-7h6v7"/></svg>
+            </div>
+            <span class="week-chip">Minggu</span>
+          </div>
+          <h3>Ibadah 09.00 WITA</h3>
+          <p>Cek pembicara dan tim pelayanan minggu ini.</p>
+        </a>
+
+        <a class="week-card" href="warta.html#informasi-umum">
+          <div class="week-top">
+            <div class="week-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 21s-6-4.35-6-10a6 6 0 0 1 12 0c0 5.65-6 10-6 10Z"/><path d="M9 11h6M12 8v6"/></svg>
+            </div>
+            <span class="week-chip">Doa</span>
+          </div>
+          <h3>Persekutuan Doa</h3>
+          <p>Cek jadwal dan informasi persekutuan terbaru.</p>
+        </a>
+
+        <a class="week-card" href="persekutuan.html">
+          <div class="week-top">
+            <div class="week-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+            </div>
+            <span class="week-chip">Selasa</span>
+          </div>
+          <h3>Pendalaman Alkitab</h3>
+          <p>Bertumbuh bersama melalui firman dan diskusi.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- VERSE -->
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Ayat Hari Ini</h2>
+          <p>Ritme kecil untuk memulai hari.</p>
+        </div>
+        <a class="section-link" href="alkitab.html">Buka Alkitab</a>
+      </div>
+
+      <article class="verse-card">
+        <div class="verse-label">Firman Hari Ini</div>
+        <blockquote class="verse-text" id="dailyVerseText">“Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.”</blockquote>
+        <cite class="verse-ref" id="dailyVerseRef">Filipi 4:13</cite>
+      </article>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Kehidupan Bersama</h2>
+          <p>Iman yang bertumbuh dalam relasi.</p>
         </div>
       </div>
-      <!-- /PELAYAN_IBADAH -->
-    </div>
-  </div>
-</section>
 
-<!-- ============ MOMENTS ============ -->
-<section id="komunitas">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Kehidupan Komunitas</span>
-      <h2 class="section-title">Moments of <span class="accent">Reflection</span></h2>
-    </div>
-
-    <div class="moments-intro reveal">
-      <p>Mengabadikan momen penuh makna dari setiap langkah perjalanan GRIA. Saksikan bagaimana kebersamaan, iman, dan pelayanan membentuk kisah istimewa dalam setiap event GRIA.</p>
-
-      <p>Dokumentasi ini menjadi catatan visual dari pertumbuhan komunitas — dari ibadah raya, persekutuan kecil, hingga pelayanan sosial yang menjangkau kota Palu.<br><br>
-        <a href="https://drive.google.com/drive/folders/1-Hp6nTV0jUlcOb3kdzR3mmqohqqLYjA4" target="_blank" rel="noopener" style="color:var(--neon);font-weight:600;">Lihat semua dokumentasi →</a>
-      </p>
-    </div>
-
-    <div class="photo-grid-3 reveal-stagger">
-      <div class="photo-frame">
-        <img src="foto-ibadah-natal.png" alt="Ibadah Natal" onerror="this.style.display='none'">
-        <span>Ibadah Natal</span>
-      </div>
-
-      <div class="photo-frame">
-        <img src="foto-hut-gria.png" alt="HUT GRIA" onerror="this.style.display='none'">
-        <span>HUT GRIA</span>
-      </div>
-
-      <div class="photo-frame">
-        <img src="foto-kebersamaan-gria.png" alt="Kebersamaan GRIA" onerror="this.style.display='none'">
-        <span>Kebersamaan GRIA</span>
-      </div>
-    </div>
-
-    <div class="reveal" style="text-align:center;">
-      <a href="komunitas.html" class="btn-primary">
-        Lihat Komunitas Selengkapnya
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ TESTIMONIAL ============ -->
-<section class="testimonial">
-  <div class="container">
-    <div class="reveal">
-      <blockquote>Dalam setiap tantangan, Tuhan selalu menyediakan jalan. Kesaksian ini adalah bukti nyata bahwa kasih dan penyertaan-Nya tak pernah berakhir.</blockquote>
-      <div class="testimonial-avatar">RR</div>
-      <div class="testimonial-name">Rian Rante</div>
-      <div class="testimonial-handle">@rianrante</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer id="kontak">
-  <div class="container">
-    <div class="footer-top">
-
-      <div>
-        <div class="footer-logo">GRI<span>A</span></div>
-        <p>Jl. Hotel Wisata Palu, Jl. Letjen S. Parman No.28 Palu, Sulawesi Tengah</p>
-        <p style="margin-top:16px;font-size:13px;color:var(--grey-dim);">
-          Ibadah Minggu • 09.00 WITA<br>
-          Onsite &amp; Online
-        </p>
-      </div>
-
-      <div>
-        <div class="footer-heading">Informasi</div>
-        <div class="footer-links">
-          <a href="yayasan.html">Dukung Kami</a>
-          <a href="warta.html">Warta Jemaat</a>
-          <a href="#worship">Jadwal Ibadah</a>
-          <a href="about-us.html">Tentang GRIA</a>
+      <article class="community-card">
+        <img src="foto-komunitas-hero.png" alt="Komunitas GRIA Pemulihan Palu">
+        <div class="community-copy">
+          <span>Komunitas GRIA</span>
+          <h3>Tidak Berjalan Sendiri</h3>
+          <p>Temukan ruang untuk terhubung, didengar, bertumbuh, dan saling menguatkan.</p>
+          <a href="komunitas.html">Lihat Komunitas →</a>
         </div>
-      </div>
+      </article>
+    </section>
 
-      <div>
-        <div class="footer-heading">Hubungi Kami</div>
+    <footer class="app-footer">
+      GRIA Pemulihan Palu<br>
+      Dipulihkan · Dikuatkan · Diperlengkapi
+    </footer>
 
-        <div class="social-row">
-          <a href="https://wa.me/6282290906474" target="_blank" rel="noopener" aria-label="WhatsApp">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 1 1-4-7.2M21 11.5 16 13l1.5-5"/></svg>
-          </a>
-
-          <a href="https://youtube.com//@rumahpemulihan8374" target="_blank" rel="noopener" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M11 9.5 15 12l-4 2.5z" fill="currentColor" stroke="none"/></svg>
-          </a>
-
-          <a href="https://instagram.com/griyapemulihanpalu?igsh=MTNxZTk3aDNmMWV4aQ==" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-          </a>
-
-          <a href="https://facebook.com/gria.palu" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h-3a4 4 0 0 0-4 4v3H6v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <span>© 2026 GRIA — Gereja Injili Agape Pemulihan Palu. Seluruh hak dilindungi.</span>
-      <span>Dibuat dengan kasih, untuk Palu.</span>
-    </div>
-  </div>
-</footer>
-
-<!-- ============ STICKY MOBILE CTA ============ -->
-<aside class="sticky-cta" id="stickyCta" role="complementary" aria-label="Ajakan bergabung komunitas">
-  <span class="text">Ikuti ibadah minggu ini</span>
-
-  <a href="#worship" class="btn-mini">
-    Lihat
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-  </a>
-</aside>
+  </main>
+</div>
 
 <script>
 (function(){
-  "use strict";
+  'use strict';
 
-  /* ---------- Mobile nav toggle ---------- */
-  var navToggle = document.getElementById('navToggle');
-  var navLinks = document.getElementById('navLinks');
+  const THEME_KEY='gria_home_theme_v1';
+  const themeColor=document.getElementById('themeColor');
+  const toggle=document.getElementById('themeToggle');
 
-  if(navToggle && navLinks){
-    navToggle.addEventListener('click', function(){
-      var open = navLinks.classList.toggle('is-open');
-      navToggle.classList.toggle('is-open', open);
-      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
+  let theme='dark';
+  try{
+    theme=localStorage.getItem(THEME_KEY)||
+      (window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+  }catch(_){}
 
-    navLinks.querySelectorAll('a').forEach(function(link){
-      link.addEventListener('click', function(){
-        navLinks.classList.remove('is-open');
-        navToggle.classList.remove('is-open');
-        navToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
+  function applyTheme(next){
+    theme=next==='light'?'light':'dark';
+    document.documentElement.dataset.homeTheme=theme;
+    themeColor.setAttribute('content',theme==='light'?'#f5f6f1':'#0b0b0d');
+    try{localStorage.setItem(THEME_KEY,theme)}catch(_){}
   }
 
-  /* ---------- Scroll reveal ---------- */
-  var revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  applyTheme(theme);
+  toggle.addEventListener('click',()=>applyTheme(theme==='dark'?'light':'dark'));
 
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px'
-    });
+  /* Member-aware greeting without identifying personal information. */
+  try{
+    const isMember=localStorage.getItem('gria_member_access_v1')==='yes';
+    document.getElementById('greetingText').innerHTML=
+      isMember?'Shalom, <span>Jemaat GRIA</span>':'Shalom, <span>Keluarga GRIA</span>';
+  }catch(_){}
 
-    revealEls.forEach(function(el){
-      io.observe(el);
-    });
+  /* Daily verse rotates by calendar day, works offline. */
+  const verses=[
+    ['Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.','Filipi 4:13'],
+    ['TUHAN adalah gembalaku, takkan kekurangan aku.','Mazmur 23:1'],
+    ['Percayalah kepada TUHAN dengan segenap hatimu.','Amsal 3:5'],
+    ['Kasih itu sabar; kasih itu murah hati.','1 Korintus 13:4'],
+    ['Janganlah hendaknya kamu kuatir tentang apa pun juga.','Filipi 4:6'],
+    ['Firman-Mu itu pelita bagi kakiku dan terang bagi jalanku.','Mazmur 119:105'],
+    ['Sebab bagi Allah tidak ada yang mustahil.','Lukas 1:37']
+  ];
+  const now=new Date();
+  const dayNumber=Math.floor(Date.UTC(now.getFullYear(),now.getMonth(),now.getDate())/86400000);
+  const verse=verses[Math.abs(dayNumber)%verses.length];
+  document.getElementById('dailyVerseText').textContent='“'+verse[0]+'”';
+  document.getElementById('dailyVerseRef').textContent=verse[1];
 
-  } else {
-    revealEls.forEach(function(el){
-      el.classList.add('is-visible');
-    });
-  }
+  /* Slider dots */
+  const slider=document.getElementById('heroSlider');
+  const cards=[...slider.querySelectorAll('.hero-card')];
+  const dots=document.getElementById('sliderDots');
 
-  document.querySelectorAll('.reveal-stagger').forEach(function(group){
-    Array.prototype.forEach.call(group.children, function(child, i){
-      child.style.transitionDelay = (i * 90) + 'ms';
-    });
+  cards.forEach((_,i)=>{
+    const dot=document.createElement('span');
+    dot.className='slider-dot'+(i===0?' active':'');
+    dots.appendChild(dot);
   });
 
-  /* ---------- Accordion ---------- */
-  document.querySelectorAll('.accordion-trigger').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var item = btn.closest('.accordion-item');
-      var panel = item.querySelector('.accordion-panel');
-      var isOpen = item.classList.contains('is-open');
+  const dotEls=[...dots.children];
+  let dotTick=false;
 
-      item.parentElement.querySelectorAll('.accordion-item').forEach(function(other){
-        if(other !== item){
-          other.classList.remove('is-open');
-
-          var p = other.querySelector('.accordion-panel');
-          if(p) p.style.maxHeight = null;
-
-          var t = other.querySelector('.accordion-trigger');
-          if(t) t.setAttribute('aria-expanded','false');
-        }
+  slider.addEventListener('scroll',()=>{
+    if(dotTick)return;
+    dotTick=true;
+    requestAnimationFrame(()=>{
+      const center=slider.scrollLeft+slider.clientWidth/2;
+      let active=0;
+      let distance=Infinity;
+      cards.forEach((card,i)=>{
+        const c=card.offsetLeft+card.offsetWidth/2;
+        const d=Math.abs(c-center);
+        if(d<distance){distance=d;active=i}
       });
-
-      if(isOpen){
-        item.classList.remove('is-open');
-        panel.style.maxHeight = null;
-        btn.setAttribute('aria-expanded','false');
-      } else {
-        item.classList.add('is-open');
-        panel.style.maxHeight = panel.scrollHeight + 'px';
-        btn.setAttribute('aria-expanded','true');
-      }
+      dotEls.forEach((d,i)=>d.classList.toggle('active',i===active));
+      dotTick=false;
     });
-  });
+  },{passive:true});
 
-  /* ---------- Navbar + scroll progress ---------- */
-  var nav = document.getElementById('navbar');
-  var progressBar = document.getElementById('scrollProgress');
-  var stickyCta = document.getElementById('stickyCta');
-  var lastScroll = 0;
+  /* App feature search */
+  const search=document.getElementById('featureSearch');
+  const results=document.getElementById('searchResults');
 
-  function onScroll(){
-    var y = window.scrollY;
-
-    if(nav){
-      nav.classList.toggle('is-scrolled', y > 40);
-    }
-
-    if(progressBar){
-      var max = document.body.scrollHeight - window.innerHeight;
-      var scrolled = max > 0 ? (y / max) * 100 : 0;
-      progressBar.style.width = scrolled + '%';
-    }
-
-    if(stickyCta){
-      var showAt = window.innerHeight * 0.8;
-      var nearBottom = (document.body.scrollHeight - window.innerHeight - y) < 280;
-      stickyCta.classList.toggle('is-visible', y > showAt && !nearBottom);
-    }
-
-    lastScroll = y;
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  /* ---------- Hero spotlight ---------- */
-  var spotlight = document.getElementById('heroSpotlight');
-  var hero = document.querySelector('.hero');
-
-  if(spotlight && hero && window.matchMedia('(hover:hover)').matches){
-    hero.addEventListener('mousemove', function(e){
-      var rect = hero.getBoundingClientRect();
-      var x = ((e.clientX - rect.left) / rect.width) * 100;
-      var y = ((e.clientY - rect.top) / rect.height) * 100;
-
-      spotlight.style.setProperty('--mx', x + '%');
-      spotlight.style.setProperty('--my', y + '%');
-    });
-  }
-
-  /* ---------- Count-up ---------- */
-  var counters = document.querySelectorAll('[data-count-to]');
-  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if(counters.length && 'IntersectionObserver' in window && !prefersReduced){
-    var cio = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(!entry.isIntersecting) return;
-
-        var el = entry.target;
-        var end = parseInt(el.getAttribute('data-count-to'), 10);
-        var originalText = el.textContent;
-        var suffix = originalText.replace(/[0-9]/g, '');
-        var duration = 1400;
-        var start = 0;
-        var startTime = null;
-
-        function step(ts){
-          if(!startTime) startTime = ts;
-
-          var p = Math.min((ts - startTime) / duration, 1);
-          var eased = 1 - Math.pow(1 - p, 3);
-          var val = Math.round(start + (end - start) * eased);
-
-          el.textContent = val + suffix;
-
-          if(p < 1){
-            requestAnimationFrame(step);
-          } else {
-            el.textContent = end + suffix;
-          }
-        }
-
-        requestAnimationFrame(step);
-        cio.unobserve(el);
-      });
-    }, {
-      threshold: 0.6
-    });
-
-    counters.forEach(function(c){
-      cio.observe(c);
-    });
-  }
-
-  /* ---------- Ayat Hari Ini ---------- */
-  var verses = [
-    {
-      text: "Karena begitu besar kasih Allah akan dunia ini, sehingga Ia telah mengaruniakan Anak-Nya yang tunggal, supaya setiap orang yang percaya kepada-Nya tidak binasa, melainkan beroleh hidup yang kekal.",
-      ref: "Yohanes 3:16"
-    },
-    {
-      text: "Sebab Aku ini mengetahui rancangan-rancangan apa yang ada pada-Ku mengenai kamu, demikianlah firman TUHAN, yaitu rancangan damai sejahtera dan bukan rancangan kecelakaan, untuk memberikan kepadamu hari depan yang penuh harapan.",
-      ref: "Yeremia 29:11"
-    },
-    {
-      text: "Janganlah takut, sebab Aku menyertai engkau, janganlah bimbang, sebab Aku ini Allahmu; Aku akan meneguhkan, bahkan akan menolong engkau; Aku akan memegang engkau dengan tangan kanan-Ku yang membawa kemenangan.",
-      ref: "Yesaya 41:10"
-    },
-    {
-      text: "Sebab di mana dua atau tiga orang berkumpul dalam Nama-Ku, di situ Aku ada di tengah-tengah mereka.",
-      ref: "Matius 18:20"
-    },
-    {
-      text: "Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.",
-      ref: "Filipi 4:13"
-    },
-    {
-      text: "Tuhan adalah gembalaku, takkan kekurangan aku. Ia membaringkan aku di padang yang berumput hijau, Ia membimbing aku ke air yang tenang.",
-      ref: "Mazmur 23:1-2"
-    },
-    {
-      text: "Percayalah kepada TUHAN dengan segenap hatimu dan janganlah bersandar kepada pengertianmu sendiri. Akuilah Dia dalam segala lakumu, maka Ia akan meluruskan jalanmu.",
-      ref: "Amsal 3:5-6"
-    },
-    {
-      text: "Berbahagialah orang yang miskin di hadapan Allah, karena merekalah yang empunya Kerajaan Sorga.",
-      ref: "Matius 5:3"
-    },
-    {
-      text: "Bukan dengan keperkasaan dan bukan dengan kekuatan, melainkan dengan roh-Ku, firman TUHAN semesta alam.",
-      ref: "Zakharia 4:6"
-    },
-    {
-      text: "Sebab kamu tahu bahwa kamu telah ditebus dari cara hidupmu yang sia-sia — bukan dengan barang yang fana, bukan pula dengan perak atau emas.",
-      ref: "1 Petrus 1:18"
-    },
-    {
-      text: "Kasihilah Tuhan, Allahmu, dengan segenap hatimu dan dengan segenap jiwamu dan dengan segenap akal budimu.",
-      ref: "Matius 22:37"
-    },
-    {
-      text: "Aku datang, supaya mereka mempunyai hidup, dan mempunyainya dalam segala kelimpahan.",
-      ref: "Yohanes 10:10"
-    },
-    {
-      text: "Allah kita adalah tempat perlindungan dan kekuatan, sebagai penolong dalam kesesakan sangat terbukti.",
-      ref: "Mazmur 46:2"
-    },
-    {
-      text: "Mintalah, maka akan diberikan kepadamu; carilah, maka kamu akan mendapat; ketoklah, maka pintu akan dibukakan bagimu.",
-      ref: "Matius 7:7"
-    }
+  const features=[
+    ['Warta Jemaat','Jadwal & informasi minggu ini','warta.html','warta jadwal informasi'],
+    ['Jadwal Pelayanan','Pelayan ibadah minggu','warta.html#jadwal-pelayanan','jadwal pelayanan ibadah'],
+    ['Alkitab','Baca kitab, pasal, dan ayat','alkitab.html','alkitab bible ayt kitab pasal ayat'],
+    ['Persekutuan','PA & Persekutuan Doa','persekutuan.html','persekutuan pa doa'],
+    ['Komunitas','Kehidupan bersama GRIA','komunitas.html','komunitas kkr kelompok'],
+    ['Persembahan','Laporan dan Kasih Agape','warta.html#laporan-persembahan','persembahan kasih agape laporan'],
+    ['Jemaat','Ruang khusus anggota jemaat','jemaat.html','jemaat anggota member'],
+    ['Tentang GRIA','Visi, misi, dan cerita GRIA','about-us.html','tentang visi misi'],
+    ['Database Jemaat','Pendaftaran dan pembaruan data','pendaftaran-jemaat.html','database daftar pendaftaran jemaat']
   ];
 
-  var dayIndex = Math.floor(Date.now() / 86400000) % verses.length;
-  var v = verses[dayIndex];
+  function renderSearch(){
+    const q=search.value.trim().toLowerCase();
+    if(!q){
+      results.classList.remove('show');
+      results.innerHTML='';
+      return;
+    }
+    const found=features.filter(x=>(x[0]+' '+x[1]+' '+x[3]).toLowerCase().includes(q)).slice(0,5);
+    if(!found.length){
+      results.innerHTML='<div class="search-result"><strong>Tidak ditemukan</strong><span>Coba kata lain</span></div>';
+    }else{
+      results.innerHTML=found.map(x=>
+        '<a class="search-result" href="'+x[2]+'"><strong>'+x[0]+'</strong><span>'+x[1]+' →</span></a>'
+      ).join('');
+    }
+    results.classList.add('show');
+  }
 
-  var vt = document.getElementById('dailyVerseText');
-  var vr = document.getElementById('dailyVerseRef');
-
-  if(vt) vt.textContent = v.text;
-  if(vr) vr.textContent = v.ref;
-
+  search.addEventListener('input',renderSearch);
+  search.addEventListener('focus',renderSearch);
+  document.addEventListener('click',e=>{
+    if(!e.target.closest('.search-shell'))results.classList.remove('show');
+  });
 })();
 </script>
 
-<!-- ============ GRIA PWA SERVICE WORKER ============ -->
-<script src="home-clean.js" defer></script>
 <script src="pwa.js" defer></script>
-  
 </body>
 </html>
