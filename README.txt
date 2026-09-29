@@ -1,25 +1,19 @@
-GRIA V10 — MULTI BIBLE
+GRIA V11
 
-UPLOAD / REPLACE:
-1. alkitab.html
-2. service-worker.js
+Replace:
+- alkitab.html
+- service-worker.js
 
-OPTIONAL DOCUMENTATION:
-3. BIBLE-SOURCES.md
+Optional:
+- BIBLE-SOURCES.md
 
-DO NOT DELETE:
-- ayt-data.min.json
-- AYT-LICENSE.html
+What changed:
+- Added TB · LAI as an official Indonesian option without illegally copying full TB into the repo.
+- TB opens the same book/chapter/verse in YouVersion TB (version 306).
+- Added link to official LAI Bible API for future licensed in-app integration.
+- Rebuilt freeze behavior: Kitab + Pasal becomes position:fixed via JavaScript on iPhone/Safari.
+- Ayat, version, theme, header and reading content keep scrolling normally.
+- Service worker v11.
 
-VERSIONS:
-- AYT: local/offline
-- Hebrew WLC: fetched from openscriptures/morphhb
-- Greek SBLGNT: fetched from Faithlife/SBLGNT
-- NIV: opens selected reference through official YouVersion page; full NIV is not copied into GRIA
-
-FILTER:
-- Only Kitab + Pasal is sticky/frozen.
-- Version, Dark/Light, Ayat selector and reading content scroll normally.
-
-COMMIT:
-Add Hebrew and Greek Bible sources with licensed NIV access
+Commit:
+Add official TB access and fix Bible filter freeze

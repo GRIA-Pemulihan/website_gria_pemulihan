@@ -64,13 +64,24 @@ body[data-bible-theme="light"] .navbar .logo{color:#171719!important}
 .version-tab:active{transform:scale(.97)}
 .version-tab small{opacity:.68;font-size:8px}
 
-/* Only Book + Chapter stay frozen */
+/* Robust iPhone freeze: JavaScript switches only Kitab + Pasal to fixed. */
+.b-controls-anchor{position:relative;min-height:62px;margin:0 0 13px}
 .b-controls{
-  position:sticky;top:calc(64px + env(safe-area-inset-top,0px));z-index:45;
-  padding:9px;margin:0 0 13px;border-radius:18px;
-  background:color-mix(in srgb,var(--b-surface) 92%,transparent);
-  border:1px solid var(--b-border);box-shadow:0 12px 34px rgba(0,0,0,.15);
+  position:relative;z-index:45;padding:9px;border-radius:18px;
+  background:rgba(17,17,20,.95);border:1px solid var(--b-border);
+  box-shadow:0 12px 34px rgba(0,0,0,.15);
   backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+}
+body[data-bible-theme="light"] .b-controls{background:rgba(255,255,255,.96)}
+.b-controls.is-frozen{
+  position:fixed;z-index:9500;margin:0!important;
+  box-shadow:0 14px 40px rgba(0,0,0,.25);
+  border-color:color-mix(in srgb,var(--b-accent) 20%,var(--b-border));
+}
+.b-controls.is-frozen:after{
+  content:'';position:absolute;left:14px;right:14px;bottom:-1px;height:2px;
+  border-radius:999px;background:linear-gradient(90deg,var(--b-accent),transparent 70%);
+  opacity:.7
 }
 .b-selects{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(112px,.72fr);gap:7px}
 .b-selects select,.verse-jump select{
@@ -130,7 +141,7 @@ body[data-bible-theme="light"] .navbar .logo{color:#171719!important}
 
 @media(max-width:600px){
   .b-wrap{padding-top:82px}.theme-toggle button{min-width:52px}
-  .b-controls{top:calc(62px + env(safe-area-inset-top,0px));margin-left:-2px;margin-right:-2px}
+  .b-controls-anchor{margin-left:-2px;margin-right:-2px}
   .b-selects{grid-template-columns:minmax(0,1.35fr) minmax(104px,.72fr)}
   .verse-jump select{max-width:185px}
   .chapter{padding:18px 13px 14px}.chapter-head h2{font-size:21px}
@@ -199,17 +210,20 @@ root.innerHTML=`
 <header class="b-head">
   <div class="b-kicker">Ruang Alkitab Jemaat</div>
   <h1>Alkitab</h1>
-  <p>AYT tersedia lokal. Hebrew WLC dan Greek SBLGNT dibaca langsung dari repository sumber terbuka. NIV dibuka melalui sumber resmi berlisensi.</p>
+  <p>AYT tersedia lokal. TB dan NIV dibuka melalui sumber resmi berlisensi; Hebrew WLC dan Greek SBLGNT dibaca dari repository sumber terbuka.</p>
 </header>
 <div class="version-tabs" aria-label="Pilih versi Alkitab">
   <button class="version-tab active" data-version="ayt">AYT <small>Indonesia</small></button>
+  <button class="version-tab" data-version="tb">TB · LAI <small>resmi ↗</small></button>
   <button class="version-tab" data-version="hebrew">עברית · WLC <small>PL</small></button>
   <button class="version-tab" data-version="greek">Ελληνικά · SBLGNT <small>PB</small></button>
   <button class="version-tab" data-version="niv">NIV® <small>resmi ↗</small></button>
 </div>
-<section class="b-controls">
-  <div class="b-selects"><select id="bookSel"></select><select id="chapterSel"></select></div>
-</section>
+<div class="b-controls-anchor" id="controlsAnchor">
+  <section class="b-controls" id="bibleControls" aria-label="Filter Kitab dan Pasal">
+    <div class="b-selects"><select id="bookSel"></select><select id="chapterSel"></select></div>
+  </section>
+</div>
 <div class="verse-jump"><label for="verseSel">Lompat Ayat</label><select id="verseSel"><option value="">Semua ayat</option></select></div>
 <div class="b-status"><span id="locationLabel">Memuat...</span><strong id="gestureLabel">Geser ← → antar pasal</strong></div>
 <section class="reader-shell" id="readerShell" aria-live="polite">
@@ -220,12 +234,45 @@ root.innerHTML=`
 <div class="b-source" id="sourceNote"></div>`;
 
 const bookSel=document.getElementById('bookSel'),chapterSel=document.getElementById('chapterSel'),verseSel=document.getElementById('verseSel');
+const controlsAnchor=document.getElementById('controlsAnchor'),bibleControls=document.getElementById('bibleControls');
 const readerShell=document.getElementById('readerShell'),readerStage=document.getElementById('readerStage');
 const prevBtn=document.getElementById('prevChapter'),nextBtn=document.getElementById('nextChapter'),chapterIndex=document.getElementById('chapterIndex');
 const locationLabel=document.getElementById('locationLabel'),gestureLabel=document.getElementById('gestureLabel'),sourceNote=document.getElementById('sourceNote');
 
 document.querySelectorAll('[data-theme-choice]').forEach(b=>b.onclick=()=>applyTheme(b.dataset.themeChoice));applyTheme(savedTheme);
 document.querySelectorAll('[data-version]').forEach(b=>b.onclick=()=>switchVersion(b.dataset.version));
+
+setupFrozenControls();
+
+function setupFrozenControls(){
+ if(!controlsAnchor||!bibleControls)return;
+ function update(){
+   const navbar=document.querySelector('.navbar');
+   const navBottom=navbar?navbar.getBoundingClientRect().bottom:62;
+   const top=Math.max(navBottom+8,66);
+   const rect=controlsAnchor.getBoundingClientRect();
+   const freeze=rect.top<=top;
+   if(freeze){
+     controlsAnchor.style.height=bibleControls.offsetHeight+'px';
+     bibleControls.classList.add('is-frozen');
+     bibleControls.style.top=top+'px';
+     bibleControls.style.left=rect.left+'px';
+     bibleControls.style.width=rect.width+'px';
+   }else{
+     bibleControls.classList.remove('is-frozen');
+     bibleControls.style.top='';
+     bibleControls.style.left='';
+     bibleControls.style.width='';
+     controlsAnchor.style.height='';
+   }
+ }
+ let busy=false;
+ const schedule=()=>{if(busy)return;busy=true;requestAnimationFrame(()=>{update();busy=false})};
+ window.addEventListener('scroll',schedule,{passive:true});
+ window.addEventListener('resize',schedule,{passive:true});
+ window.addEventListener('orientationchange',()=>setTimeout(schedule,180),{passive:true});
+ schedule();
+}
 
 fetch('ayt-data.min.json',{cache:'force-cache'}).then(r=>{if(!r.ok)throw Error('AYT data missing');return r.json()}).then(data=>{
  ayt=data;init();
@@ -234,7 +281,7 @@ fetch('ayt-data.min.json',{cache:'force-cache'}).then(r=>{if(!r.ok)throw Error('
 function init(){
  ayt.books.forEach(book=>{const o=document.createElement('option');o.value=book[0];o.textContent=book[2];bookSel.appendChild(o)});
  let saved={};try{saved=JSON.parse(localStorage.getItem(LOCATION_KEY)||'{}')}catch(_){}
- version=['ayt','hebrew','greek','niv'].includes(saved.version)?saved.version:'ayt';
+ version=['ayt','tb','hebrew','greek','niv'].includes(saved.version)?saved.version:'ayt';
  bookSel.value=ayt.books.some(b=>String(b[0])===String(saved.book))?String(saved.book):'43';
  ensureBookForVersion();
  currentBook=getAytBook();
@@ -270,6 +317,7 @@ function switchVersion(v){
 }
 
 async function loadCurrentSource(direction){
+ if(version==='tb'){renderTb();return}
  if(version==='niv'){renderNiv();return}
  readerShell.dataset.script=version==='hebrew'?'hebrew':version==='greek'?'greek':'latin';
  readerStage.innerHTML='<div class="b-loading"><span class="pulse"><i></i><i></i><i></i></span><br>Memuat '+(version==='ayt'?'AYT':version==='hebrew'?'Hebrew WLC':'Greek SBLGNT')+'...</div>';
@@ -326,6 +374,22 @@ function renderChapter(ch,direction){
  if(selectedVerse){const target=document.getElementById('verse-'+selectedVerse);if(target)setTimeout(()=>target.scrollIntoView({behavior:'smooth',block:'center'}),80)}
 }
 
+function renderTb(){
+ readerShell.dataset.script='latin';
+ fillVerseSelector(currentBook[3].find(c=>c[0]===currentChapter));
+ const ref=(META[getBookId()]||{}).osis||'JHN';
+ const suffix=selectedVerse?`${ref}.${currentChapter}.${selectedVerse}.TB`:`${ref}.${currentChapter}.TB`;
+ const officialUrl=`https://www.bible.com/id/bible/306/${suffix}`;
+ readerStage.innerHTML=`<div class="niv-panel">
+   <span class="niv-badge">TB · Lembaga Alkitab Indonesia</span>
+   <h2>Alkitab Terjemahan Baru</h2>
+   <p>TB adalah teks resmi LAI dan dilindungi hak cipta. GRIA tidak menyalin full-text TB ke repository. Referensi yang sama dibuka dari sumber resmi berlisensi.</p>
+   <a class="niv-btn" href="${officialUrl}" target="_blank" rel="noopener">Buka ${esc(currentBook[2])} ${currentChapter}${selectedVerse?':'+selectedVerse:''} TB ↗</a>
+   <a class="niv-btn" style="margin-left:7px;background:var(--b-surface-2);color:var(--b-text);border:1px solid var(--b-border)" href="https://bible-api.alkitab.or.id/" target="_blank" rel="noopener">LAI Bible API ↗</a>
+ </div>`;
+ updateMeta();updateSourceNote();saveLocation();
+}
+
 function renderNiv(){
  readerShell.dataset.script='latin';fillVerseSelector(currentBook[3].find(c=>c[0]===currentChapter));
  const meta=META[getBookId()]||{};const ref=meta.osis||'JHN';
@@ -338,11 +402,12 @@ function renderNiv(){
 function updateMeta(){
  const idx=currentBook[3].findIndex(ch=>ch[0]===currentChapter);
  chapterIndex.textContent=`${idx+1} / ${currentBook[3].length}`;prevBtn.disabled=idx<=0;nextBtn.disabled=idx>=currentBook[3].length-1;
- locationLabel.textContent=`${version==='ayt'?'AYT':version==='hebrew'?'WLC':version==='greek'?'SBLGNT':'NIV®'} · ${currentBook[2]} ${currentChapter}${selectedVerse?':'+selectedVerse:''}`;
- gestureLabel.textContent=version==='niv'?'NIV dibuka resmi ↗':'Geser ← → antar pasal';
+ locationLabel.textContent=`${version==='ayt'?'AYT':version==='tb'?'TB · LAI':version==='hebrew'?'WLC':version==='greek'?'SBLGNT':'NIV®'} · ${currentBook[2]} ${currentChapter}${selectedVerse?':'+selectedVerse:''}`;
+ gestureLabel.textContent=(version==='niv'||version==='tb')?'Dibuka dari sumber resmi ↗':'Geser ← → antar pasal';
 }
 function updateSourceNote(){
  if(version==='ayt')sourceNote.innerHTML='Teks: <strong>Alkitab Yang Terbuka (AYT)</strong> © YLSA-AYT 2011–2024. <a href="AYT-LICENSE.html" target="_blank">Lisensi AYT</a>.';
+ else if(version==='tb')sourceNote.innerHTML='TB: <strong>Alkitab Terjemahan Baru</strong> © Lembaga Alkitab Indonesia. Full text tidak disalin ke repository GRIA. Integrasi penuh dapat dilakukan melalui <a href="https://bible-api.alkitab.or.id/" target="_blank" rel="noopener">Bible API resmi LAI ↗</a> setelah memperoleh akses dan izin.';
  else if(version==='hebrew')sourceNote.innerHTML='Hebrew: <strong>Open Scriptures Hebrew Bible / Westminster Leningrad Codex</strong>. Teks WLC public domain; anotasi OSHB CC BY 4.0. <a href="https://github.com/openscriptures/morphhb" target="_blank" rel="noopener">Repository sumber ↗</a>.';
  else if(version==='greek')sourceNote.innerHTML='Greek: <strong>SBL Greek New Testament (SBLGNT)</strong>, Society of Biblical Literature / Logos Bible Software, CC BY 4.0. <a href="https://github.com/Faithlife/SBLGNT" target="_blank" rel="noopener">Repository sumber ↗</a>.';
  else sourceNote.innerHTML='NIV® adalah merek terdaftar Biblica. GRIA tidak mendistribusikan full text NIV; referensi dibuka melalui YouVersion.';
@@ -358,7 +423,7 @@ async function changeChapter(delta){
 
 bookSel.onchange=()=>{ensureBookForVersion();currentBook=getAytBook();currentChapter=currentBook[3][0][0];selectedVerse=null;fillChapterSelector();loadCurrentSource('none')};
 chapterSel.onchange=()=>{currentChapter=+chapterSel.value;selectedVerse=null;loadCurrentSource('none')};
-verseSel.onchange=()=>{selectedVerse=verseSel.value?+verseSel.value:null;if(version==='niv')renderNiv();else loadCurrentSource('none')};
+verseSel.onchange=()=>{selectedVerse=verseSel.value?+verseSel.value:null;if(version==='tb')renderTb();else if(version==='niv')renderNiv();else loadCurrentSource('none')};
 prevBtn.onclick=()=>changeChapter(-1);nextBtn.onclick=()=>changeChapter(1);
 
 readerShell.addEventListener('touchstart',e=>{const t=e.changedTouches[0];touchStartX=t.clientX;touchStartY=t.clientY},{passive:true});

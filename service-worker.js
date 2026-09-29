@@ -1,5 +1,5 @@
-/* GRIA PWA service worker v10 — multi-source Bible */
-const VERSION='gria-pwa-v10';
+/* GRIA PWA service worker v11 — Bible freeze + official TB */
+const VERSION='gria-pwa-v11';
 const STATIC_CACHE=`${VERSION}-static`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const scopeUrl=self.registration.scope;
@@ -9,7 +9,6 @@ self.addEventListener('install',event=>event.waitUntil(caches.open(STATIC_CACHE)
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('gria-pwa-')&&k!==STATIC_CACHE&&k!==RUNTIME_CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{
  const req=event.request;if(req.method!=='GET')return;const url=new URL(req.url);
- /* remote GitHub Bible sources use normal browser HTTP caching */
  if(url.origin!==origin)return;
  if(url.pathname.endsWith('/ayt-data.min.json')){event.respondWith(caches.match(req).then(cached=>cached||fetch(req).then(res=>{if(res&&res.ok)caches.open(STATIC_CACHE).then(c=>c.put(req,res.clone()));return res})));return}
  if(req.mode==='navigate'||req.destination==='document'){event.respondWith(fetch(req).then(res=>{if(res&&res.ok)caches.open(RUNTIME_CACHE).then(c=>c.put(req,res.clone()));return res}).catch(async()=>await caches.match(req)||caches.match(new URL('offline.html',scopeUrl).href)));return}
