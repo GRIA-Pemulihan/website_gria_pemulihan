@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id" data-gria-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0a0a0c">
+<title>Event & RSVP — GRIA Pemulihan Palu</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css"><link rel="stylesheet" href="gria-modern.css?v=18">
+</head><body>
+<nav class="navbar"><div class="navbar-inner"><a href="index.html" class="logo">GRI<span>A</span></a></div></nav>
+<main class="gria-page">
+<header class="gria-page-head"><span class="gria-page-kicker">Kegiatan GRIA</span><h1>Event & RSVP</h1><p class="gria-page-sub">Kegiatan diambil dari Informasi Umum pada Warta. Tombol “Saya Hadir” menyimpan pilihan di perangkat ini sebagai pengingat pribadi.</p></header>
+<div id="eventResults" class="gria-grid"><div class="gria-skeleton"></div><div class="gria-skeleton"></div></div>
+</main>
+<script src="pwa-v16.js" defer></script><script src="gria-modern.js?v=18" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded',async function(){
+  var box=document.getElementById('eventResults');function norm(s){return String(s||'').trim()}function key(s){var h=0;for(var i=0;i<s.length;i++)h=((h<<5)-h)+s.charCodeAt(i),h|=0;return 'gria_rsvp_'+Math.abs(h)}
+  try{
+    var res=await fetch('warta.html?event='+Date.now(),{cache:'no-store'}),html=await res.text(),doc=new DOMParser().parseFromString(html,'text/html');
+    var section=Array.from(doc.querySelectorAll('.warta-block')).find(function(s){return /informasi umum/i.test(s.textContent||'')});var table=section&&section.querySelector('table');
+    if(!table)throw new Error('no table');
+    var rows=Array.from(table.querySelectorAll('tr')),heads=Array.from(rows[0].querySelectorAll('th,td')).map(function(c){return norm(c.textContent)}),items=[];
+    rows.slice(1).forEach(function(r){var cells=Array.from(r.querySelectorAll('th,td')).map(function(c){return norm(c.textContent)}),type=cells[0]||'Kegiatan';for(var i=1;i<cells.length;i++){if(cells[i]&&cells[i]!=='-')items.push({type:type,date:heads[i]||'Jadwal',detail:cells[i]})}});
+    if(!items.length){box.innerHTML='<div class="gria-empty">Belum ada kegiatan yang ditampilkan pada Warta saat ini.</div>';return}
+    box.innerHTML=items.map(function(x){var k=key(x.type+x.date+x.detail),yes=false;try{yes=localStorage.getItem(k)==='yes'}catch(_){}
+      return '<article class="gria-result" data-rsvp="'+k+'"><small>'+x.date+'</small><h2>'+x.type+'</h2><p>'+x.detail+'</p><div class="gria-modern-actions"><button class="gria-btn rsvp '+(yes?'secondary':'')+'" type="button">'+(yes?'✓ Akan Hadir':'Saya Hadir')+'</button><a class="gria-btn secondary" href="warta.html#informasi-umum">Lihat Warta</a></div></article>'}).join('');
+    Array.from(box.querySelectorAll('.rsvp')).forEach(function(btn){btn.onclick=function(){var card=btn.closest('[data-rsvp]'),k=card.getAttribute('data-rsvp'),yes=false;try{yes=localStorage.getItem(k)==='yes';if(yes)localStorage.removeItem(k);else localStorage.setItem(k,'yes')}catch(_){}
+      yes=!yes;btn.textContent=yes?'✓ Akan Hadir':'Saya Hadir';btn.classList.toggle('secondary',yes);if(window.GRIA_APP)window.GRIA_APP.toast(yes?'Kehadiran disimpan di perangkat ini.':'Kehadiran dibatalkan.')}})
+  }catch(e){box.innerHTML='<div class="gria-empty">Informasi kegiatan belum dapat dimuat. Coba lagi saat terhubung ke internet.</div>'}
+});
+</script></body></html>

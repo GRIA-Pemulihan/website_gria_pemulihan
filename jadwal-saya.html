@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id" data-gria-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0a0a0c">
+<title>Jadwal Saya — GRIA Pemulihan Palu</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css"><link rel="stylesheet" href="gria-modern.css?v=18">
+</head><body>
+<nav class="navbar"><div class="navbar-inner"><a href="index.html" class="logo">GRI<span>A</span></a></div></nav>
+<main class="gria-page">
+<header class="gria-page-head"><span class="gria-page-kicker">Ruang Jemaat</span><h1>Jadwal Saya</h1><p class="gria-page-sub">Masukkan nama Anda seperti yang tertulis pada Warta. GRIA akan mencari tugas pelayanan pada jadwal terbaru.</p></header>
+<section class="gria-panel" id="scheduleForm"><input id="memberName" class="gria-input" placeholder="Nama jemaat"><div class="gria-modern-actions"><button id="findSchedule" class="gria-btn" type="button">Cari Jadwal</button><button id="clearName" class="gria-btn secondary" type="button">Hapus Nama</button></div><div id="scheduleMeta" class="gria-meta-line"></div></section>
+<div id="scheduleResults" class="gria-grid"><div class="gria-skeleton"></div><div class="gria-skeleton"></div></div>
+</main>
+<script src="pwa-v16.js" defer></script><script src="gria-modern.js?v=18" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var access=false;try{access=localStorage.getItem('gria_member_access_v1')==='yes'}catch(_){}
+  var form=document.getElementById('scheduleForm'),results=document.getElementById('scheduleResults'),nameInput=document.getElementById('memberName'),meta=document.getElementById('scheduleMeta');
+  if(!access){form.innerHTML='<div class="gria-empty">Jadwal Saya tersedia di Ruang Jemaat.<br><a class="gria-btn" style="margin-top:12px" href="jemaat.html">Masuk ke Ruang Jemaat</a></div>';results.innerHTML='';return}
+  try{nameInput.value=localStorage.getItem('gria_my_name')||''}catch(_){}
+  function norm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim()}
+  async function run(){
+    var n=norm(nameInput.value);if(!n){results.innerHTML='<div class="gria-empty">Masukkan nama terlebih dahulu.</div>';return}
+    try{localStorage.setItem('gria_my_name',nameInput.value.trim())}catch(_){}
+    results.innerHTML='<div class="gria-skeleton"></div><div class="gria-skeleton"></div>';
+    try{
+      var res=await fetch('warta.html?jadwal='+Date.now(),{cache:'no-store'}),html=await res.text(),doc=new DOMParser().parseFromString(html,'text/html');
+      var section=Array.from(doc.querySelectorAll('.warta-block')).find(function(s){return /jadwal pelayanan/i.test(s.textContent||'')});
+      var table=section&&section.querySelector('table');if(!table)throw new Error('table');
+      var rows=Array.from(table.querySelectorAll('tr')),headers=Array.from(rows[0].querySelectorAll('th,td')).map(function(c){return c.textContent.trim()}),items=[];
+      rows.slice(1).forEach(function(r){var cells=Array.from(r.querySelectorAll('th,td')).map(function(c){return c.textContent.trim()}),role=cells[0]||'Pelayanan';for(var i=1;i<cells.length;i++){if(norm(cells[i]).indexOf(n)>=0)items.push({date:headers[i]||'Jadwal',role:role,names:cells[i]})}});
+      var lm=res.headers.get('last-modified');meta.textContent=lm?'Data Warta: '+new Intl.DateTimeFormat('id-ID',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}).format(new Date(lm)):'Data dari Warta terbaru';
+      if(!items.length){results.innerHTML='<div class="gria-empty">Belum ditemukan jadwal untuk <b>'+nameInput.value.replace(/</g,'&lt;')+'</b> pada periode yang ditampilkan.</div>';return}
+      results.innerHTML=items.map(function(x){return '<article class="gria-result"><small>'+x.date+'</small><h2>'+x.role+'</h2><p>'+x.names+'</p><a href="warta.html#jadwal-pelayanan">Lihat Warta →</a></article>'}).join('');
+    }catch(e){results.innerHTML='<div class="gria-empty">Jadwal belum dapat dimuat. Coba lagi saat terhubung ke internet.</div>'}
+  }
+  document.getElementById('findSchedule').onclick=run;document.getElementById('clearName').onclick=function(){nameInput.value='';try{localStorage.removeItem('gria_my_name')}catch(_){}results.innerHTML=''};
+  nameInput.addEventListener('keydown',function(e){if(e.key==='Enter')run()});if(nameInput.value)run();else results.innerHTML='<div class="gria-empty">Nama hanya disimpan di perangkat ini untuk mempermudah pencarian berikutnya.</div>';
+});
+</script></body></html>
