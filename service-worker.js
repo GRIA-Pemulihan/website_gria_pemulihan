@@ -1,31 +1,19 @@
-/* GRIA PWA service worker v23 — fast shell / lightweight precache */
-const VERSION='gria-pwa-v23';
+/* GRIA PWA service worker v24 — focused Home + Jemaat */
+const VERSION='gria-pwa-v24';
 const STATIC_CACHE=`${VERSION}-static`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const scopeUrl=self.registration.scope;
 const origin=new URL(scopeUrl).origin;
 
-/* Keep first install small. Heavy photos and Bible JSON are cached only when actually opened. */
 const PRECACHE=[
-  'index.html',
-  'offline.html',
-  'manifest.webmanifest',
-  'icon-192.png',
-  'icon-512.png',
-  'apple-touch-icon.png',
-  'pwa-v16.js',
-  'gria-modern.js',
-  'gria-modern.css',
-  'gria-home-v23.js',
-  'gria-home-v20.css',
-  'gria-share-pdf-v22.js',
-  'gria-share-pdf-v22.css',
-  'gria-fix-v22.js',
-  'gria-fix-v22.css',
-  'gria-performance-v23.js',
-  'gria-performance-v23.css',
-  'warta-mobile.js',
-  'warta.html'
+  'index.html','jemaat.html','warta.html','offline.html','manifest.webmanifest',
+  'icon-192.png','icon-512.png','apple-touch-icon.png',
+  'pwa-v16.js','gria-modern.js','gria-modern.css',
+  'gria-home-v24.js','gria-home-v24.css','gria-home-v20.css',
+  'gria-share-pdf-v22.js','gria-share-pdf-v22.css',
+  'gria-fix-v22.js','gria-fix-v22.css',
+  'gria-performance-v23.js','gria-performance-v23.css',
+  'warta-mobile.js'
 ].map(p=>new URL(p,scopeUrl).href);
 
 self.addEventListener('install',event=>{
@@ -70,7 +58,7 @@ function injectAppLayer(html,pathname){
     /<script([^>]*?)src=["'][^"']*pwa\.js(?:\?[^"']*)?["']([^>]*)><\/script>/gi,
     '<script$1src="pwa-v16.js"$2></script>'
   );
-  html=html.replace(/gria-home-v22\.js(?:\?[^"']*)?/gi,'gria-home-v23.js?v=23');
+  html=html.replace(/gria-home-v23\.js(?:\?[^"']*)?/gi,'gria-home-v24.js?v=24');
 
   html=ensureHead(html,'<link rel="stylesheet" href="gria-modern.css?v=18">','gria-modern\\.css');
   html=ensureHead(html,'<link rel="stylesheet" href="gria-fix-v22.css?v=22">','gria-fix-v22\\.css');
@@ -86,13 +74,15 @@ function injectAppLayer(html,pathname){
 
   if(isHome){
     html=ensureHead(html,'<link rel="stylesheet" href="gria-home-v20.css?v=20">','gria-home-v20\\.css');
+    html=ensureHead(html,'<link rel="stylesheet" href="gria-home-v24.css?v=24">','gria-home-v24\\.css');
     html=ensureHead(html,'<link rel="stylesheet" href="gria-share-pdf-v22.css?v=22">','gria-share-pdf-v22\\.css');
-    html=ensureBody(html,'<script src="gria-home-v23.js?v=23" defer><\/script>','gria-home-v23\\.js');
+    html=ensureBody(html,'<script src="gria-home-v24.js?v=24" defer><\/script>','gria-home-v24\\.js');
     html=ensureBody(html,'<script src="gria-share-pdf-v22.js?v=22" defer><\/script>','gria-share-pdf-v22\\.js');
   }else if(isWarta){
     html=ensureHead(html,'<link rel="stylesheet" href="gria-share-pdf-v22.css?v=22">','gria-share-pdf-v22\\.css');
     html=ensureBody(html,'<script src="gria-share-pdf-v22.js?v=22" defer><\/script>','gria-share-pdf-v22\\.js');
   }
+
   return html;
 }
 
@@ -117,18 +107,14 @@ async function networkWithTimeout(req,ms){
 self.addEventListener('fetch',event=>{
   const req=event.request;
   if(req.method!=='GET')return;
-
   const url=new URL(req.url);
   if(url.origin!==origin)return;
 
-  /* Large Bible dataset: only download when the reader asks for it. */
   if(url.pathname.endsWith('/ayt-data.min.json')){
-    event.respondWith(
-      caches.match(req).then(cached=>cached||fetch(req).then(res=>{
-        if(res&&res.ok)caches.open(RUNTIME_CACHE).then(c=>c.put(req,res.clone()));
-        return res;
-      }))
-    );
+    event.respondWith(caches.match(req).then(cached=>cached||fetch(req).then(res=>{
+      if(res&&res.ok)caches.open(RUNTIME_CACHE).then(c=>c.put(req,res.clone()));
+      return res;
+    })));
     return;
   }
 
@@ -136,7 +122,6 @@ self.addEventListener('fetch',event=>{
     const isWarta=url.pathname.endsWith('/warta.html');
 
     if(isWarta){
-      /* Freshness matters, but never leave users staring at a spinner for long. */
       event.respondWith((async()=>{
         try{
           const net=await networkWithTimeout(req,1200);
@@ -159,7 +144,6 @@ self.addEventListener('fetch',event=>{
       return;
     }
 
-    /* App pages open instantly from cache, then refresh silently in the background. */
     event.respondWith((async()=>{
       const cached=await caches.match(req);
       const refresh=fetch(req).then(res=>transformHtml(res,url.pathname)).then(res=>{
@@ -172,7 +156,6 @@ self.addEventListener('fetch',event=>{
     return;
   }
 
-  /* JS/CSS/icons: cache-first, refresh in background. */
   if(['style','script','image','font'].includes(req.destination)){
     event.respondWith((async()=>{
       const cached=await caches.match(req);

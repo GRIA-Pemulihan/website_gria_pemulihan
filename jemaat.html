@@ -1,97 +1,52 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-gria-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0a0a0c">
-<title>Jemaat — GRIA Pemulihan Palu</title>
+<title>Ruang Jemaat — GRIA Pemulihan Palu</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
-
+<link rel="stylesheet" href="gria-modern.css?v=18">
+<link rel="stylesheet" href="gria-fix-v22.css?v=22">
+<link rel="stylesheet" href="gria-performance-v23.css?v=23">
 <style>
-html{scroll-behavior:smooth}
-.j-wrap{max-width:900px;margin:0 auto;padding:102px var(--pad) 120px;position:relative;z-index:2}
-.j-gate{
-  max-width:500px;margin:0 auto;padding:27px 22px;border-radius:25px;
-  background:var(--bg-elevated);border:1px solid var(--card-border)
-}
-.j-brand{color:var(--neon);font:800 10px Manrope,sans-serif;letter-spacing:.1em;text-transform:uppercase}
-.j-gate h1{margin:12px 0 10px;font:800 clamp(30px,8vw,42px)/1.03 Syne,sans-serif;letter-spacing:-.045em}
-.j-gate p{color:var(--text-mute);font:500 12.5px/1.65 Manrope,sans-serif}
-.j-field{margin-top:21px}
-.j-field label{display:block;margin-bottom:7px;color:var(--text-mute);font:700 11px Manrope,sans-serif}
-.j-field input{
-  width:100%;min-height:52px;padding:13px 15px;border-radius:14px;
-  background:var(--bg-base);color:var(--text);border:1px solid var(--card-border-strong);
-  font:600 15px Manrope,sans-serif;outline:none
-}
-.j-field input:focus{border-color:color-mix(in srgb,var(--neon) 65%,var(--card-border));box-shadow:0 0 0 3px var(--neon-soft)}
-.j-btn{width:100%;min-height:49px;margin-top:12px;border-radius:14px;background:var(--neon);color:#050505;font:800 12.5px Manrope,sans-serif}
-.j-help{margin-top:13px;color:var(--grey-dim);font:500 10.5px/1.55 Manrope,sans-serif}
-.j-error{display:none;margin-top:11px;padding:11px 12px;border-radius:12px;color:#d64d4d;background:rgba(255,70,70,.06);border:1px solid rgba(255,70,70,.14);font:600 11px/1.5 Manrope,sans-serif}
-.j-error.show{display:block}
-
-.j-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:22px}
-.j-head h1{font:800 clamp(29px,7vw,43px)/1.05 Syne,sans-serif;letter-spacing:-.04em}
-.j-head p{margin-top:5px;color:var(--text-mute);font:500 11.5px/1.5 Manrope,sans-serif}
-.j-lock{min-height:38px;padding:7px 11px;border-radius:999px;color:var(--grey);background:var(--bg-elevated);border:1px solid var(--card-border);font:700 10px Manrope,sans-serif}
-
-.j-grid{display:grid;grid-template-columns:1fr;gap:11px}
-.j-card{
-  position:relative;overflow:hidden;padding:20px;border-radius:20px;
-  background:var(--bg-elevated);border:1px solid var(--card-border);
-  opacity:0;transform:translateY(11px);
-  transition:opacity .35s ease,transform .35s cubic-bezier(.2,.8,.2,1)
-}
-.j-card.is-visible{opacity:1;transform:translateY(0)}
-.j-card h2{margin-bottom:12px;color:var(--grey);font:800 9.5px Manrope,sans-serif;letter-spacing:.09em;text-transform:uppercase}
-.j-main-title{font:800 23px/1.06 Syne,sans-serif;letter-spacing:-.035em}
-.j-desc{margin-top:7px;color:var(--text-mute);font:500 11.5px/1.6 Manrope,sans-serif}
-.j-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
-.j-chip{padding:5px 8px;border-radius:999px;color:var(--grey);background:var(--bg-soft);border:1px solid var(--card-border);font:700 8.5px Manrope,sans-serif}
-.j-primary{display:flex;min-height:44px;margin-top:15px;align-items:center;justify-content:center;border-radius:13px;background:var(--neon);color:#050505;font:800 11px Manrope,sans-serif}
-.j-coming{display:inline-flex;padding:5px 8px;border-radius:999px;color:var(--grey);background:var(--bg-soft);border:1px solid var(--card-border);font:800 8px Manrope,sans-serif;text-transform:uppercase;letter-spacing:.08em}
-.j-coming-card{min-height:160px;display:flex;flex-direction:column;justify-content:space-between}
-.j-note{color:var(--grey-dim);font:500 10.5px/1.5 Manrope,sans-serif}
-.quick{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:13px}
-.quick a{min-height:43px;display:flex;align-items:center;justify-content:center;padding:9px;border-radius:12px;color:var(--text);background:var(--bg-soft);border:1px solid var(--card-border);font:700 10.5px Manrope,sans-serif}
-
-/* Ayat Hari Ini lives here now */
-.daily-verse{
-  margin-top:24px;
-  padding:20px;
-  border-radius:20px;
-  background:var(--bg-elevated);
-  border:1px solid var(--card-border);
-}
-.daily-verse-label{
-  color:var(--neon-dim);
-  font:800 8.5px Manrope,sans-serif;
-  text-transform:uppercase;
-  letter-spacing:.09em;
-}
-.daily-verse blockquote{
-  margin:13px 0 9px;
-  color:var(--text);
-  font:700 clamp(17px,5vw,21px)/1.48 Syne,sans-serif;
-  letter-spacing:-.025em;
-}
-.daily-verse cite{
-  color:var(--text-mute);
-  font:700 9.5px Manrope,sans-serif;
-  font-style:normal;
-}
-
-@media(min-width:720px){
-  .j-grid{grid-template-columns:1.2fr .8fr}
-  .j-bible{grid-row:span 2}
-  .j-coming-row{display:grid;grid-template-columns:1fr 1fr;gap:11px;grid-column:1/-1}
-}
-@media(max-width:768px){.j-wrap{padding-top:84px}.j-head{align-items:flex-start}}
+:root{--jf:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}
+body,.j-wrap,.j-wrap *{font-family:var(--jf)!important}
+.j-wrap{max-width:760px;margin:0 auto;padding:94px 18px 125px;position:relative;z-index:2}
+.j-gate{max-width:470px;margin:4vh auto 0;padding:24px;border-radius:24px;background:var(--bg-elevated);border:1px solid var(--card-border)}
+.j-brand,.j-kicker{color:var(--neon);font-size:9px;font-weight:700;letter-spacing:.11em;text-transform:uppercase}
+.j-gate h1,.j-head h1{margin:9px 0 0;font-size:clamp(29px,8vw,41px);font-weight:550;line-height:1.04;letter-spacing:-.045em;color:var(--text)}
+.j-gate p{margin:11px 0 0;color:var(--text-mute);font-size:12px;line-height:1.6}
+.j-field{margin-top:18px}.j-field label{display:block;margin-bottom:7px;color:var(--text-mute);font-size:10px;font-weight:650}
+.j-field input{width:100%;min-height:50px;padding:12px 14px;border-radius:14px;background:var(--bg-soft);color:var(--text);border:1px solid var(--card-border-strong);outline:none;font-size:14px}
+.j-field input:focus{border-color:var(--neon)}
+.j-btn{width:100%;min-height:48px;margin-top:10px;border-radius:14px;background:var(--neon);color:#080808;font-size:12px;font-weight:750}
+.j-error{display:none;margin-top:10px;color:#ff7b7b;font-size:11px}.j-error.show{display:block}
+.j-help{margin-top:12px;color:var(--grey-dim);font-size:10px;line-height:1.5}
+.j-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:22px}
+.j-lock{min-height:38px;padding:8px 12px;border-radius:999px;color:var(--text-mute);background:var(--bg-elevated);border:1px solid var(--card-border);font-size:10px;font-weight:700}
+.j-section{margin-top:26px}.j-section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:11px}
+.j-section-head h2{margin:0;font-size:20px;font-weight:550;letter-spacing:-.035em;color:var(--text)}
+.j-section-head span{color:var(--grey-dim);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.j-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.j-card{position:relative;overflow:hidden;padding:18px;border-radius:20px;background:var(--bg-elevated);border:1px solid var(--card-border);content-visibility:auto;contain-intrinsic-size:1px 180px}
+.j-card-kicker{display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--grey);font-size:8px;font-weight:750;letter-spacing:.09em;text-transform:uppercase}
+.j-card-kicker i{width:7px;height:7px;border-radius:50%;background:var(--neon);box-shadow:0 0 10px rgba(204,255,0,.25)}
+.j-card h3{margin:10px 0 0;font-size:19px;font-weight:560;line-height:1.12;letter-spacing:-.035em;color:var(--text)}
+.j-card p{margin:7px 0 0;color:var(--text-mute);font-size:11px;line-height:1.55}
+.j-card-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}
+.j-card-actions a{min-height:40px;display:inline-flex;align-items:center;justify-content:center;padding:9px 12px;border-radius:12px;background:var(--neon);color:#080808;font-size:10px;font-weight:750}
+.j-card-actions a.secondary{background:var(--bg-soft);color:var(--text);border:1px solid var(--card-border)}
+.j-coming-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.j-coming{background:linear-gradient(145deg,var(--bg-elevated),color-mix(in srgb,var(--neon) 3%,var(--bg-elevated)))}
+.j-badge{display:inline-flex;padding:5px 8px;border-radius:999px;background:var(--bg-soft);border:1px solid var(--card-border);color:var(--grey);font-size:8px;font-weight:750;letter-spacing:.08em;text-transform:uppercase}
+.j-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:12px}.j-tags span{padding:5px 7px;border-radius:999px;background:var(--bg-soft);border:1px solid var(--card-border);color:var(--text-mute);font-size:8px;font-weight:650}
+.j-quote-preview{margin-top:13px;padding:12px;border-left:2px solid var(--neon);border-radius:0 12px 12px 0;background:var(--bg-soft);color:var(--text-mute);font-size:10px;line-height:1.5}
+@media(min-width:650px){.j-grid,.j-coming-grid{grid-template-columns:1fr 1fr}.j-card.wide{grid-column:1/-1}}
+@media(max-width:768px){.j-wrap{padding-top:82px}}
 </style>
 </head>
 <body>
@@ -100,147 +55,70 @@ html{scroll-behavior:smooth}
 
 <script>
 (function(){
-  const ACCESS_KEY='gria_member_access_v1';
-  const PASSWORD='GRIA2026';
-  const root=document.getElementById('root');
+  'use strict';
+  var ACCESS_KEY='gria_member_access_v1';
+  var PASSWORD='GRIA2026';
+  var root=document.getElementById('root');
 
-  function isMember(){
-    try{return localStorage.getItem(ACCESS_KEY)==='yes'}catch(_){return false}
-  }
+  function member(){try{return localStorage.getItem(ACCESS_KEY)==='yes'}catch(_){return false}}
 
-  function showGate(){
-    root.innerHTML=`
-      <section class="j-gate">
-        <div class="j-brand">Khusus Jemaat GRIA Palu</div>
-        <h1>Masuk sebagai Jemaat</h1>
-        <p>Masukkan kode akses untuk membuka fitur khusus anggota Jemaat GRIA Palu.</p>
-        <div class="j-field">
-          <label for="memberPass">Kode Jemaat</label>
-          <input id="memberPass" type="password" placeholder="Masukkan kode" autocomplete="off">
-        </div>
-        <button class="j-btn" id="memberBtn">Masuk</button>
-        <div class="j-error" id="memberError">Kode belum sesuai. Silakan coba lagi.</div>
-        <div class="j-help">Belum mengetahui kode? Tanyakan melalui <strong>grup WhatsApp GRIA</strong>.</div>
-      </section>`;
+  function gate(){
+    root.innerHTML='<section class="j-gate">'+
+      '<div class="j-brand">Khusus Jemaat GRIA Palu</div>'+
+      '<h1>Masuk ke Ruang Jemaat</h1>'+
+      '<p>Gunakan kode akses jemaat untuk membuka fitur khusus GRIA.</p>'+
+      '<div class="j-field"><label for="memberPass">Kode Jemaat</label><input id="memberPass" type="password" placeholder="Masukkan kode" autocomplete="off"></div>'+
+      '<button class="j-btn" id="memberBtn">Masuk</button>'+
+      '<div class="j-error" id="memberError">Kode belum sesuai. Silakan coba lagi.</div>'+
+      '<div class="j-help">Kode akses dapat ditanyakan melalui grup WhatsApp GRIA.</div>'+
+      '</section>';
 
-    const input=document.getElementById('memberPass');
-    const submit=()=>{
+    var input=document.getElementById('memberPass');
+    function submit(){
       if(input.value.trim()===PASSWORD){
-        try{
-          localStorage.setItem(ACCESS_KEY,'yes');
-          localStorage.setItem('gria_entry_mode','member');
-        }catch(_){}
-        renderMember();
+        try{localStorage.setItem(ACCESS_KEY,'yes');localStorage.setItem('gria_entry_mode','member')}catch(_){}
+        render();
       }else{
         document.getElementById('memberError').classList.add('show');
         input.focus();
       }
-    };
-
+    }
     document.getElementById('memberBtn').onclick=submit;
-    input.addEventListener('keydown',e=>{if(e.key==='Enter')submit()});
+    input.addEventListener('keydown',function(e){if(e.key==='Enter')submit()});
   }
 
-  function revealCards(){
-    const cards=document.querySelectorAll('.j-card');
-    const io=new IntersectionObserver(entries=>entries.forEach(e=>{
-      if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}
-    }),{threshold:.12});
-    cards.forEach((c,i)=>{c.style.transitionDelay=(i*55)+'ms';io.observe(c)});
-  }
+  function render(){
+    root.innerHTML=
+    '<header class="j-head"><div><div class="j-kicker">Ruang Jemaat</div><h1>Jemaat GRIA</h1></div><button class="j-lock" id="lockBtn">Keluar</button></header>'+
+    '<section class="j-section"><div class="j-section-head"><div><span>Akses Jemaat</span><h2>Yang sering digunakan</h2></div></div>'+
+      '<div class="j-grid">'+
+        '<article class="j-card"><div class="j-card-kicker"><span>Alkitab</span><i></i></div><h3>Ruang Alkitab</h3><p>Baca Alkitab dan lanjutkan pembacaan terakhir Anda.</p><div class="j-card-actions"><a href="alkitab.html">Buka Alkitab</a></div></article>'+
+        '<article class="j-card"><div class="j-card-kicker"><span>Pelayanan</span><i></i></div><h3>Jadwal Saya</h3><p>Temukan jadwal pelayanan Anda dari Warta terbaru.</p><div class="j-card-actions"><a href="jadwal-saya.html">Lihat Jadwal</a></div></article>'+
+        '<article class="j-card wide"><div class="j-card-kicker"><span>Persekutuan</span><i></i></div><h3>Pendalaman Alkitab & Doa</h3><p>Akses informasi PA, persekutuan doa, dan jadwal kegiatan bersama.</p><div class="j-card-actions"><a href="persekutuan.html">Buka Persekutuan</a><a class="secondary" href="warta.html#informasi-umum">Lihat Jadwal</a></div></article>'+
+      '</div></section>'+
+    '<section class="j-section"><div class="j-section-head"><div><span>Roadmap 2027</span><h2>Coming Soon</h2></div></div>'+
+      '<div class="j-coming-grid">'+
+        '<article class="j-card j-coming"><span class="j-badge">Coming Soon · 2027</span><h3>Daftar Jemaat GRIA Pemulihan Palu</h3><p>Profil dan data jemaat dalam satu ruang yang lebih tertata untuk kebutuhan pelayanan.</p><div class="j-tags"><span>Profil Jemaat</span><span>Database</span><span>Update Data</span></div></article>'+
+        '<article class="j-card j-coming"><span class="j-badge">Coming Soon · 2027</span><h3>Bible Reading Tracker</h3><p>Melihat progres pembacaan Alkitab dan perjalanan membaca sepanjang tahun.</p><div class="j-tags"><span>Progress</span><span>Riwayat</span><span>Target Tahunan</span></div></article>'+
+        '<article class="j-card j-coming wide"><span class="j-badge">Coming Soon · Pendalaman Alkitab</span><h3>Bank Quotes PA</h3><p>Setelah Pendalaman Alkitab, setiap jemaat dapat menyimpan highlight atau quotes penting miliknya sendiri dan melihat kembali perjalanan pembelajarannya dari waktu ke waktu.</p>'+
+          '<div class="j-quote-preview">“Satu insight penting dari PA hari ini…”<br><small>— contoh highlight pribadi</small></div>'+
+          '<div class="j-tags"><span>Quotes Pribadi</span><span>Per Sesi PA</span><span>Riwayat</span><span>Highlight</span></div>'+
+        '</article>'+
+      '</div></section>'+
+    '<div id="griaMemberModern" hidden></div>';
 
-  function dailyVerse(){
-    const verses=[
-      ['Segala perkara dapat kutanggung di dalam Dia yang memberi kekuatan kepadaku.','Filipi 4:13'],
-      ['TUHAN adalah gembalaku, takkan kekurangan aku.','Mazmur 23:1'],
-      ['Percayalah kepada TUHAN dengan segenap hatimu.','Amsal 3:5'],
-      ['Kasih itu sabar; kasih itu murah hati.','1 Korintus 13:4'],
-      ['Janganlah hendaknya kamu kuatir tentang apa pun juga.','Filipi 4:6'],
-      ['Firman-Mu itu pelita bagi kakiku dan terang bagi jalanku.','Mazmur 119:105'],
-      ['Sebab bagi Allah tidak ada yang mustahil.','Lukas 1:37']
-    ];
-    const d=new Date();
-    const n=Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/86400000);
-    return verses[Math.abs(n)%verses.length];
-  }
-
-  function renderMember(){
-    const verse=dailyVerse();
-
-    root.innerHTML=`
-      <header class="j-head">
-        <div>
-          <h1>Jemaat GRIA</h1>
-          <p>Ruang khusus anggota jemaat untuk bertumbuh dan terhubung.</p>
-        </div>
-        <button class="j-lock" id="lockBtn">Keluar</button>
-      </header>
-
-      <div class="j-grid">
-        <section class="j-card j-bible">
-          <h2>Alkitab</h2>
-          <div class="j-main-title">Ruang Alkitab</div>
-          <p class="j-desc">Baca AYT, teks Ibrani dan Yunani, serta akses versi resmi lainnya.</p>
-          <div class="j-meta">
-            <span class="j-chip">AYT</span>
-            <span class="j-chip">Hebrew</span>
-            <span class="j-chip">Greek</span>
-          </div>
-          <a class="j-primary" href="alkitab.html">Buka Alkitab</a>
-        </section>
-
-        <section class="j-card">
-          <h2>Persekutuan</h2>
-          <div class="j-main-title" style="font-size:19px">PA & Persekutuan Doa</div>
-          <p class="j-desc">Masuk ke ruang persekutuan atau cek jadwal doa terbaru.</p>
-          <div class="quick">
-            <a href="persekutuan.html">Persekutuan</a>
-            <a href="warta.html#informasi-umum">Jadwal Doa</a>
-          </div>
-        </section>
-
-        <div class="j-coming-row">
-          <section class="j-card j-coming-card">
-            <div>
-              <span class="j-coming">Coming Soon</span>
-              <div class="j-main-title" style="font-size:18px;margin-top:13px">Bible Reading Tracker 2027</div>
-              <p class="j-desc">Perjalanan baca Alkitab tahunan bersama jemaat.</p>
-            </div>
-            <div class="j-note">Disiapkan untuk 2027.</div>
-          </section>
-
-          <section class="j-card j-coming-card">
-            <div>
-              <span class="j-coming">Coming Soon</span>
-              <div class="j-main-title" style="font-size:18px;margin-top:13px">Bank Ayat Tahunan</div>
-              <p class="j-desc">Ayat pilihan yang dibagikan dan dikumpulkan oleh member GRIA.</p>
-            </div>
-            <div class="j-note">Fitur member sedang dikembangkan.</div>
-          </section>
-        </div>
-      </div>
-
-      <section class="daily-verse">
-        <div class="daily-verse-label">Ayat Hari Ini</div>
-        <blockquote>“${verse[0]}”</blockquote>
-        <cite>${verse[1]}</cite>
-      </section>`;
-
-    document.getElementById('lockBtn').onclick=()=>{
-      try{
-        localStorage.removeItem(ACCESS_KEY);
-        localStorage.setItem('gria_entry_mode','guest');
-      }catch(_){}
-      showGate();
+    document.getElementById('lockBtn').onclick=function(){
+      try{localStorage.removeItem(ACCESS_KEY);localStorage.setItem('gria_entry_mode','guest')}catch(_){}
+      gate();
     };
-
-    revealCards();
   }
 
-  if(isMember())renderMember();
-  else showGate();
+  if(member())render();else gate();
 })();
 </script>
-<script src="pwa.js" defer></script>
+<script src="pwa-v16.js" defer></script>
+<script src="gria-modern.js?v=18" defer></script>
+<script src="gria-fix-v22.js?v=22" defer></script>
+<script src="gria-performance-v23.js?v=23" defer></script>
 </body>
 </html>

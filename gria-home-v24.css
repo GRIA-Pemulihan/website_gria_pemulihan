@@ -1,0 +1,30 @@
+/* GRIA Home v24 — focused home */
+.home-core-info{
+  grid-template-columns:1fr!important;
+  gap:9px!important;
+}
+.home-core-info .info-tile{
+  padding:14px 15px!important;
+}
+.home-core-info .info-label{
+  font-size:8px!important;
+}
+.home-core-info .info-tile strong{
+  font-size:12px!important;
+  font-weight:600!important;
+}
+.home-core-info .info-tile small{
+  font-size:9px!important;
+}
+.home-strip,
+.gria-app-tools{
+  display:none!important;
+}
+.sunday-card{
+  margin-bottom:8px;
+}
+@media(min-width:560px){
+  .home-core-info{
+    grid-template-columns:1fr 1fr!important;
+  }
+}
