@@ -1,5 +1,5 @@
-/* GRIA PWA service worker v24 — focused Home + Jemaat */
-const VERSION='gria-pwa-v24';
+/* GRIA PWA service worker v25 — local Home photo folder */
+const VERSION='gria-pwa-v25';
 const STATIC_CACHE=`${VERSION}-static`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const scopeUrl=self.registration.scope;
@@ -9,11 +9,11 @@ const PRECACHE=[
   'index.html','jemaat.html','warta.html','offline.html','manifest.webmanifest',
   'icon-192.png','icon-512.png','apple-touch-icon.png',
   'pwa-v16.js','gria-modern.js','gria-modern.css',
-  'gria-home-v24.js','gria-home-v24.css','gria-home-v20.css',
+  'gria-home-v25.js','gria-home-v24.css','gria-home-v20.css',
   'gria-share-pdf-v22.js','gria-share-pdf-v22.css',
   'gria-fix-v22.js','gria-fix-v22.css',
   'gria-performance-v23.js','gria-performance-v23.css',
-  'warta-mobile.js'
+  'warta-mobile.js','foto-home.json'
 ].map(p=>new URL(p,scopeUrl).href);
 
 self.addEventListener('install',event=>{
@@ -41,7 +41,6 @@ function stripExternalFonts(html){
     .replace(/<link[^>]+href=["']https:\/\/fonts\.gstatic\.com[^"']*["'][^>]*>/gi,'')
     .replace(/<link[^>]+rel=["']preconnect["'][^>]+fonts\.(googleapis|gstatic)\.com[^>]*>/gi,'');
 }
-
 function ensureHead(html,tag,needle){
   if(new RegExp(needle,'i').test(html))return html;
   return /<\/head>/i.test(html)?html.replace(/<\/head>/i,tag+'</head>'):tag+html;
@@ -58,7 +57,8 @@ function injectAppLayer(html,pathname){
     /<script([^>]*?)src=["'][^"']*pwa\.js(?:\?[^"']*)?["']([^>]*)><\/script>/gi,
     '<script$1src="pwa-v16.js"$2></script>'
   );
-  html=html.replace(/gria-home-v23\.js(?:\?[^"']*)?/gi,'gria-home-v24.js?v=24');
+  html=html.replace(/gria-home-v24\.js(?:\?[^"']*)?/gi,'gria-home-v25.js?v=25');
+  html=html.replace(/gria-home-v23\.js(?:\?[^"']*)?/gi,'gria-home-v25.js?v=25');
 
   html=ensureHead(html,'<link rel="stylesheet" href="gria-modern.css?v=18">','gria-modern\\.css');
   html=ensureHead(html,'<link rel="stylesheet" href="gria-fix-v22.css?v=22">','gria-fix-v22\\.css');
@@ -76,7 +76,7 @@ function injectAppLayer(html,pathname){
     html=ensureHead(html,'<link rel="stylesheet" href="gria-home-v20.css?v=20">','gria-home-v20\\.css');
     html=ensureHead(html,'<link rel="stylesheet" href="gria-home-v24.css?v=24">','gria-home-v24\\.css');
     html=ensureHead(html,'<link rel="stylesheet" href="gria-share-pdf-v22.css?v=22">','gria-share-pdf-v22\\.css');
-    html=ensureBody(html,'<script src="gria-home-v24.js?v=24" defer><\/script>','gria-home-v24\\.js');
+    html=ensureBody(html,'<script src="gria-home-v25.js?v=25" defer><\/script>','gria-home-v25\\.js');
     html=ensureBody(html,'<script src="gria-share-pdf-v22.js?v=22" defer><\/script>','gria-share-pdf-v22\\.js');
   }else if(isWarta){
     html=ensureHead(html,'<link rel="stylesheet" href="gria-share-pdf-v22.css?v=22">','gria-share-pdf-v22\\.css');
@@ -115,6 +115,17 @@ self.addEventListener('fetch',event=>{
       if(res&&res.ok)caches.open(RUNTIME_CACHE).then(c=>c.put(req,res.clone()));
       return res;
     })));
+    return;
+  }
+
+  /* Manifest foto Home harus segar agar foto baru cepat terbaca. */
+  if(url.pathname.endsWith('/foto-home.json')){
+    event.respondWith(
+      fetch(req).then(res=>{
+        if(res&&res.ok)caches.open(RUNTIME_CACHE).then(c=>c.put(req,res.clone()));
+        return res;
+      }).catch(()=>caches.match(req))
+    );
     return;
   }
 
