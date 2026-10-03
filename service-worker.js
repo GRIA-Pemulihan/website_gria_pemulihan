@@ -1,5 +1,5 @@
-/* GRIA PWA service worker v20 — Christian media + calm typography */
-const VERSION='gria-pwa-v20';
+/* GRIA PWA service worker v21 — story share + Warta PDF */
+const VERSION='gria-pwa-v21';
 const STATIC_CACHE=`${VERSION}-static`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const scopeUrl=self.registration.scope;
@@ -7,7 +7,7 @@ const origin=new URL(scopeUrl).origin;
 
 const PRECACHE=[
   'index.html','offline.html','pwa-v16.js','gria-modern.js','gria-modern.css',
-  'gria-home-v20.js','gria-home-v20.css','christian-media.json','warta-mobile.js','manifest.webmanifest',
+  'gria-home-v20.js','gria-home-v20.css','christian-media.json','gria-share-pdf-v21.js','gria-share-pdf-v21.css','warta-mobile.js','manifest.webmanifest',
   'icon-192.png','icon-512.png','apple-touch-icon.png','warta.html','persekutuan.html',
   'komunitas.html','about-us.html','yayasan.html','jemaat.html','alkitab.html','search.html',
   'jadwal-saya.html','events.html','foto-komunitas-hero.png','foto-kebersamaan-gria.png',
@@ -33,9 +33,15 @@ function injectAppLayer(html){
   );
   const hasCore=/<script[^>]+src=["'][^"']*pwa-v16\.js/i.test(html);
   const hasModern=/<script[^>]+src=["'][^"']*gria-modern\.js/i.test(html);
+  const hasV21=/<script[^>]+src=["'][^"']*gria-share-pdf-v21\.js/i.test(html);
+  const hasV21Css=/<link[^>]+href=["'][^"']*gria-share-pdf-v21\.css/i.test(html);
+  if(!hasV21Css){
+    html=/<\/head>/i.test(html)?html.replace(/<\/head>/i,'<link rel="stylesheet" href="gria-share-pdf-v21.css?v=21"></head>'):html;
+  }
   let inject='';
   if(!hasCore)inject+=`<script>(function(){try{var t=localStorage.getItem('gria_theme_v1');if(t)document.documentElement.setAttribute('data-gria-theme',t)}catch(_){}})();<\/script><script src="pwa-v16.js" defer><\/script>`;
   if(!hasModern)inject+='<script src="gria-modern.js?v=18" defer><\/script>';
+  if(!hasV21)inject+='<script src="gria-share-pdf-v21.js?v=21" defer><\/script>';
   if(!inject)return html;
   return /<\/body>/i.test(html)?html.replace(/<\/body>/i,inject+'</body>'):html+inject;
 }
@@ -64,7 +70,7 @@ self.addEventListener('fetch',event=>{
     return;
   }
 
-  if(req.destination==='script'&&(/\/pwa-v16\.js$/.test(url.pathname)||/\/gria-modern\.js$/.test(url.pathname)||/\/gria-home-v20\.js$/.test(url.pathname))){
+  if(req.destination==='script'&&(/\/pwa-v16\.js$/.test(url.pathname)||/\/gria-modern\.js$/.test(url.pathname)||/\/gria-home-v20\.js$/.test(url.pathname)||/\/gria-share-pdf-v21\.js$/.test(url.pathname))){
     event.respondWith(fetch(req).then(res=>{if(res&&res.ok)caches.open(STATIC_CACHE).then(c=>c.put(req,res.clone()));return res}).catch(()=>caches.match(req)));
     return;
   }
