@@ -13,138 +13,62 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="GRIA">
 <script>
-(function(){
-  try{
-    var t=localStorage.getItem('gria_theme_v1');
-    if(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)t='light';
-    document.documentElement.setAttribute('data-gria-theme',t==='light'?'light':'dark');
-  }catch(_){}
-})();
+(function(){try{var t=localStorage.getItem('gria_theme_v1');if(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)t='light';document.documentElement.setAttribute('data-gria-theme',t==='light'?'light':'dark')}catch(_){}})();
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://upload.wikimedia.org" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="gria-home-v20.css?v=20">
+<link rel="stylesheet" href="gria-modern.css?v=18">
 <link rel="stylesheet" href="gria-fix-v22.css?v=22">
 <link rel="stylesheet" href="gria-share-pdf-v22.css?v=22">
+<link rel="stylesheet" href="gria-performance-v23.css?v=23">
 </head>
 <body>
 <div class="home-app">
-  <header class="home-header">
-    <div class="home-header-row">
-      <a class="brand" href="index.html" aria-label="GRIA">GRI<span>A</span></a>
-      <div class="header-actions">
-        <a class="header-btn" href="warta.html" aria-label="Buka Warta">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
-        </a>
-        <button class="header-btn" data-gria-theme-toggle type="button" aria-label="Ganti mode gelap atau terang">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9">
-            <path class="gria-theme-icon-moon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
-            <g class="gria-theme-icon-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></g>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </header>
+<header class="home-header"><div class="home-header-row">
+<a class="brand" href="index.html" aria-label="GRIA">GRI<span>A</span></a>
+<div class="header-actions">
+<a class="header-btn" href="warta.html" aria-label="Buka Warta"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></a>
+<button class="header-btn" data-gria-theme-toggle type="button" aria-label="Ganti mode gelap atau terang"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9"><path class="gria-theme-icon-moon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/><g class="gria-theme-icon-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></g></svg></button>
+</div></div></header>
 
-  <main>
-    <section class="daily-hero" id="dailyHero" aria-label="Ayat Hari Ini">
-      <div class="daily-hero-bg" id="dailyHeroBg"></div>
-      <div class="daily-hero-shade"></div>
-      <div class="hero-media-source" id="heroMediaSource"></div>
-      <div class="daily-hero-content">
-        <div class="hero-topline">
-          <span class="hero-kicker">AYAT HARI INI · TB</span>
-          <button class="hero-icon-btn" id="shareVerseBtn" type="button" aria-label="Bagikan ayat hari ini">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.6 6.8-4.2M8.6 13.4l6.8 4.2"/></svg>
-          </button>
-        </div>
-        <div class="hero-greeting">Shalom, <span id="homeGreeting">Keluarga GRIA</span></div>
-        <blockquote id="dailyVerseText">Memuat ayat hari ini…</blockquote>
-        <div class="hero-verse-footer">
-          <cite id="dailyVerseRef">GRIA Pemulihan Palu</cite>
-          <button id="openVerseBtn" type="button">Buka Alkitab <span>→</span></button>
-        </div>
-      </div>
-    </section>
+<main>
+<section class="daily-hero" id="dailyHero" aria-label="Ayat Hari Ini">
+<div class="daily-hero-bg" id="dailyHeroBg"></div><div class="daily-hero-shade"></div><div class="hero-media-source" id="heroMediaSource"></div>
+<div class="daily-hero-content">
+<div class="hero-topline"><span class="hero-kicker">AYAT HARI INI · TB</span>
+<button class="hero-icon-btn" id="shareVerseBtn" type="button" aria-label="Bagikan ayat hari ini"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.6 6.8-4.2M8.6 13.4l6.8 4.2"/></svg></button></div>
+<div class="hero-greeting">Shalom, <span id="homeGreeting">Keluarga GRIA</span></div>
+<blockquote id="dailyVerseText">Memuat ayat hari ini…</blockquote>
+<div class="hero-verse-footer"><cite id="dailyVerseRef">GRIA Pemulihan Palu</cite><button id="openVerseBtn" type="button">Buka Alkitab <span>→</span></button></div>
+</div></section>
 
-    <nav class="quick-menu" aria-label="Akses cepat GRIA">
-      <a href="warta.html">
-        <span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M7 7h10M7 11h10M7 15h6"/></svg></span>
-        <span>Warta</span>
-      </a>
-      <a href="jadwal-saya.html">
-        <span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></span>
-        <span>Jadwal</span>
-      </a>
-      <a href="persekutuan.html">
-        <span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></span>
-        <span>Persekutuan</span>
-      </a>
-      <a href="jemaat.html">
-        <span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
-        <span>Jemaat</span>
-      </a>
-      <a href="search.html">
-        <span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></span>
-        <span>Cari</span>
-      </a>
-    </nav>
+<nav class="quick-menu" aria-label="Akses cepat GRIA">
+<a href="warta.html"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M7 7h10M7 11h10M7 15h6"/></svg></span><span>Warta</span></a>
+<a href="jadwal-saya.html"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></span><span>Jadwal</span></a>
+<a href="persekutuan.html"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></span><span>Persekutuan</span></a>
+<a href="jemaat.html"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span>Jemaat</span></a>
+<a href="search.html"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></span><span>Cari</span></a>
+</nav>
 
-    <section class="section-headline">
-      <div>
-        <span>GRIA MINGGU INI</span>
-        <h1>Ibadah Minggu</h1>
-      </div>
-      <span class="sunday-countdown" id="sundayCountdown">Minggu ini</span>
-    </section>
+<section class="section-headline"><div><span>GRIA MINGGU INI</span><h1>Ibadah Minggu</h1></div><span class="sunday-countdown" id="sundayCountdown">Minggu ini</span></section>
 
-    <section class="sunday-card" aria-label="Informasi Ibadah Minggu">
-      <div class="sunday-date-row">
-        <div>
-          <div class="sunday-date" id="sundayDate"><!-- IBADAH_TANGGAL -->Minggu<!-- /IBADAH_TANGGAL --></div>
-          <div class="sunday-time">09.00 WITA</div>
-        </div>
-        <div class="live-dot" aria-label="Onsite"><i></i> ONSITE</div>
-      </div>
-
-      <div class="info-grid">
-        <article class="info-tile">
-          <span class="info-label">Lokasi</span>
-          <strong>Hotel Wisata Palu</strong>
-          <small>Jl. Letjen S. Parman No.28</small>
-        </article>
-        <article class="info-tile">
-          <span class="info-label">Tema</span>
-          <strong id="worshipTheme"><!-- IBADAH_TEMA -->Informasi terbaru di Warta<!-- /IBADAH_TEMA --></strong>
-          <small>Pembaruan otomatis dari database GRIA</small>
-        </article>
-        <article class="info-tile full">
-          <span class="info-label">Pelayan Firman</span>
-          <strong id="worshipSpeaker"><!-- IBADAH_PEMBICARA -->Lihat Warta Jemaat<!-- /IBADAH_PEMBICARA --></strong>
-        </article>
-      </div>
-
-      <div class="sunday-actions">
-        <a class="primary" href="warta.html">Buka Warta</a>
-        <a class="secondary" href="jadwal-saya.html">Jadwal Saya</a>
-      </div>
-    </section>
-
-    <section class="home-strip">
-      <a href="events.html"><span>Event & RSVP</span><strong>Lihat kegiatan GRIA <b>→</b></strong></a>
-      <a href="alkitab.html"><span>Ruang Alkitab</span><strong>Lanjut membaca <b>→</b></strong></a>
-    </section>
-
-    <!-- PELAYAN_IBADAH:START --><!-- /PELAYAN_IBADAH -->
-  </main>
+<section class="sunday-card" aria-label="Informasi Ibadah Minggu">
+<div class="sunday-date-row"><div><div class="sunday-date" id="sundayDate"><!-- IBADAH_TANGGAL -->Minggu<!-- /IBADAH_TANGGAL --></div><div class="sunday-time">09.00 WITA</div></div><div class="live-dot" aria-label="Onsite"><i></i> ONSITE</div></div>
+<div class="info-grid">
+<article class="info-tile"><span class="info-label">Lokasi</span><strong>Hotel Wisata Palu</strong><small>Jl. Letjen S. Parman No.28</small></article>
+<article class="info-tile"><span class="info-label">Tema</span><strong id="worshipTheme"><!-- IBADAH_TEMA -->Informasi terbaru di Warta<!-- /IBADAH_TEMA --></strong><small>Pembaruan otomatis dari database GRIA</small></article>
+<article class="info-tile full"><span class="info-label">Pelayan Firman</span><strong id="worshipSpeaker"><!-- IBADAH_PEMBICARA -->Lihat Warta Jemaat<!-- /IBADAH_PEMBICARA --></strong></article>
 </div>
+<div class="sunday-actions"><a class="primary" href="warta.html">Buka Warta</a><a class="secondary" href="jadwal-saya.html">Jadwal Saya</a></div>
+</section>
+
+<section class="home-strip"><a href="events.html"><span>Event & RSVP</span><strong>Lihat kegiatan GRIA <b>→</b></strong></a><a href="alkitab.html"><span>Ruang Alkitab</span><strong>Lanjut membaca <b>→</b></strong></a></section>
+<!-- PELAYAN_IBADAH:START --><!-- /PELAYAN_IBADAH -->
+</main></div>
 
 <script src="pwa-v16.js" defer></script>
 <script src="gria-modern.js?v=18" defer></script>
-<script src="gria-home-v22.js?v=22" defer></script>
+<script src="gria-home-v23.js?v=23" defer></script>
 <script src="gria-share-pdf-v22.js?v=22" defer></script>
 <script src="gria-fix-v22.js?v=22" defer></script>
-</body>
-</html>
+<script src="gria-performance-v23.js?v=23" defer></script>
+</body></html>
