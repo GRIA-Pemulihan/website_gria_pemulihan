@@ -1,0 +1,108 @@
+/* GRIA v22 — global typography + stable bottom dock + table polish */
+:root{
+  --gria-font:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --gria-dock-gap:10px;
+}
+html,body{font-family:var(--gria-font)!important}
+body,button,input,select,textarea,a{font-family:var(--gria-font)!important}
+
+/* Keep the whole product visually consistent and calmer. */
+h1,h2,h3,h4,h5,h6,
+.section-title,.warta-hero h1,.fellowship-head h1,.j-head h1,.b-head h1,
+.about-hero h1,.yy-hero-body h1,.gria-page h1,.gria-result h2,
+.gria-modern-card h3,.daily-verse-text,.chapter-head h2{
+  font-family:var(--gria-font)!important;
+  font-weight:600!important;
+  letter-spacing:-.025em!important;
+}
+.logo,.brand,.gria-entry-wordmark,.gria-warta-cover-brand{
+  font-family:var(--gria-font)!important;
+  font-weight:700!important;
+  letter-spacing:-.055em!important;
+}
+button,.j-btn,.gria-btn,.feature-link,.nav-cta,.sunday-actions a,.quick-menu a,
+.gria-warta-feature-actions a,.gria-warta-feature-actions button{
+  font-weight:650!important;
+}
+p,.j-desc,.feature-card p,.block-lead,.gria-page-sub,.gria-result p{font-weight:450!important}
+
+/* iOS / Android bottom dock: always pin to the visual bottom. */
+@media(max-width:768px){
+  html,body{
+    transform:none!important;
+    filter:none!important;
+    perspective:none!important;
+  }
+  body.gria-has-bottom-nav{
+    padding-bottom:calc(104px + env(safe-area-inset-bottom,0px))!important;
+  }
+  #griaBottomNav,.gria-bottom-nav{
+    position:fixed!important;
+    position:-webkit-fixed!important;
+    left:max(12px,env(safe-area-inset-left,0px))!important;
+    right:max(12px,env(safe-area-inset-right,0px))!important;
+    top:auto!important;
+    bottom:calc(var(--gria-dock-gap) + env(safe-area-inset-bottom,0px))!important;
+    margin:0!important;
+    z-index:2147483000!important;
+    transform:translate3d(0,0,0)!important;
+    -webkit-transform:translate3d(0,0,0)!important;
+    will-change:transform;
+    contain:layout style;
+    isolation:isolate;
+    overscroll-behavior:none;
+  }
+  #griaBottomNav a,.gria-bottom-nav a{
+    font-family:var(--gria-font)!important;
+    font-weight:600!important;
+  }
+}
+
+/* Warta web tables: aligned, readable, and consistent. */
+.warta-scroll{
+  border-radius:18px!important;
+  border:1px solid var(--card-border,rgba(255,255,255,.08))!important;
+  overflow:auto!important;
+}
+.warta-table{
+  width:100%!important;
+  min-width:680px;
+  border-collapse:separate!important;
+  border-spacing:0!important;
+  margin:0!important;
+  table-layout:fixed;
+  font-family:var(--gria-font)!important;
+}
+.warta-table th,.warta-table td{
+  padding:13px 12px!important;
+  vertical-align:top!important;
+  line-height:1.42!important;
+  border-right:1px solid var(--card-border,rgba(255,255,255,.08))!important;
+  border-bottom:1px solid var(--card-border,rgba(255,255,255,.08))!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere;
+}
+.warta-table th{
+  position:sticky;
+  top:0;
+  z-index:2;
+  font-size:10px!important;
+  font-weight:650!important;
+  text-transform:none!important;
+  letter-spacing:.01em!important;
+}
+.warta-table td{font-size:11px!important;font-weight:450!important}
+.warta-table th:first-child,.warta-table td:first-child{width:150px;font-weight:600!important}
+.warta-table th:last-child,.warta-table td:last-child{border-right:0!important}
+.warta-table tr:last-child td{border-bottom:0!important}
+
+/* Keep the mobile Warta card UI but use the same font system. */
+.warta-mobile-card,.warta-mobile-card *{font-family:var(--gria-font)!important}
+.warta-mobile-card-title{font-weight:650!important}
+.warta-mobile-value{font-weight:500!important}
+
+/* Home: preserve the calm v20 direction. */
+.daily-hero blockquote{font-family:var(--gria-font)!important;font-weight:500!important;letter-spacing:-.018em!important}
+.section-headline h1,.sunday-date{font-family:var(--gria-font)!important;font-weight:500!important}
+
+@media(prefers-reduced-motion:reduce){#griaBottomNav,.gria-bottom-nav{transition:none!important}}

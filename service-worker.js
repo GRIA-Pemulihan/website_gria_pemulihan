@@ -1,5 +1,5 @@
-/* GRIA PWA service worker v21 — story share + Warta PDF */
-const VERSION='gria-pwa-v21';
+/* GRIA PWA service worker v22 — fixed dock + consistent type + structured Warta PDF + TB home verse */
+const VERSION='gria-pwa-v22';
 const STATIC_CACHE=`${VERSION}-static`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const scopeUrl=self.registration.scope;
@@ -7,7 +7,7 @@ const origin=new URL(scopeUrl).origin;
 
 const PRECACHE=[
   'index.html','offline.html','pwa-v16.js','gria-modern.js','gria-modern.css',
-  'gria-home-v20.js','gria-home-v20.css','christian-media.json','gria-share-pdf-v21.js','gria-share-pdf-v21.css','warta-mobile.js','manifest.webmanifest',
+  'gria-home-v22.js','gria-home-v20.css','christian-media.json','gria-share-pdf-v22.js','gria-share-pdf-v22.css','gria-fix-v22.js','gria-fix-v22.css','warta-mobile.js','manifest.webmanifest',
   'icon-192.png','icon-512.png','apple-touch-icon.png','warta.html','persekutuan.html',
   'komunitas.html','about-us.html','yayasan.html','jemaat.html','alkitab.html','search.html',
   'jadwal-saya.html','events.html','foto-komunitas-hero.png','foto-kebersamaan-gria.png',
@@ -31,17 +31,30 @@ function injectAppLayer(html){
     /<script([^>]*?)src=["'][^"']*pwa(?:-v16)?\.js(?:\?[^"']*)?["']([^>]*)><\/script>/gi,
     '<script$1src="pwa-v16.js"$2></script>'
   );
+  html=html.replace(/gria-home-v20\.js(?:\?[^"']*)?/gi,'gria-home-v22.js?v=22');
+  html=html.replace(/gria-share-pdf-v21\.js(?:\?[^"']*)?/gi,'gria-share-pdf-v22.js?v=22');
+  html=html.replace(/gria-share-pdf-v21\.css(?:\?[^"']*)?/gi,'gria-share-pdf-v22.css?v=22');
+  html=html.replace(/AYAT HARI INI\s*·\s*AYT/gi,'AYAT HARI INI · TB');
+
   const hasCore=/<script[^>]+src=["'][^"']*pwa-v16\.js/i.test(html);
   const hasModern=/<script[^>]+src=["'][^"']*gria-modern\.js/i.test(html);
-  const hasV21=/<script[^>]+src=["'][^"']*gria-share-pdf-v21\.js/i.test(html);
-  const hasV21Css=/<link[^>]+href=["'][^"']*gria-share-pdf-v21\.css/i.test(html);
-  if(!hasV21Css){
-    html=/<\/head>/i.test(html)?html.replace(/<\/head>/i,'<link rel="stylesheet" href="gria-share-pdf-v21.css?v=21"></head>'):html;
-  }
+  const hasHome22=/<script[^>]+src=["'][^"']*gria-home-v22\.js/i.test(html);
+  const hasShare22=/<script[^>]+src=["'][^"']*gria-share-pdf-v22\.js/i.test(html);
+  const hasFix22=/<script[^>]+src=["'][^"']*gria-fix-v22\.js/i.test(html);
+  const hasShareCss=/<link[^>]+href=["'][^"']*gria-share-pdf-v22\.css/i.test(html);
+  const hasFixCss=/<link[^>]+href=["'][^"']*gria-fix-v22\.css/i.test(html);
+
+  let headInject='';
+  if(!hasShareCss)headInject+='<link rel="stylesheet" href="gria-share-pdf-v22.css?v=22">';
+  if(!hasFixCss)headInject+='<link rel="stylesheet" href="gria-fix-v22.css?v=22">';
+  if(headInject&&/<\/head>/i.test(html))html=html.replace(/<\/head>/i,headInject+'</head>');
+
   let inject='';
   if(!hasCore)inject+=`<script>(function(){try{var t=localStorage.getItem('gria_theme_v1');if(t)document.documentElement.setAttribute('data-gria-theme',t)}catch(_){}})();<\/script><script src="pwa-v16.js" defer><\/script>`;
   if(!hasModern)inject+='<script src="gria-modern.js?v=18" defer><\/script>';
-  if(!hasV21)inject+='<script src="gria-share-pdf-v21.js?v=21" defer><\/script>';
+  if(!hasHome22 && /id=["']dailyHero["']/i.test(html))inject+='<script src="gria-home-v22.js?v=22" defer><\/script>';
+  if(!hasShare22)inject+='<script src="gria-share-pdf-v22.js?v=22" defer><\/script>';
+  if(!hasFix22)inject+='<script src="gria-fix-v22.js?v=22" defer><\/script>';
   if(!inject)return html;
   return /<\/body>/i.test(html)?html.replace(/<\/body>/i,inject+'</body>'):html+inject;
 }
@@ -70,7 +83,7 @@ self.addEventListener('fetch',event=>{
     return;
   }
 
-  if(req.destination==='script'&&(/\/pwa-v16\.js$/.test(url.pathname)||/\/gria-modern\.js$/.test(url.pathname)||/\/gria-home-v20\.js$/.test(url.pathname)||/\/gria-share-pdf-v21\.js$/.test(url.pathname))){
+  if(req.destination==='script'&&(/\/pwa-v16\.js$/.test(url.pathname)||/\/gria-modern\.js$/.test(url.pathname)||/\/gria-home-v22\.js$/.test(url.pathname)||/\/gria-share-pdf-v22\.js$/.test(url.pathname)||/\/gria-fix-v22\.js$/.test(url.pathname))){
     event.respondWith(fetch(req).then(res=>{if(res&&res.ok)caches.open(STATIC_CACHE).then(c=>c.put(req,res.clone()));return res}).catch(()=>caches.match(req)));
     return;
   }
