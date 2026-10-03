@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "repository": "Wikimedia Commons",
+  "purpose": "Christian visual references for GRIA daily verse hero",
+  "images": [
+    {
+      "id": "cross-sunset",
+      "title": "Christian cross at sunset",
+      "type": "cross",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/1/1c/What-does-the-cross-represent-in-the-christian-faith-oak-ridge-baptist-church-spring-tx.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:What-does-the-cross-represent-in-the-christian-faith-oak-ridge-baptist-church-spring-tx.jpg",
+      "license": "CC0 1.0",
+      "author": "Zirtebean",
+      "fallback": "foto-komunitas-hero.png"
+    },
+    {
+      "id": "congregational-prayer",
+      "title": "Christian congregational prayer",
+      "type": "worship",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/0/0e/The_Sacred_Ritual_of_Congregational_Prayer.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:The_Sacred_Ritual_of_Congregational_Prayer.jpg",
+      "license": "CC0 1.0",
+      "author": "Alvy Bih",
+      "fallback": "foto-kebersamaan-gria.png"
+    },
+    {
+      "id": "church-worship",
+      "title": "Christian worship service",
+      "type": "worship",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Horizon_Church_worship_service.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Horizon_Church_worship_service.jpg",
+      "license": "Public Domain",
+      "author": "Bunzyfunzy",
+      "fallback": "foto-hut-gria.png"
+    },
+    {
+      "id": "church-cross",
+      "title": "Cross on church",
+      "type": "church",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Church_cross_on_top.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Church_cross_on_top.jpg",
+      "license": "Public Domain",
+      "author": "Rosendahl",
+      "fallback": "foto-komunitas-hero.png"
+    }
+  ]
+}

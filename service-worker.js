@@ -1,5 +1,5 @@
-/* GRIA PWA service worker v19 — daily verse home */
-const VERSION='gria-pwa-v19';
+/* GRIA PWA service worker v20 — Christian media + calm typography */
+const VERSION='gria-pwa-v20';
 const STATIC_CACHE=`${VERSION}-static`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const scopeUrl=self.registration.scope;
@@ -7,7 +7,7 @@ const origin=new URL(scopeUrl).origin;
 
 const PRECACHE=[
   'index.html','offline.html','pwa-v16.js','gria-modern.js','gria-modern.css',
-  'gria-home-v19.js','gria-home-v19.css','warta-mobile.js','manifest.webmanifest',
+  'gria-home-v20.js','gria-home-v20.css','christian-media.json','warta-mobile.js','manifest.webmanifest',
   'icon-192.png','icon-512.png','apple-touch-icon.png','warta.html','persekutuan.html',
   'komunitas.html','about-us.html','yayasan.html','jemaat.html','alkitab.html','search.html',
   'jadwal-saya.html','events.html','foto-komunitas-hero.png','foto-kebersamaan-gria.png',
@@ -64,7 +64,7 @@ self.addEventListener('fetch',event=>{
     return;
   }
 
-  if(req.destination==='script'&&(/\/pwa-v16\.js$/.test(url.pathname)||/\/gria-modern\.js$/.test(url.pathname)||/\/gria-home-v19\.js$/.test(url.pathname))){
+  if(req.destination==='script'&&(/\/pwa-v16\.js$/.test(url.pathname)||/\/gria-modern\.js$/.test(url.pathname)||/\/gria-home-v20\.js$/.test(url.pathname))){
     event.respondWith(fetch(req).then(res=>{if(res&&res.ok)caches.open(STATIC_CACHE).then(c=>c.put(req,res.clone()));return res}).catch(()=>caches.match(req)));
     return;
   }
