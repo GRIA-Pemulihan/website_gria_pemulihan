@@ -1,5 +1,5 @@
 /* GRIA PWA service worker v26 — Daily Hero + local photo fallback */
-const VERSION='gria-pwa-v26';
+const VERSION='gria-pwa-v26-1';
 const STATIC_CACHE=`${VERSION}-static`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const scopeUrl=self.registration.scope;
@@ -9,7 +9,7 @@ const PRECACHE=[
   'index.html','jemaat.html','warta.html','offline.html','manifest.webmanifest',
   'icon-192.png','icon-512.png','apple-touch-icon.png',
   'pwa-v16.js','gria-modern.js','gria-modern.css',
-  'gria-home-v26.js','gria-home-v26.css','gria-home-v24.css','gria-home-v20.css',
+  'gria-home-v26.js?v=26.1','gria-home-v26.css?v=26.1','gria-home-v24.css','gria-home-v20.css',
   'gria-share-pdf-v22.js','gria-share-pdf-v22.css',
   'gria-fix-v22.js','gria-fix-v22.css',
   'gria-performance-v23.js','gria-performance-v23.css',
@@ -57,7 +57,7 @@ function injectAppLayer(html,pathname){
     /<script([^>]*?)src=["'][^"']*pwa\.js(?:\?[^"']*)?["']([^>]*)><\/script>/gi,
     '<script$1src="pwa-v16.js"$2></script>'
   );
-  html=html.replace(/gria-home-v2[3-5]\.js(?:\?[^"']*)?/gi,'gria-home-v26.js?v=26');
+  html=html.replace(/gria-home-v2[3-5]\.js(?:\?[^"']*)?/gi,'gria-home-v26.js?v=26.1');
 
   html=ensureHead(html,'<link rel="stylesheet" href="gria-modern.css?v=18">','gria-modern\\.css');
   html=ensureHead(html,'<link rel="stylesheet" href="gria-fix-v22.css?v=22">','gria-fix-v22\\.css');
@@ -74,9 +74,9 @@ function injectAppLayer(html,pathname){
   if(isHome){
     html=ensureHead(html,'<link rel="stylesheet" href="gria-home-v20.css?v=20">','gria-home-v20\\.css');
     html=ensureHead(html,'<link rel="stylesheet" href="gria-home-v24.css?v=24">','gria-home-v24\\.css');
-    html=ensureHead(html,'<link rel="stylesheet" href="gria-home-v26.css?v=26">','gria-home-v26\\.css');
+    html=ensureHead(html,'<link rel="stylesheet" href="gria-home-v26.css?v=26.1">','gria-home-v26\\.css');
     html=ensureHead(html,'<link rel="stylesheet" href="gria-share-pdf-v22.css?v=22">','gria-share-pdf-v22\\.css');
-    html=ensureBody(html,'<script src="gria-home-v26.js?v=26" defer><\/script>','gria-home-v26\\.js');
+    html=ensureBody(html,'<script src="gria-home-v26.js?v=26.1" defer><\/script>','gria-home-v26\\.js');
     html=ensureBody(html,'<script src="gria-share-pdf-v22.js?v=22" defer><\/script>','gria-share-pdf-v22\\.js');
   }else if(isWarta){
     html=ensureHead(html,'<link rel="stylesheet" href="gria-share-pdf-v22.css?v=22">','gria-share-pdf-v22\\.css');
