@@ -1,0 +1,17 @@
+/* GRIA Home v26 — compact legal photo credit */
+.hero-media-source{
+  max-width:min(72%,300px);
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.hero-media-source a{
+  color:inherit;
+  text-decoration:none;
+  opacity:.78;
+}
+.hero-media-source a:hover,
+.hero-media-source a:focus-visible{
+  opacity:1;
+  text-decoration:underline;
+}
