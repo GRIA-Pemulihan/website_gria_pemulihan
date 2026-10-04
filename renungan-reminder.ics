@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//GRIA Pemulihan Palu//Renungan Harian V27//ID
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:renungan-harian-gria@gria-pemulihan
+DTSTAMP:20261004T000000Z
+DTSTART:20261003T220000Z
+RRULE:FREQ=DAILY
+DURATION:PT15M
+SUMMARY:Renungan Harian GRIA · 06.00 WITA
+DESCRIPTION:Waktunya membaca Renungan Harian GRIA. https://gria-pemulihan.
+ github.io/website_gria_pemulihan/renungan.html
+URL:https://gria-pemulihan.github.io/website_gria_pemulihan/renungan.html
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:PT0M
+DESCRIPTION:Renungan Harian GRIA sudah tersedia.
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,16 @@
+GRIA V27 — SIAP EKSTRAK DAN COMMIT MANUAL
+
+1. Ekstrak isi ZIP langsung ke root repository website_gria_pemulihan,
+   tempat index.html berada. Izinkan penggantian file dengan nama yang sama.
+   Pertahankan file V26 lainnya; ZIP ini hanya berisi perubahan V27.
+   Sertakan file tersembunyi .gitattributes dan .gitignore.
+2. Commit seluruh perubahan dengan pesan:
+   feat: launch GRIA V27 Renungan Harian
+3. Jalankan supabase/migration-003-renungan.sql di Supabase SQL Editor
+   agar total Like/Love tersinkron antarperangkat. SQL belum dijalankan.
+
+Tidak perlu menjalankan apply_v27.py dari ZIP awal.
+Paket ini sudah mencakup hasil integrasi dan perbaikan yang diuji.
+Lihat README-V27.md untuk detail validasi dan batasan teknis.
+
+Commit sumber: 59ef6742c24074a54ede7ad417bd5e12f8c87060

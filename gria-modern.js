@@ -16,6 +16,7 @@
   }
 
   var SEARCH_INDEX=[
+    {title:'Renungan Harian',desc:'Renungan, refleksi, doa, dan arsip harian GRIA.',href:'renungan.html',tags:'renungan firman pemulihan harian'},
     {title:'Warta Jemaat',desc:'Warta mingguan dan informasi terbaru GRIA.',href:'warta.html',tags:'warta pengumuman informasi minggu'},
     {title:'Jadwal Pelayanan',desc:'Jadwal pelayan ibadah raya beberapa pekan ke depan.',href:'warta.html#jadwal-pelayanan',tags:'jadwal pelayanan singer liturgos firman operator pendoa kolektan'},
     {title:'Jadwal Saya',desc:'Temukan jadwal pelayanan berdasarkan nama.',href:'jadwal-saya.html',tags:'jadwal saya pelayan nama tugas'},
@@ -74,16 +75,19 @@
   function sectionFor(f){
     if(['index.html','about-us.html','yayasan.html'].indexOf(f)>=0)return'home';
     if(f==='warta.html')return'warta';
-    if(f==='search.html')return'search';
+    if(f==='search.html')return'home';
+    if(f==='renungan.html')return'renungan';
+    if(f==='alkitab.html')return'alkitab';
     if(['persekutuan.html','komunitas.html'].indexOf(f)>=0)return'persekutuan';
     if(['jemaat.html','alkitab.html','jadwal-saya.html','events.html'].indexOf(f)>=0)return'jemaat';
     return null;
   }
   function navItems(){
     return [
-      ['index.html','home','Home','<path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10.5Z"/>'],
+      ['index.html','home','Beranda','<path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10.5Z"/>'],
+      ['renungan.html','renungan','Renungan','<path d="M3 4h7l2 2 2-2h7v16h-7l-2 2-2-2H3V4Z"/><path d="M12 6v16"/>'],
+      ['alkitab.html','alkitab','Alkitab','<path d="M5 3h14v18H5zM9 8h6M12 5v6"/>'],
       ['warta.html','warta','Warta','<path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M7 7h10M7 11h10M7 15h6"/>'],
-      ['search.html','search','Cari','<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>'],
       ['persekutuan.html','persekutuan','Persekutuan','<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/>'],
       ['jemaat.html','jemaat','Jemaat','<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>']
     ];
@@ -91,19 +95,10 @@
   function ensureBottomNav(){
     var f=file(),section=sectionFor(f);if(!section)return;
     var nav=qs('#griaBottomNav');
-    if(nav){
-      if(!nav.querySelector('a[href*="search.html"]')){
-        var links=nav.querySelectorAll('a');
-        var warta=Array.prototype.slice.call(links).find(function(a){return /warta\.html/.test(a.getAttribute('href')||'')});
-        var a=document.createElement('a');a.href=url('search.html');a.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span>Cari</span>';
-        if(warta&&warta.nextSibling)nav.insertBefore(a,warta.nextSibling);else nav.appendChild(a);
-      }
-      nav.querySelectorAll('a').forEach(function(a){a.classList.remove('is-active');a.removeAttribute('aria-current')});
-      var active=Array.prototype.slice.call(nav.querySelectorAll('a')).find(function(a){return (a.getAttribute('href')||'').indexOf(navItems().find(function(i){return i[1]===section})[0])>=0});
-      if(active){active.classList.add('is-active');active.setAttribute('aria-current','page')}
-      document.body.classList.add('gria-has-bottom-nav');return;
-    }
-    nav=document.createElement('nav');nav.id='griaBottomNav';nav.className='gria-bottom-nav';nav.setAttribute('aria-label','Navigasi utama GRIA');
+    if(qs('.dev-bottom-nav'))return;
+    if(!nav){nav=document.createElement('nav');nav.id='griaBottomNav';nav.className='gria-bottom-nav'}
+    nav.setAttribute('aria-label','Navigasi utama GRIA');
+    nav.classList.add('gria-nav-v27');
     nav.innerHTML=navItems().map(function(i){return '<a class="'+(i[1]===section?'is-active':'')+'" href="'+url(i[0])+'" '+(i[1]===section?'aria-current="page"':'')+'><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">'+i[3]+'</svg><span>'+i[2]+'</span></a>'}).join('');
     document.body.appendChild(nav);document.body.classList.add('gria-has-bottom-nav');
   }

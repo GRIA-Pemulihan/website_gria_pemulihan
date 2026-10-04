@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#09090b" id="themeColor">
 <title>GRIA — Gereja Injili Agape Pemulihan Palu</title>
-<meta name="description" content="GRIA Pemulihan Palu — ayat harian, Warta Jemaat, jadwal pelayanan, persekutuan, dan Ruang Jemaat.">
+<meta name="description" content="GRIA Pemulihan Palu — ayat dan renungan harian, Warta Jemaat, jadwal pelayanan, persekutuan, Alkitab, dan Ruang Jemaat.">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="mobile-web-app-capable" content="yes">
@@ -16,18 +16,19 @@
 (function(){try{var t=localStorage.getItem('gria_theme_v1');if(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)t='light';document.documentElement.setAttribute('data-gria-theme',t==='light'?'light':'dark')}catch(_){}})();
 </script>
 <link rel="stylesheet" href="gria-home-v20.css?v=20">
-<link rel="stylesheet" href="gria-modern.css?v=18">
+<link rel="stylesheet" href="gria-modern.css?v=27">
 <link rel="stylesheet" href="gria-fix-v22.css?v=22">
 <link rel="stylesheet" href="gria-share-pdf-v22.css?v=22">
 <link rel="stylesheet" href="gria-performance-v23.css?v=23">
 <link rel="stylesheet" href="gria-home-v24.css?v=24">
-<link rel="stylesheet" href="gria-home-v26.css?v=26.1">
+<link rel="stylesheet" href="gria-home-v27.css?v=27.0">
 </head>
 <body>
 <div class="home-app">
 <header class="home-header"><div class="home-header-row">
 <a class="brand" href="index.html" aria-label="GRIA">GRI<span>A</span></a>
 <div class="header-actions">
+<a class="header-btn" href="search.html" aria-label="Cari di GRIA"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></a>
 <a class="header-btn" href="warta.html" aria-label="Buka Warta"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></a>
 <button class="header-btn" data-gria-theme-toggle type="button" aria-label="Ganti mode gelap atau terang"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9"><path class="gria-theme-icon-moon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/><g class="gria-theme-icon-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></g></svg></button>
 </div></div></header>
@@ -48,8 +49,15 @@
 <a href="jadwal-saya.html"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></span><span>Jadwal</span></a>
 <a href="persekutuan.html"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></span><span>Persekutuan</span></a>
 <a href="jemaat.html"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span>Jemaat</span></a>
-<a href="search.html"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></span><span>Cari</span></a>
+<a href="renungan.html"><span class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v18H7.5A3.5 3.5 0 0 0 4 23V5.5Z"/><path d="M20 5.5A3.5 3.5 0 0 0 16.5 2H13v18h3.5A3.5 3.5 0 0 1 20 23V5.5Z"/></svg></span><span>Renungan</span></a>
 </nav>
+<section class="home-devotional" id="homeDevotional" aria-label="Renungan Hari Ini">
+<div class="home-devotional-top"><span class="home-devotional-kicker">RENUNGAN HARI INI</span><span class="home-devotional-theme" id="homeDevotionalTheme">Bulan Pemulihan</span></div>
+<h2 id="homeDevotionalTitle">Memuat renungan…</h2>
+<blockquote id="homeDevotionalQuote">Mulai hari bersama Firman Tuhan.</blockquote>
+<div class="home-devotional-footer"><span id="homeDevotionalRef">Renungan Harian GRIA</span><a id="homeDevotionalLink" href="renungan.html">Baca Renungan →</a></div>
+</section>
+
 
 <section class="section-headline">
 <div><span>GRIA MINGGU INI</span><h1>Ibadah Minggu</h1></div>
@@ -88,8 +96,8 @@
 </div>
 
 <script src="pwa-v16.js" defer></script>
-<script src="gria-modern.js?v=18" defer></script>
-<script src="gria-home-v26.js?v=26.1" defer></script>
+<script src="gria-modern.js?v=27" defer></script>
+<script src="gria-home-v27.js?v=27.0" defer></script>
 <script src="gria-share-pdf-v22.js?v=22" defer></script>
 <script src="gria-fix-v22.js?v=22" defer></script>
 <script src="gria-performance-v23.js?v=23" defer></script>

@@ -9,7 +9,7 @@
 
   if('serviceWorker' in navigator){
     window.addEventListener('load',()=>{
-      navigator.serviceWorker.register(appUrl('service-worker.js?v=16'),{scope:APP_ROOT.pathname})
+      navigator.serviceWorker.register(appUrl('service-worker.js?v=27'),{scope:APP_ROOT.pathname,updateViaCache:'none'})
         .then(r=>r.update().catch(()=>{}))
         .catch(()=>{});
     });

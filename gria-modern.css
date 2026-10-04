@@ -27,3 +27,6 @@ html[data-gria-theme="light"] .gria-connectivity{background:rgba(255,255,255,.94
 @media(min-width:700px){.gria-grid.two{grid-template-columns:1fr 1fr}.gria-modal{align-items:center}.gria-connectivity{bottom:18px}.gria-app-tools{max-width:440px}}
 @media(max-width:768px){.gria-smartbar{margin:-4px 0 24px}.gria-bottom-nav{grid-template-columns:repeat(5,1fr)!important}.gria-bottom-nav a{font-size:9px!important}.gria-bottom-nav a svg{width:21px!important;height:21px!important}}
 @media(prefers-reduced-motion:reduce){.gria-progress,.gria-connectivity,.gria-toast{transition:none!important}.gria-skeleton{animation:none!important}}
+
+/* V27: six compact destinations; existing sections remain reachable. */
+@media(max-width:768px){#griaBottomNav.gria-nav-v27{grid-template-columns:repeat(6,minmax(0,1fr))!important}#griaBottomNav.gria-nav-v27 a{min-width:0;padding-inline:1px;font-size:8px!important}}

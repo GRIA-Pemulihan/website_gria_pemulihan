@@ -1,0 +1,6 @@
+{
+  "name": "gria-website-validation",
+  "private": true,
+  "scripts": {"test": "node --test tests/v27.test.cjs"},
+  "devDependencies": {"playwright": "1.63.0"}
+}

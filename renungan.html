@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id" data-gria-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0c" id="themeColor">
+<title>Renungan Harian — GRIA Pemulihan Palu</title>
+<meta name="description" content="Renungan Harian GRIA Pemulihan Palu — bahan refleksi, doa, langkah praktis, dan arsip renungan harian.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script>
+(function(){try{var t=localStorage.getItem('gria_theme_v1');if(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)t='light';document.documentElement.setAttribute('data-gria-theme',t==='light'?'light':'dark')}catch(_){}})();
+</script>
+<link rel="stylesheet" href="gria-modern.css?v=27">
+<link rel="stylesheet" href="renungan-v27.css?v=27.0">
+</head>
+<body class="renungan-page">
+<header class="dev-header">
+  <a class="dev-brand" href="index.html" aria-label="Kembali ke Beranda GRIA">
+    <img src="icon-192.png" alt="">
+    <span>Renungan</span>
+  </a>
+  <div class="dev-header-actions">
+    <button class="dev-icon-btn" id="reminderHeaderBtn" type="button" aria-label="Aktifkan pengingat renungan pukul 06.00 WITA" title="Pengingat 06.00 WITA">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg>
+      <i class="reminder-dot" aria-hidden="true"></i>
+    </button>
+    <button class="dev-icon-btn" data-gria-theme-toggle type="button" aria-label="Ganti mode gelap atau terang">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path class="gria-theme-icon-moon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/><g class="gria-theme-icon-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></g></svg>
+    </button>
+  </div>
+</header>
+
+<main class="dev-shell">
+  <section class="reminder-strip" aria-label="Pengingat Renungan Harian">
+    <div class="reminder-strip-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="13" r="7"/><path d="M12 9v4l3 2M5 3 2 6M19 3l3 3"/></svg></div>
+    <div><strong id="reminderLabel">Aktifkan Pengingat Renungan</strong><span>Setiap hari · 06.00 WITA · Kalender HP</span></div>
+    <button id="reminderStripBtn" type="button">Atur</button>
+  </section>
+
+  <section class="archive-filter" id="archiveFilter">
+    <div class="archive-filter-head">
+      <div><span>JELAJAHI ARSIP</span><small>Renungan tersedia mulai 4 Oktober 2026</small></div>
+      <button id="filterToggle" type="button" aria-expanded="true" aria-label="Tutup atau buka filter">×</button>
+    </div>
+    <div class="archive-filter-body" id="filterBody">
+      <div class="filter-grid">
+        <label><span>Hari</span><select id="dayFilter" aria-label="Pilih hari"></select></label>
+        <label><span>Bulan</span><select id="monthFilter" aria-label="Pilih bulan"><option value="10">Oktober</option></select></label>
+        <label><span>Tahun</span><select id="yearFilter" aria-label="Pilih tahun"><option value="2026">2026</option></select></label>
+      </div>
+      <button class="filter-apply" id="applyFilter" type="button">Terapkan Filter</button>
+    </div>
+  </section>
+
+  <section class="today-status" id="todayStatus" hidden></section>
+  <section class="featured-wrap" id="featuredWrap" aria-live="polite"></section>
+
+  <article class="reader-panel" id="readerPanel" hidden>
+    <header class="reader-head">
+      <div><span class="reader-theme" id="readerTheme"></span><h1 id="readerTitle"></h1><p id="readerMeta"></p></div>
+      <button class="reader-close" id="readerClose" type="button" aria-label="Tutup bacaan">×</button>
+    </header>
+    <div class="scripture-card"><span>PERIKOP HARI INI</span><strong id="readerReference"></strong></div>
+    <div class="scripture-card"><span>AYAT KUNCI</span><p id="readerKeyVerse"></p><strong id="readerKeyVerseRef"></strong><a href="AYT-LICENSE.html">AYT © YLSA 2011–2024 · Lisensi</a></div>
+    <div class="reader-body" id="readerBody"></div>
+    <blockquote class="daily-quote"><span>QUOTE HARI INI</span><p id="readerQuote"></p><button id="shareQuoteBtn" type="button">Bagikan Quote</button></blockquote>
+    <section class="reflection-grid">
+      <div class="reflection-card"><span>REFLEKSI</span><p id="readerReflection"></p></div>
+      <div class="reflection-card"><span>LANGKAH HARI INI</span><p id="readerAction"></p></div>
+    </section>
+    <section class="prayer-card"><span>DOA HARI INI</span><p id="readerPrayer"></p></section>
+    <div class="reader-nav"><button id="prevDevotional" type="button">← Sebelumnya</button><button id="nextDevotional" type="button">Selanjutnya →</button></div>
+  </article>
+
+  <section class="archive-list-section">
+    <div class="archive-title"><div><span>ARSIP RENUNGAN</span><h2>Hari-hari sebelumnya</h2></div><small id="archiveCount"></small></div>
+    <div class="archive-list" id="archiveList"></div>
+  </section>
+</main>
+
+<nav class="dev-bottom-nav" aria-label="Navigasi utama Renungan GRIA">
+  <a href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10.5Z"/></svg><span>Beranda</span></a>
+  <a href="renungan.html" class="is-active" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v18H7.5A3.5 3.5 0 0 0 4 23V5.5Z"/><path d="M20 5.5A3.5 3.5 0 0 0 16.5 2H13v18h3.5A3.5 3.5 0 0 1 20 23V5.5Z"/></svg><span>Renungan</span></a>
+  <a href="alkitab.html"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 3h12a2 2 0 0 1 2 2v16H7a2 2 0 0 1-2-2V3Z"/><path d="M9 8h6M12 5v6M5 17h14"/></svg><span>Alkitab</span></a>
+  <a href="warta.html"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5Z"/><path d="M7 7h10M7 11h10M7 15h6"/></svg><span>Warta</span></a>
+  <a href="persekutuan.html"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a7 7 0 0 1 14 0v2M18 3a4 4 0 0 1 0 8M22 21v-2a7 7 0 0 0-3-6"/></svg><span>Persekutuan</span></a>
+  <a href="jemaat.html"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Jemaat</span></a>
+</nav>
+
+<div class="reminder-modal" id="reminderModal" hidden>
+  <div class="reminder-modal-card" role="dialog" aria-modal="true" aria-labelledby="reminderTitle">
+    <button class="modal-x" id="reminderClose" type="button" aria-label="Tutup">×</button>
+    <div class="modal-alarm"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="13" r="7"/><path d="M12 9v4l3 2M5 3 2 6M19 3l3 3"/></svg></div>
+    <h2 id="reminderTitle">Pengingat Renungan 06.00 WITA</h2>
+    <p>Tambahkan pengingat harian ke Kalender HP. Buka file kalender, lalu setujui penambahan acara berulang pukul 06.00 WITA dan izinkan notifikasi kalender.</p>
+    <button class="modal-primary" id="syncCalendarBtn" type="button">Aktifkan di Kalender HP</button>
+    <button class="modal-secondary" id="reminderLater" type="button">Nanti saja</button>
+    <small>GRIA PWA tidak dapat membuat alarm aplikasi Clock secara langsung. Status aktif di Kalender tidak dapat diperiksa oleh website. Notifikasi mengikuti izin dan pengaturan Kalender HP.</small>
+  </div>
+</div>
+
+<section class="share-fallback" id="shareFallback" hidden aria-label="Salin renungan"><label for="shareFallbackText">Salin teks dan tautan ini untuk dibagikan:</label><textarea id="shareFallbackText" readonly rows="8"></textarea><button id="shareFallbackClose" type="button">Tutup</button></section>
+
+<div class="dev-toast" id="devToast" role="status" aria-live="polite"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+<script src="pwa-v16.js" defer></script>
+<script src="gria-modern.js?v=27" defer></script>
+<script src="renungan-v27.js?v=27.0" defer></script>
+</body>
+</html>
