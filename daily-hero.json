@@ -1,8 +1,19 @@
 {
   "version": 1,
-  "date": "",
+  "date": "2026-10-04",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "",
-  "image": null
+  "category": "Draped Easter Crosses",
+  "image": {
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Hungertuch_St._Johannis_Billerbeck.JPG/1280px-Hungertuch_St._Johannis_Billerbeck.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Hungertuch St. Johannis Billerbeck.JPG",
+    "author": "Leanderus",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Hungertuch_St._Johannis_Billerbeck.JPG",
+    "provider": "Wikimedia Commons",
+    "category": "Draped Easter Crosses",
+    "width": 4000,
+    "height": 3008
+  }
 }
