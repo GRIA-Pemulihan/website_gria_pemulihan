@@ -1,0 +1,48 @@
+name: Update Daily Hero Photo
+
+"on":
+  schedule:
+    # 16:20 UTC = 00:20 WITA (hari berikutnya di Palu)
+    - cron: '20 16 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gria-daily-hero
+  cancel-in-progress: false
+
+jobs:
+  update-daily-hero:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Refresh main
+        run: git pull --rebase origin main
+
+      - name: Pick Daily Hero from Wikimedia Commons
+        run: python update_daily_hero.py
+
+      - name: Commit Daily Hero manifest
+        run: |
+          git config user.name "GRIA Daily Hero Bot"
+          git config user.email "actions@github.com"
+          git add daily-hero.json
+
+          if git diff --cached --quiet; then
+            echo "Daily Hero tidak berubah."
+            exit 0
+          fi
+
+          git commit -m "Auto-update Daily Hero photo"
+          git push origin HEAD:main
