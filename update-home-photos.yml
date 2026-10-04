@@ -1,0 +1,40 @@
+name: Update Foto Home GRIA
+
+"on":
+  push:
+    branches: [main]
+    paths:
+      - 'foto-home/**'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build-home-photos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Build manifest foto Home
+        run: python build_home_photos.py
+
+      - name: Commit manifest bila berubah
+        run: |
+          git config user.name "GRIA Photo Bot"
+          git config user.email "actions@github.com"
+          git add foto-home.json
+
+          if git diff --cached --quiet; then
+            echo "Manifest tidak berubah."
+            exit 0
+          fi
+
+          git commit -m "Auto-update Home photo manifest"
+          git push

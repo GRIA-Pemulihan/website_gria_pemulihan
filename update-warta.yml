@@ -1,0 +1,61 @@
+name: Update Warta & Ulang Tahun dari Google Sheet
+
+"on":
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update-konten:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Update konten & push (dengan retry aman dari race condition)
+        env:
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+          SPREADSHEET_ID: '1QJZf9hmfc5IQe5VE6OpHlLTmegBRhqyQq0wupx8z8fY'
+        run: |
+          git config user.name "GRIA Auto Update Bot"
+          git config user.email "actions@github.com"
+
+          for attempt in 1 2 3 4 5; do
+            echo "=== Percobaan ke-$attempt ==="
+            git fetch origin main
+            git reset --hard origin/main
+
+            python update_warta.py
+            python update_ulang_tahun.py
+            python update_home_from_warta.py
+
+            git add warta.html index.html
+            if git diff --cached --quiet; then
+              echo "Tidak ada perubahan, selesai."
+              exit 0
+            fi
+
+            git commit -m "Auto-update Warta & Home dari Google Sheet"
+
+            if git push origin HEAD:main; then
+              echo "Push berhasil."
+              exit 0
+            fi
+
+            echo "Push gagal, fetch ulang & coba lagi..."
+            sleep $((attempt * 5))
+          done
+
+          echo "Gagal push setelah beberapa percobaan."
+          exit 1
