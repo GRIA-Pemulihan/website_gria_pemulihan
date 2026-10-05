@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-05",
+  "date": "2026-10-06",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of landscapes",
+  "category": "Christian crosses with flowers",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/2014_Reliktowy_Park_Narodowy_Rica%2C_Widok_na_jezioro_Rica_od_strony_po%C5%82udniowo-zachodniej_%2806%29.jpg/1280px-2014_Reliktowy_Park_Narodowy_Rica%2C_Widok_na_jezioro_Rica_od_strony_po%C5%82udniowo-zachodniej_%2806%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "2014 Reliktowy Park Narodowy Rica, Widok na jezioro Rica od strony południowo-zachodniej (06).jpg",
-    "author": "Hons084",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:2014_Reliktowy_Park_Narodowy_Rica,_Widok_na_jezioro_Rica_od_strony_po%C5%82udniowo-zachodniej_(06).jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Easter_cross_-_geograph.org.uk_-_7164325.jpg/1280px-Easter_cross_-_geograph.org.uk_-_7164325.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Easter cross - geograph.org.uk - 7164325.jpg",
+    "author": "Jeff Gogarty",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Easter_cross_-_geograph.org.uk_-_7164325.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of landscapes",
-    "width": 4527,
-    "height": 3018
+    "category": "Christian crosses with flowers",
+    "width": 1600,
+    "height": 1200
   }
 }
