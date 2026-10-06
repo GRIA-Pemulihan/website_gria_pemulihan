@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-06",
+  "date": "2026-10-07",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Christian crosses with flowers",
+  "category": "Quality images of mountains",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Easter_cross_-_geograph.org.uk_-_7164325.jpg/1280px-Easter_cross_-_geograph.org.uk_-_7164325.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Easter cross - geograph.org.uk - 7164325.jpg",
-    "author": "Jeff Gogarty",
-    "license": "CC BY-SA 2.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Easter_cross_-_geograph.org.uk_-_7164325.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Early_dawn_on_Cheow_Lan_Lake%2C_Thailand.jpg/1280px-Early_dawn_on_Cheow_Lan_Lake%2C_Thailand.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Early dawn on Cheow Lan Lake, Thailand.jpg",
+    "author": "Vyacheslav Argenberg",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Early_dawn_on_Cheow_Lan_Lake,_Thailand.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Christian crosses with flowers",
-    "width": 1600,
-    "height": 1200
+    "category": "Quality images of mountains",
+    "width": 4032,
+    "height": 2688
   }
 }
