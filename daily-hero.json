@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-07",
+  "date": "2026-10-08",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of mountains",
+  "category": "Featured pictures of sunsets",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Early_dawn_on_Cheow_Lan_Lake%2C_Thailand.jpg/1280px-Early_dawn_on_Cheow_Lan_Lake%2C_Thailand.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Early dawn on Cheow Lan Lake, Thailand.jpg",
-    "author": "Vyacheslav Argenberg",
-    "license": "CC BY 4.0",
-    "license_url": "https://creativecommons.org/licenses/by/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Early_dawn_on_Cheow_Lan_Lake,_Thailand.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/Cypress_tree_alley_at_sunset_in_Asciano%2C_Tuscany.jpg/1280px-Cypress_tree_alley_at_sunset_in_Asciano%2C_Tuscany.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Cypress tree alley at sunset in Asciano, Tuscany.jpg",
+    "author": "Eric Kilby",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Cypress_tree_alley_at_sunset_in_Asciano,_Tuscany.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of mountains",
-    "width": 4032,
-    "height": 2688
+    "category": "Featured pictures of sunsets",
+    "width": 8252,
+    "height": 5501
   }
 }
