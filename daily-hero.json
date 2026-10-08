@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-08",
+  "date": "2026-10-09",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Featured pictures of sunsets",
+  "category": "Quality images of landscapes",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/Cypress_tree_alley_at_sunset_in_Asciano%2C_Tuscany.jpg/1280px-Cypress_tree_alley_at_sunset_in_Asciano%2C_Tuscany.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Cypress tree alley at sunset in Asciano, Tuscany.jpg",
-    "author": "Eric Kilby",
-    "license": "CC BY-SA 2.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Cypress_tree_alley_at_sunset_in_Asciano,_Tuscany.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/2014_Nowy_Aton%2C_Widok_ze_szczytu_G%C3%B3ry_Iwerskiej_%2810%29.jpg/1280px-2014_Nowy_Aton%2C_Widok_ze_szczytu_G%C3%B3ry_Iwerskiej_%2810%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "2014 Nowy Aton, Widok ze szczytu Góry Iwerskiej (10).jpg",
+    "author": "Hons084",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:2014_Nowy_Aton,_Widok_ze_szczytu_G%C3%B3ry_Iwerskiej_(10).jpg",
     "provider": "Wikimedia Commons",
-    "category": "Featured pictures of sunsets",
-    "width": 8252,
-    "height": 5501
+    "category": "Quality images of landscapes",
+    "width": 4545,
+    "height": 2557
   }
 }
