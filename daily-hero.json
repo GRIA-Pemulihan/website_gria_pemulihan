@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-09",
+  "date": "2026-10-10",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of landscapes",
+  "category": "Quality images of sunsets",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/2014_Nowy_Aton%2C_Widok_ze_szczytu_G%C3%B3ry_Iwerskiej_%2810%29.jpg/1280px-2014_Nowy_Aton%2C_Widok_ze_szczytu_G%C3%B3ry_Iwerskiej_%2810%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "2014 Nowy Aton, Widok ze szczytu Góry Iwerskiej (10).jpg",
-    "author": "Hons084",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/2016_Kampot%2C_Zach%C3%B3d_s%C5%82o%C5%84ca_nad_rzek%C4%85_Praek_Tuek_Chhu_%2819%29.jpg/1280px-2016_Kampot%2C_Zach%C3%B3d_s%C5%82o%C5%84ca_nad_rzek%C4%85_Praek_Tuek_Chhu_%2819%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "2016 Kampot, Zachód słońca nad rzeką Praek Tuek Chhu (19).jpg",
+    "author": "Marcin Konsek",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:2014_Nowy_Aton,_Widok_ze_szczytu_G%C3%B3ry_Iwerskiej_(10).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:2016_Kampot,_Zach%C3%B3d_s%C5%82o%C5%84ca_nad_rzek%C4%85_Praek_Tuek_Chhu_(19).jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of landscapes",
-    "width": 4545,
-    "height": 2557
+    "category": "Quality images of sunsets",
+    "width": 4927,
+    "height": 3285
   }
 }
