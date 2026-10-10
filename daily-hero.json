@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-10",
+  "date": "2026-10-11",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of sunsets",
+  "category": "Draped Easter Crosses",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/2016_Kampot%2C_Zach%C3%B3d_s%C5%82o%C5%84ca_nad_rzek%C4%85_Praek_Tuek_Chhu_%2819%29.jpg/1280px-2016_Kampot%2C_Zach%C3%B3d_s%C5%82o%C5%84ca_nad_rzek%C4%85_Praek_Tuek_Chhu_%2819%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "2016 Kampot, Zachód słońca nad rzeką Praek Tuek Chhu (19).jpg",
-    "author": "Marcin Konsek",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:2016_Kampot,_Zach%C3%B3d_s%C5%82o%C5%84ca_nad_rzek%C4%85_Praek_Tuek_Chhu_(19).jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Fastentuch1marienbaum.jpg/1280px-Fastentuch1marienbaum.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Fastentuch1marienbaum.jpg",
+    "author": "Netzhering at German Wikipedia",
+    "license": "CC BY-SA 3.0",
+    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Fastentuch1marienbaum.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of sunsets",
-    "width": 4927,
-    "height": 3285
+    "category": "Draped Easter Crosses",
+    "width": 2304,
+    "height": 1728
   }
 }
