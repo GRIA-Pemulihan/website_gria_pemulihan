@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-11",
+  "date": "2026-10-12",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Draped Easter Crosses",
+  "category": "Quality images of landscapes",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Fastentuch1marienbaum.jpg/1280px-Fastentuch1marienbaum.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Fastentuch1marienbaum.jpg",
-    "author": "Netzhering at German Wikipedia",
-    "license": "CC BY-SA 3.0",
-    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Fastentuch1marienbaum.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Aeropuerto%2C_Gibraltar%2C_2015-12-09%2C_DD_01.JPG/1280px-Aeropuerto%2C_Gibraltar%2C_2015-12-09%2C_DD_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Aeropuerto, Gibraltar, 2015-12-09, DD 01.JPG",
+    "author": "Diego Delso",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Aeropuerto,_Gibraltar,_2015-12-09,_DD_01.JPG",
     "provider": "Wikimedia Commons",
-    "category": "Draped Easter Crosses",
-    "width": 2304,
-    "height": 1728
+    "category": "Quality images of landscapes",
+    "width": 5742,
+    "height": 3788
   }
 }
