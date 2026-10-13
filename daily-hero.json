@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-13",
+  "date": "2026-10-14",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Christian crosses with flowers",
+  "category": "Quality images of mountains",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Easter_decoration_at_the_entrance_to_Christ_Church%2C_New_Mill_-_geograph.org.uk_-_7739272.jpg/1280px-Easter_decoration_at_the_entrance_to_Christ_Church%2C_New_Mill_-_geograph.org.uk_-_7739272.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Easter decoration at the entrance to Christ Church, New Mill - geograph.org.uk - 7739272.jpg",
-    "author": "Humphrey Bolton",
-    "license": "CC BY-SA 2.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Easter_decoration_at_the_entrance_to_Christ_Church,_New_Mill_-_geograph.org.uk_-_7739272.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/20220921_Fr%C3%B6ttmaning_01.jpg/1280px-20220921_Fr%C3%B6ttmaning_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "20220921 Fröttmaning 01.jpg",
+    "author": "Flocci Nivis",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:20220921_Fr%C3%B6ttmaning_01.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Christian crosses with flowers",
-    "width": 2048,
-    "height": 1536
+    "category": "Quality images of mountains",
+    "width": 6016,
+    "height": 4016
   }
 }
