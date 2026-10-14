@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-14",
+  "date": "2026-10-15",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of mountains",
+  "category": "Featured pictures of sunsets",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/20220921_Fr%C3%B6ttmaning_01.jpg/1280px-20220921_Fr%C3%B6ttmaning_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "20220921 Fröttmaning 01.jpg",
-    "author": "Flocci Nivis",
-    "license": "CC BY 4.0",
-    "license_url": "https://creativecommons.org/licenses/by/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:20220921_Fr%C3%B6ttmaning_01.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/D%C3%BClmen%2C_Merfeld%2C_Volvo_PV_544_B18_--_2021_--_0075-9.jpg/1280px-D%C3%BClmen%2C_Merfeld%2C_Volvo_PV_544_B18_--_2021_--_0075-9.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Dülmen, Merfeld, Volvo PV 544 B18 -- 2021 -- 0075-9.jpg",
+    "author": "Dietmar Rabich",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_Merfeld,_Volvo_PV_544_B18_--_2021_--_0075-9.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of mountains",
-    "width": 6016,
-    "height": 4016
+    "category": "Featured pictures of sunsets",
+    "width": 5987,
+    "height": 3742
   }
 }
