@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-17",
+  "date": "2026-10-18",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of sunsets",
+  "category": "Draped Easter Crosses",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/2016_Prowincja_Krabi%2C_Ko_Lanta_Yai%2C_Pla%C5%BCa_Klong_Khong_%2850%29.jpg/1280px-2016_Prowincja_Krabi%2C_Ko_Lanta_Yai%2C_Pla%C5%BCa_Klong_Khong_%2850%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "2016 Prowincja Krabi, Ko Lanta Yai, Plaża Klong Khong (50).jpg",
-    "author": "Marcin Konsek",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:2016_Prowincja_Krabi,_Ko_Lanta_Yai,_Pla%C5%BCa_Klong_Khong_(50).jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Fastentuch2marienbaum.jpg/1280px-Fastentuch2marienbaum.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Fastentuch2marienbaum.jpg",
+    "author": "Netzhering at German Wikipedia",
+    "license": "CC BY-SA 3.0",
+    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Fastentuch2marienbaum.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of sunsets",
-    "width": 5029,
-    "height": 2829
+    "category": "Draped Easter Crosses",
+    "width": 2304,
+    "height": 1728
   }
 }
