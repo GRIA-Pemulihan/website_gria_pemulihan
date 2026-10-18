@@ -37,3 +37,10 @@
 .pa-auth-panel p{margin-top:9px;color:var(--text-mute);font:500 12px/1.6 Manrope,sans-serif}
 @media(max-width:620px){.pa-shell{padding:82px 16px 96px}.pa-heading{align-items:start;flex-direction:column}.pa-editor-gate{align-items:start;flex-direction:column}.pa-question-row{grid-template-columns:minmax(0,1fr) auto}.pa-question-row label:first-child{grid-column:1/-1}.pa-question-row label:nth-child(2){min-width:0}.pa-hero-actions>*{flex:1}.pa-timezone{font-size:10px}}
 @media(max-width:620px){.pa-auth-row{flex-direction:column}.pa-auth-row button{width:100%}}
+.pa-shell [hidden]{display:none!important}
+.pa-code-access{padding:20px;margin-top:20px;border:1px solid var(--card-border);border-radius:20px;background:var(--bg-elevated)}
+.pa-code-access h2{font:800 22px/1.2 Syne,sans-serif}.pa-code-access p{margin:8px 0 12px;color:var(--text-mute);font:500 13px/1.6 Manrope,sans-serif}
+.pa-code-access label{display:block;margin-bottom:8px;color:var(--text);font:700 12px Manrope,sans-serif}
+.pa-code-access input:focus{outline:2px solid var(--neon-dim);outline-offset:2px}
+.pa-code-access button:disabled{opacity:.6;cursor:wait}
+#paEditor,#jadwal{scroll-margin-top:85px}

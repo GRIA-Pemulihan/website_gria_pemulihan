@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script>try{document.documentElement.dataset.griaTheme=localStorage.getItem('gria_theme_v1')==='light'?'light':'dark'}catch(_){}</script>
 <link rel="stylesheet" href="shared.css">
-<link rel="stylesheet" href="pa-portal.css?v=2">
+<link rel="stylesheet" href="pa-portal.css?v=3">
 </head>
 <body>
 <nav class="navbar"><div class="navbar-inner"><a class="logo" href="index.html">GRI<span>A</span></a></div></nav>
@@ -22,27 +22,15 @@
     <p>Bertumbuh bersama melalui firman Tuhan. Lihat bacaan, pemimpin, waktu, dan pertanyaan panduan untuk pertemuan PA.</p>
     <div class="pa-hero-actions"><a href="alkitab.html" class="pa-primary">Buka Alkitab →</a><a href="#jadwal" class="pa-secondary">Lihat jadwal</a></div>
   </header>
-  <section id="jadwal" class="pa-section" aria-labelledby="jadwalTitle">
-    <div class="pa-heading"><div><span class="pa-kicker">PORTAL PA</span><h2 id="jadwalTitle">Pertemuan &amp; panduan</h2></div><span class="pa-timezone">Asia/Makassar · WITA</span></div>
-    <p id="paStatus" class="pa-status" role="status" aria-live="polite">Memuat jadwal PA…</p>
-    <div id="paSessions" class="pa-sessions"></div>
-  </section>
-  <section class="pa-editor-gate" aria-labelledby="editorGateTitle">
-    <div><span class="pa-kicker">UNTUK PEMIMPIN PA</span><h2 id="editorGateTitle">Siapkan pertanyaan panduan</h2><p>Pemimpin yang ditunjuk dapat menyusun pertanyaan, menyimpan draf, lalu menerbitkan panduan pertemuan.</p></div>
-    <button id="paLoginToggle" type="button" class="pa-secondary">Masuk sebagai pemimpin PA</button>
-    <button id="paSignOut" type="button" class="pa-secondary" hidden>Keluar akun PA</button>
-  </section>
-  <section id="paAuthPanel" class="pa-auth-panel" aria-label="Masuk akun pemimpin PA" hidden>
-    <form id="paAuthRequest">
-      <label for="paAuthEmail">Email pemimpin PA</label>
-      <div class="pa-auth-row"><input id="paAuthEmail" type="email" autocomplete="email" required placeholder="nama@email.com"><button class="pa-primary" type="submit">Kirim tautan masuk</button></div>
+  <section class="pa-code-access" aria-labelledby="paAccessTitle">
+    <h2 id="paAccessTitle">Masuk Pemimpin PA</h2>
+    <p>Masukkan kode pemimpin untuk menyusun pertanyaan dan menampilkan jadwal PA.</p>
+    <form id="paCodeForm">
+      <label for="paAccessCode">Kode pemimpin PA</label>
+      <div class="pa-auth-row"><input id="paAccessCode" type="password" autocomplete="off" maxlength="72" required placeholder="Masukkan kode"><button type="submit" class="pa-primary">Masuk</button></div>
     </form>
-    <form id="paAuthVerify" hidden>
-      <label for="paAuthToken">Kode atau tautan dari email</label>
-      <div class="pa-auth-row"><input id="paAuthToken" type="text" autocomplete="one-time-code" required placeholder="Tempel kode atau tautan email"><button class="pa-primary" type="submit">Verifikasi</button></div>
-      <p>Anda dapat membuka tautan dari email langsung. Jika diarahkan ke halaman lain, salin tautan dari email dan tempel di sini sebelum membukanya.</p>
-    </form>
-    <p id="paAuthStatus" role="status" aria-live="polite"></p>
+    <p id="paAccessStatus" role="status" aria-live="polite"></p>
+    <button id="paLock" type="button" class="pa-secondary" hidden>Keluar dari ruang pemimpin</button>
   </section>
   <section id="paEditor" class="pa-editor" aria-labelledby="editorTitle" hidden>
     <div class="pa-heading"><div><span class="pa-kicker">RUANG PEMIMPIN</span><h2 id="editorTitle">Susun pertemuan PA</h2></div></div>
@@ -57,14 +45,19 @@
       </div>
       <div class="pa-question-head"><div><h3>Pertanyaan panduan</h3><p>Tulis pertanyaan saja; jawaban tidak ditampilkan atau disimpan.</p></div><button id="paAddQuestion" type="button" class="pa-secondary">+ Tambah</button></div>
       <div id="paQuestionRows" class="pa-question-rows"></div>
-      <div class="pa-form-actions"><button type="submit" data-save="draft" class="pa-secondary">Simpan draf</button><button type="submit" data-save="published" class="pa-primary">Terbitkan di portal</button><button id="paReset" type="button" class="pa-text-button">Buat baru</button></div>
+      <div class="pa-form-actions"><button type="submit" class="pa-primary">Simpan &amp; Tampilkan</button><button id="paReset" type="button" class="pa-text-button">Buat baru</button></div>
       <p id="paFormStatus" role="status" aria-live="polite"></p>
     </form>
+  </section>
+  <section id="jadwal" class="pa-section" aria-labelledby="jadwalTitle">
+    <div class="pa-heading"><div><span class="pa-kicker">PORTAL PA</span><h2 id="jadwalTitle">Pertemuan &amp; panduan</h2></div><span class="pa-timezone">Asia/Makassar · WITA</span></div>
+    <p id="paStatus" class="pa-status" role="status" aria-live="polite">Memuat jadwal PA…</p>
+    <div id="paSessions" class="pa-sessions"></div>
   </section>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 <script src="js/supabase-config.js" defer></script>
-<script src="pa-portal.js?v=2" defer></script>
+<script src="pa-portal.js?v=3" defer></script>
 <script src="pwa-v16.js" defer></script>
 </body>
 </html>

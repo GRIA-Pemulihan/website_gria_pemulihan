@@ -5,7 +5,7 @@
   const status=$('paStatus'), list=$('paSessions'), form=$('paForm');
   const zone='Asia/Makassar';
   const kinds=['Observasi','Pemahaman','Penerapan','Diskusi'];
-  let userId=null, isLeader=false, sessions=[];
+  let accessCode='', isLeader=false, sessions=[];
 
   function say(message, target=status){target.textContent=message;}
   function dateParts(value){
@@ -61,68 +61,40 @@
         });card.append(questions);
       }
       const actions=element('div','pa-card-actions');const bible=element('a','pa-secondary','Buka Alkitab');bible.href='alkitab.html';actions.append(bible);
-      if(isLeader&&session.created_by===userId){const edit=element('button','pa-secondary','Sunting panduan');edit.type='button';edit.addEventListener('click',()=>editSession(session));actions.append(edit);}
+      if(isLeader){const edit=element('button','pa-secondary','Sunting panduan');edit.type='button';edit.addEventListener('click',()=>editSession(session));actions.append(edit);}
       card.append(actions);list.append(card);
     });
   }
-  function authMessage(message){say(message,$('paAuthStatus'));}
-  async function requestLogin(event){
+  async function unlock(event){
     event.preventDefault();
-    const email=$('paAuthEmail').value.trim().toLowerCase();
-    const button=$('paAuthRequest').querySelector('button');button.disabled=true;authMessage('Mengirim tautan masuk…');
+    const code=$('paAccessCode').value.trim();
+    const button=$('paCodeForm').querySelector('button');button.disabled=true;
+    say('Memeriksa kode…',$('paAccessStatus'));
     try{
-      const {error}=await supabaseClient.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname,shouldCreateUser:true}});
-      if(error)throw error;
-      $('paAuthVerify').hidden=false;
-      authMessage('Periksa email Anda. Buka tautan masuk, atau tempel kode/tautan di bawah jika diperlukan.');
-    }catch(error){console.error('Masuk PA:',error);authMessage('Tautan belum terkirim. Periksa alamat email atau coba lagi beberapa saat.');}
+      const result=await supabaseClient.rpc('pa_check_access',{p_code:code});
+      if(result.error)throw result.error;
+      if(result.data!==true){say('Kode belum sesuai. Periksa kembali kode pemimpin PA.',$('paAccessStatus'));return;}
+      accessCode=code;isLeader=true;$('paAccessCode').value='';
+      $('paCodeForm').hidden=true;$('paLock').hidden=false;$('paEditor').hidden=false;
+      say('Akses pemimpin aktif. Isi panduan lalu pilih Simpan & Tampilkan.',$('paAccessStatus'));
+      render();$('paEditor').scrollIntoView({behavior:'smooth',block:'start'});
+    }catch(_){say('Kode belum dapat diperiksa. Periksa koneksi internet lalu coba lagi.',$('paAccessStatus'));}
     finally{button.disabled=false;}
   }
-  async function verifyLogin(event){
-    event.preventDefault();
-    const input=$('paAuthToken').value.trim(),email=$('paAuthEmail').value.trim().toLowerCase();
-    let credentials;
-    try{
-      if(/^\d{6,8}$/.test(input))credentials={email,token:input,type:'email'};
-      else{
-        const url=new URL(input);
-        if(url.origin!==new URL(SUPABASE_URL).origin||!url.pathname.endsWith('/auth/v1/verify'))throw new Error('Tautan tidak sesuai proyek GRIA');
-        const token=url.searchParams.get('token'),type=url.searchParams.get('type');
-        if(!token||!['magiclink','signup','email','invite'].includes(type))throw new Error('Tautan tidak valid');
-        credentials={token_hash:token,type};
-      }
-    }catch(_){authMessage('Tempel kode email atau tautan masuk Supabase GRIA yang lengkap.');return;}
-    const button=$('paAuthVerify').querySelector('button');button.disabled=true;authMessage('Memverifikasi akun…');
-    try{
-      const {error}=await supabaseClient.auth.verifyOtp(credentials);if(error)throw error;
-      authMessage('Berhasil masuk. Memuat hak pemimpin PA…');await load();
-    }catch(error){console.error('Verifikasi PA:',error);authMessage('Kode atau tautan tidak berlaku. Minta tautan baru bila sudah kedaluwarsa.');}
-    finally{button.disabled=false;}
+  function lock(){
+    accessCode='';isLeader=false;$('paEditor').hidden=true;$('paLock').hidden=true;
+    $('paCodeForm').hidden=false;say('Anda sudah keluar.',$('paAccessStatus'));resetForm();render();
   }
   async function load(){
     try{
-      if(typeof supabaseClient==='undefined')throw new Error('Koneksi Supabase belum tersedia.');
-      const auth=await supabaseClient.auth.getUser();
-      userId=auth.data?.user?.id||null;
-      isLeader=false;$('paEditor').hidden=true;
-      $('paSignOut').hidden=!userId;$('paLoginToggle').hidden=!!userId;
-      if(userId)$('paAuthPanel').hidden=true;
-      if(userId){
-        const membership=await supabaseClient.from('pa_leaders').select('user_id').eq('user_id',userId).maybeSingle();
-        if(membership.error)throw membership.error;
-        isLeader=!!membership.data;
-        if(isLeader)$('paEditor').hidden=false;
-        else authMessage('Akun ini belum diberi hak pemimpin PA. Gunakan email pemimpin yang telah didaftarkan.');
-      }
-      const response=await supabaseClient.from('pa_sessions').select('id,created_by,title,reference,leader_name,starts_at,questions,status').order('starts_at',{ascending:true});
+      if(typeof supabaseClient==='undefined')throw new Error('Koneksi belum tersedia');
+      const response=await supabaseClient.from('pa_sessions').select('id,title,reference,leader_name,starts_at,questions,status').eq('status','published').order('starts_at',{ascending:true});
       if(response.error)throw response.error;
-      sessions=response.data||[];render();
-    }catch(error){console.error('Portal PA:',error);say('Jadwal belum dapat dimuat. Periksa koneksi internet dan coba muat ulang halaman.');}
+      sessions=response.data||[];render();return true;
+    }catch(_){say('Jadwal belum dapat dimuat. Periksa koneksi internet dan coba muat ulang halaman.');return false;}
   }
   async function save(event){
-    event.preventDefault();if(!isLeader||!userId)return;
-    const submitter=event.submitter;
-    const targetStatus=submitter?.dataset.save==='published'?'published':'draft';
+    event.preventDefault();if(!isLeader||!accessCode)return;
     const date=$('paDate').value,time=$('paTime').value;
     if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||!/^\d{2}:\d{2}$/.test(time)){say('Isi tanggal dan waktu PA.',$('paFormStatus'));return;}
     const [year,month,day]=date.split('-').map(Number);
@@ -130,23 +102,26 @@
     const starts=new Date(`${date}T${time}:00+08:00`);
     if(Number.isNaN(starts.getTime())){say('Tanggal atau waktu tidak valid.',$('paFormStatus'));return;}
     const questions=getQuestions();
-    if(targetStatus==='published'&&!questions.length){say('Tambahkan minimal satu pertanyaan sebelum menerbitkan.',$('paFormStatus'));return;}
-    const payload={title:$('paTitle').value.trim(),reference:$('paReference').value.trim(),leader_name:$('paLeader').value.trim(),starts_at:starts.toISOString(),questions,status:targetStatus};
+    if(!questions.length){say('Tambahkan minimal satu pertanyaan sebelum menerbitkan.',$('paFormStatus'));return;}
+    const payload={title:$('paTitle').value.trim(),reference:$('paReference').value.trim(),leader_name:$('paLeader').value.trim(),starts_at:starts.toISOString(),questions};
     if(!payload.title||!payload.reference||!payload.leader_name){say('Lengkapi judul, bacaan, dan nama pemimpin.',$('paFormStatus'));return;}
     const buttons=[...form.querySelectorAll('button[type="submit"]')];buttons.forEach(button=>button.disabled=true);say('Menyimpan…',$('paFormStatus'));
     try{
-      const id=$('paId').value;
-      const query=id?supabaseClient.from('pa_sessions').update(payload).eq('id',id).select('id'):supabaseClient.from('pa_sessions').insert({...payload,created_by:userId}).select('id');
-      const result=await query.single();if(result.error)throw result.error;
-      $('paId').value=result.data.id;
-      say(targetStatus==='published'?'Panduan sudah terbit di portal.':'Draf berhasil disimpan.',$('paFormStatus'));
-      await load();
-    }catch(error){console.error('Simpan PA:',error);say('Gagal menyimpan. Periksa koneksi, hak pemimpin PA, dan data yang diisi.',$('paFormStatus'));}
+      // Keep the ID after failures so retrying a save cannot create a duplicate session.
+      if(!$('paId').value)$('paId').value=crypto.randomUUID();
+      const result=await supabaseClient.rpc('pa_save_with_code',{
+        p_code:accessCode,p_id:$('paId').value,p_title:payload.title,p_reference:payload.reference,
+        p_leader_name:payload.leader_name,p_starts_at:payload.starts_at,p_questions:payload.questions
+      });
+      if(result.error)throw result.error;
+      $('paId').value=result.data;
+      const refreshed=await load();
+      say(refreshed?'Tersimpan. Pertanyaan sudah tampil di Portal PA.':'Tersimpan, tetapi daftar belum dapat dimuat ulang. Coba muat ulang halaman.',$('paFormStatus'));
+      if(refreshed)$('jadwal').scrollIntoView({behavior:'smooth',block:'start'});
+    }catch(error){console.error('Simpan PA:',error);say('Gagal menyimpan. Periksa koneksi, kode pemimpin PA, dan data yang diisi.',$('paFormStatus'));}
     finally{buttons.forEach(button=>button.disabled=false);}
   }
-  $('paLoginToggle').addEventListener('click',()=>{$('paAuthPanel').hidden=!$('paAuthPanel').hidden;});
-  $('paAuthRequest').addEventListener('submit',requestLogin);$('paAuthVerify').addEventListener('submit',verifyLogin);
-  $('paSignOut').addEventListener('click',async()=>{await supabaseClient.auth.signOut();$('paAuthPanel').hidden=true;authMessage('');load();});
+  $('paCodeForm').addEventListener('submit',unlock);$('paLock').addEventListener('click',lock);
   $('paAddQuestion').addEventListener('click',()=>addQuestion());$('paReset').addEventListener('click',resetForm);form.addEventListener('submit',save);
   resetForm();load();
 })();

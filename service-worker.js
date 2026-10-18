@@ -1,5 +1,5 @@
 /* GRIA PWA service worker v27 — Renungan Harian + Daily Hero */
-const VERSION='gria-pwa-v27-pa-2';
+const VERSION='gria-pwa-v27-pa-3';
 const STATIC_CACHE=`${VERSION}-static`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const scopeUrl=self.registration.scope;
@@ -8,7 +8,7 @@ const origin=new URL(scopeUrl).origin;
 const PRECACHE=[
   'index.html','jemaat.html','warta.html','persekutuan.html','pendalaman-alkitab.html','offline.html','manifest.webmanifest',
   'icon-192.png','icon-512.png','apple-touch-icon.png',
-  'pwa-v16.js','pa-portal.js?v=2','pa-portal.css?v=2','js/supabase-config.js','shared.css','gria-modern.js?v=27','gria-modern.css?v=27',
+  'pwa-v16.js','pa-portal.js?v=3','pa-portal.css?v=3','js/supabase-config.js','shared.css','gria-modern.js?v=27','gria-modern.css?v=27',
   'gria-home-v27.js?v=27.0','gria-home-v27.css?v=27.0','gria-home-v24.css','gria-home-v20.css',
   'gria-share-pdf-v22.js','gria-share-pdf-v22.css',
   'gria-fix-v22.js','gria-fix-v22.css',
@@ -139,7 +139,7 @@ self.addEventListener('fetch',event=>{
   if(req.mode==='navigate'||req.destination==='document'){
     const isWarta=url.pathname.endsWith('/warta.html');
 
-    if(isWarta){
+    if(isWarta||url.pathname.endsWith('/pendalaman-alkitab.html')){
       event.respondWith((async()=>{
         try{
           const net=await networkWithTimeout(req,1200);
