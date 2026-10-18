@@ -20,22 +20,22 @@
 .pa-card h3{font:800 clamp(20px,4vw,27px)/1.2 Syne,sans-serif;margin:12px 0 8px}
 .pa-meta{display:flex;flex-wrap:wrap;gap:8px 15px;color:var(--text-mute);font:700 12px Manrope,sans-serif}.pa-reference{color:var(--text);margin:16px 0 0;font:700 13px Manrope,sans-serif}
 .pa-question-list{padding-left:20px;margin:12px 0 0}.pa-question-list li{padding:5px 0;color:var(--text);font:500 13px/1.6 Manrope,sans-serif;overflow-wrap:anywhere}
-.pa-question-list small{color:var(--neon-dim);font-weight:800;margin-right:6px}.pa-card-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+.pa-card-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
 .pa-editor-gate{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:22px;margin-top:32px}.pa-editor-gate p,.pa-question-head p{color:var(--text-mute);font:500 12px/1.6 Manrope,sans-serif;margin-top:8px}
 .pa-editor{padding:clamp(18px,4vw,28px)}.pa-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.pa-fields label:first-child,.pa-fields label:nth-child(2){grid-column:1/-1}
+.pa-fields label:first-child{grid-column:1/-1}
 .pa-fields label,.pa-question-row label{display:grid;gap:6px;color:var(--text-mute);font:700 11px Manrope,sans-serif}
-.pa-fields input,.pa-question-row textarea,.pa-question-row select{width:100%;min-width:0;padding:11px 12px;border:1px solid var(--card-border-strong);border-radius:11px;background:var(--bg-soft);color:var(--text);font:500 13px Manrope,sans-serif}
-.pa-fields input:focus,.pa-question-row textarea:focus,.pa-question-row select:focus{outline:2px solid var(--neon-dim);outline-offset:1px}
+.pa-fields input,.pa-question-row textarea{width:100%;min-width:0;padding:11px 12px;border:1px solid var(--card-border-strong);border-radius:11px;background:var(--bg-soft);color:var(--text);font:500 13px Manrope,sans-serif}
+.pa-fields input:focus,.pa-question-row textarea:focus{outline:2px solid var(--neon-dim);outline-offset:1px}
 .pa-question-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:25px 0 12px}.pa-question-head h3{font:800 18px Syne,sans-serif}
-.pa-question-rows{display:grid;gap:10px}.pa-question-row{display:grid;grid-template-columns:minmax(0,1fr) 140px auto;gap:8px;align-items:end;padding:12px;border:1px solid var(--card-border);border-radius:14px;background:var(--bg-soft)}
+.pa-question-rows{display:grid;gap:10px}.pa-question-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end;padding:12px;border:1px solid var(--card-border);border-radius:14px;background:var(--bg-soft)}
 .pa-question-row textarea{min-height:72px;resize:vertical}.pa-remove{padding:10px;border-radius:10px;color:var(--text-mute);font:800 12px Manrope,sans-serif}
 .pa-remove:hover{color:var(--text)}#paFormStatus{min-height:22px;margin-top:10px;color:var(--text-mute);font:700 12px Manrope,sans-serif}
 .pa-auth-panel{padding:20px;margin-top:10px;border:1px solid var(--card-border);border-radius:18px;background:var(--bg-elevated)}
 .pa-auth-panel form+form{margin-top:18px}.pa-auth-panel label{display:block;margin-bottom:8px;color:var(--text-mute);font:700 12px Manrope,sans-serif}
 .pa-auth-row{display:flex;gap:8px}.pa-auth-row input{flex:1;min-width:0;padding:11px 12px;border:1px solid var(--card-border-strong);border-radius:11px;background:var(--bg-soft);color:var(--text);font:500 13px Manrope,sans-serif}
 .pa-auth-panel p{margin-top:9px;color:var(--text-mute);font:500 12px/1.6 Manrope,sans-serif}
-@media(max-width:620px){.pa-shell{padding:82px 16px 96px}.pa-heading{align-items:start;flex-direction:column}.pa-editor-gate{align-items:start;flex-direction:column}.pa-question-row{grid-template-columns:minmax(0,1fr) auto}.pa-question-row label:first-child{grid-column:1/-1}.pa-question-row label:nth-child(2){min-width:0}.pa-hero-actions>*{flex:1}.pa-timezone{font-size:10px}}
+@media(max-width:620px){.pa-shell{padding:82px 16px 96px}.pa-heading{align-items:start;flex-direction:column}.pa-editor-gate{align-items:start;flex-direction:column}.pa-question-row{grid-template-columns:minmax(0,1fr) auto}.pa-question-row label:first-child{grid-column:1/-1}.pa-hero-actions>*{flex:1}.pa-timezone{font-size:10px}}
 @media(max-width:620px){.pa-auth-row{flex-direction:column}.pa-auth-row button{width:100%}}
 .pa-shell [hidden]{display:none!important}
 .pa-code-access{padding:20px;margin-top:20px;border:1px solid var(--card-border);border-radius:20px;background:var(--bg-elevated)}

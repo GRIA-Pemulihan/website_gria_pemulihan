@@ -4,7 +4,6 @@
   const $=id=>document.getElementById(id);
   const status=$('paStatus'), list=$('paSessions'), form=$('paForm');
   const zone='Asia/Makassar';
-  const kinds=['Observasi','Pemahaman','Penerapan','Diskusi'];
   let accessCode='', isLeader=false, sessions=[];
 
   function say(message, target=status){target.textContent=message;}
@@ -14,26 +13,23 @@
   }
   function displayDate(value){return new Intl.DateTimeFormat('id-ID',{timeZone:zone,weekday:'long',day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date(value))+' WITA';}
   function element(tag,className,content){const node=document.createElement(tag);if(className)node.className=className;if(content!==undefined)node.textContent=content;return node;}
-  function addQuestion(prompt='',kind='Observasi'){
+  function addQuestion(prompt=''){
     if($('paQuestionRows').children.length>=20){say('Maksimal 20 pertanyaan panduan.',$('paFormStatus'));return;}
     const row=element('div','pa-question-row');
     const promptLabel=element('label','', 'Pertanyaan');
     const input=element('textarea');input.maxLength=1500;input.placeholder='Apa yang kita pelajari dari bacaan ini?';input.value=prompt;
     promptLabel.append(input);
-    const kindLabel=element('label','', 'Jenis');
-    const select=element('select');
-    kinds.forEach(value=>{const option=element('option','',value);option.value=value;select.append(option);});select.value=kinds.includes(kind)?kind:'Observasi';kindLabel.append(select);
     const remove=element('button','pa-remove','Hapus');remove.type='button';remove.setAttribute('aria-label','Hapus pertanyaan');remove.addEventListener('click',()=>row.remove());
-    row.append(promptLabel,kindLabel,remove);$('paQuestionRows').append(row);
+    row.append(promptLabel,remove);$('paQuestionRows').append(row);
   }
   function resetForm(){form.reset();$('paId').value='';$('paQuestionRows').replaceChildren();addQuestion();$('paTime').value='19:00';say('',$('paFormStatus'));}
   function getQuestions(){
-    return [...$('paQuestionRows').children].map(row=>({prompt:row.querySelector('textarea').value.trim(),kind:row.querySelector('select').value})).filter(q=>q.prompt);
+    return [...$('paQuestionRows').children].map(row=>({prompt:row.querySelector('textarea').value.trim()})).filter(q=>q.prompt);
   }
   function editSession(session){
-    $('paId').value=session.id;$('paTitle').value=session.title;$('paReference').value=session.reference;$('paLeader').value=session.leader_name;
+    $('paId').value=session.id;$('paReference').value=session.reference;$('paLeader').value=session.leader_name;
     const p=dateParts(session.starts_at);$('paDate').value=`${p.year}-${p.month}-${p.day}`;$('paTime').value=`${p.hour}:${p.minute}`;
-    $('paQuestionRows').replaceChildren();(session.questions||[]).forEach(q=>addQuestion(q.prompt,q.kind));
+    $('paQuestionRows').replaceChildren();(session.questions||[]).forEach(q=>addQuestion(q.prompt));
     if(!$('paQuestionRows').children.length)addQuestion();
     say('Sedang menyunting pertemuan.',$('paFormStatus'));$('paEditor').scrollIntoView({behavior:'smooth',block:'start'});
   }
@@ -51,13 +47,12 @@
       const card=element('article','pa-card');
       const top=element('div','pa-card-top');
       top.append(element('span','pa-badge',session.status==='draft'?'Draf pribadi':new Date(session.starts_at)>=now?'Pertemuan mendatang':'Arsip PA'));
-      card.append(top,element('h3','',session.title));
+      card.append(top,element('h3','',session.reference));
       const meta=element('div','pa-meta');meta.append(element('span','',displayDate(session.starts_at)),element('span','',`Pemimpin: ${session.leader_name}`));card.append(meta);
-      card.append(element('p','pa-reference',`Bacaan: ${session.reference}`));
       if(Array.isArray(session.questions)&&session.questions.length){
         const heading=element('h4','','Pertanyaan panduan');heading.style.marginTop='20px';card.append(heading);
         const questions=element('ol','pa-question-list');session.questions.forEach(q=>{
-          const li=element('li');li.append(element('small','',`${q.kind} · `),document.createTextNode(q.prompt));questions.append(li);
+          const li=element('li');li.append(document.createTextNode(q.prompt));questions.append(li);
         });card.append(questions);
       }
       const actions=element('div','pa-card-actions');const bible=element('a','pa-secondary','Buka Alkitab');bible.href='alkitab.html';actions.append(bible);
@@ -88,7 +83,7 @@
   async function load(){
     try{
       if(typeof supabaseClient==='undefined')throw new Error('Koneksi belum tersedia');
-      const response=await supabaseClient.from('pa_sessions').select('id,title,reference,leader_name,starts_at,questions,status').eq('status','published').order('starts_at',{ascending:true});
+      const response=await supabaseClient.from('pa_sessions').select('id,reference,leader_name,starts_at,questions,status').eq('status','published').order('starts_at',{ascending:true});
       if(response.error)throw response.error;
       sessions=response.data||[];render();return true;
     }catch(_){say('Jadwal belum dapat dimuat. Periksa koneksi internet dan coba muat ulang halaman.');return false;}
@@ -103,14 +98,14 @@
     if(Number.isNaN(starts.getTime())){say('Tanggal atau waktu tidak valid.',$('paFormStatus'));return;}
     const questions=getQuestions();
     if(!questions.length){say('Tambahkan minimal satu pertanyaan sebelum menerbitkan.',$('paFormStatus'));return;}
-    const payload={title:$('paTitle').value.trim(),reference:$('paReference').value.trim(),leader_name:$('paLeader').value.trim(),starts_at:starts.toISOString(),questions};
-    if(!payload.title||!payload.reference||!payload.leader_name){say('Lengkapi judul, bacaan, dan nama pemimpin.',$('paFormStatus'));return;}
+    const payload={reference:$('paReference').value.trim(),leader_name:$('paLeader').value.trim(),starts_at:starts.toISOString(),questions};
+    if(!payload.reference||!payload.leader_name){say('Lengkapi bacaan Alkitab dan nama pemimpin.',$('paFormStatus'));return;}
     const buttons=[...form.querySelectorAll('button[type="submit"]')];buttons.forEach(button=>button.disabled=true);say('Menyimpan…',$('paFormStatus'));
     try{
       // Keep the ID after failures so retrying a save cannot create a duplicate session.
       if(!$('paId').value)$('paId').value=crypto.randomUUID();
       const result=await supabaseClient.rpc('pa_save_with_code',{
-        p_code:accessCode,p_id:$('paId').value,p_title:payload.title,p_reference:payload.reference,
+        p_code:accessCode,p_id:$('paId').value,p_title:payload.reference,p_reference:payload.reference,
         p_leader_name:payload.leader_name,p_starts_at:payload.starts_at,p_questions:payload.questions
       });
       if(result.error)throw result.error;
