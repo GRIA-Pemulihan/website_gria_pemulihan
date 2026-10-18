@@ -23,7 +23,7 @@
   function activeSection(file){
     if(['index.html','about-us.html','yayasan.html'].includes(file))return'home';
     if(file==='warta.html')return'warta';
-    if(['persekutuan.html','komunitas.html'].includes(file))return'persekutuan';
+    if(['persekutuan.html','komunitas.html','pendalaman-alkitab.html'].includes(file))return'persekutuan';
     if(['jemaat.html','alkitab.html','pendaftaran-jemaat.html'].includes(file))return'jemaat';
     return null;
   }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id" data-gria-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0c">
+<meta name="description" content="Portal Pendalaman Alkitab GRIA: jadwal PA hari Selasa, pemimpin, bacaan, dan pertanyaan panduan.">
+<title>Pendalaman Alkitab — GRIA Pemulihan Palu</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script>try{document.documentElement.dataset.griaTheme=localStorage.getItem('gria_theme_v1')==='light'?'light':'dark'}catch(_){}</script>
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="pa-portal.css?v=1">
+</head>
+<body>
+<nav class="navbar"><div class="navbar-inner"><a class="logo" href="index.html">GRI<span>A</span></a></div></nav>
+<main class="pa-shell">
+  <a class="pa-back" href="persekutuan.html">← Persekutuan</a>
+  <header class="pa-hero">
+    <span class="eyebrow">SETIAP SELASA · WITA</span>
+    <h1>Pendalaman <em>Alkitab</em></h1>
+    <p>Bertumbuh bersama melalui firman Tuhan. Lihat bacaan, pemimpin, waktu, dan pertanyaan panduan untuk pertemuan PA.</p>
+    <div class="pa-hero-actions"><a href="alkitab.html" class="pa-primary">Buka Alkitab →</a><a href="#jadwal" class="pa-secondary">Lihat jadwal</a></div>
+  </header>
+  <section id="jadwal" class="pa-section" aria-labelledby="jadwalTitle">
+    <div class="pa-heading"><div><span class="pa-kicker">PORTAL PA</span><h2 id="jadwalTitle">Pertemuan &amp; panduan</h2></div><span class="pa-timezone">Asia/Makassar · WITA</span></div>
+    <p id="paStatus" class="pa-status" role="status" aria-live="polite">Memuat jadwal PA…</p>
+    <div id="paSessions" class="pa-sessions"></div>
+  </section>
+  <section class="pa-editor-gate" aria-labelledby="editorGateTitle">
+    <div><span class="pa-kicker">UNTUK PEMIMPIN PA</span><h2 id="editorGateTitle">Siapkan pertanyaan panduan</h2><p>Pemimpin yang ditunjuk dapat menyusun pertanyaan, menyimpan draf, lalu menerbitkan panduan pertemuan.</p></div>
+    <a id="paLoginLink" href="daftar.html" class="pa-secondary">Masuk akun GRIA</a>
+  </section>
+  <section id="paEditor" class="pa-editor" aria-labelledby="editorTitle" hidden>
+    <div class="pa-heading"><div><span class="pa-kicker">RUANG PEMIMPIN</span><h2 id="editorTitle">Susun pertemuan PA</h2></div></div>
+    <form id="paForm">
+      <input id="paId" type="hidden">
+      <div class="pa-fields">
+        <label>Judul pertemuan<input id="paTitle" maxlength="160" required placeholder="Contoh: Berakar dalam Firman"></label>
+        <label>Bacaan Alkitab<input id="paReference" maxlength="160" required placeholder="Contoh: Yohanes 15:1–8"></label>
+        <label>Nama pemimpin PA<input id="paLeader" maxlength="100" required placeholder="Nama yang tampil di portal"></label>
+        <label>Hari Selasa, tanggal<input id="paDate" type="date" required></label>
+        <label>Waktu WITA<input id="paTime" type="time" value="19:00" required></label>
+      </div>
+      <div class="pa-question-head"><div><h3>Pertanyaan panduan</h3><p>Tulis pertanyaan saja; jawaban tidak ditampilkan atau disimpan.</p></div><button id="paAddQuestion" type="button" class="pa-secondary">+ Tambah</button></div>
+      <div id="paQuestionRows" class="pa-question-rows"></div>
+      <div class="pa-form-actions"><button type="submit" data-save="draft" class="pa-secondary">Simpan draf</button><button type="submit" data-save="published" class="pa-primary">Terbitkan di portal</button><button id="paReset" type="button" class="pa-text-button">Buat baru</button></div>
+      <p id="paFormStatus" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+<script src="js/supabase-config.js" defer></script>
+<script src="pa-portal.js?v=1" defer></script>
+<script src="pwa-v16.js" defer></script>
+</body>
+</html>

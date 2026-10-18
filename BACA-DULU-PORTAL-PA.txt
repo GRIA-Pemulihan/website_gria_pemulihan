@@ -1,0 +1,18 @@
+PORTAL PENDALAMAN ALKITAB GRIA
+
+Pemasangan manual:
+1. Unduh ZIP Portal PA terbaru dan ekstrak isinya.
+2. Salin isi folder ke akar repositori website_gria_pemulihan, dengan susunan folder tetap sama. Timpa persekutuan.html, pwa-v16.js, dan service-worker.js.
+3. Commit dan unggah perubahan ke GitHub. Setelah terbit, buka persekutuan.html lalu pilih "Masuk Portal PA".
+
+Supabase proyek sdlzgekgjdpleiknwenj:
+- Tabel dan aturan akses Portal PA sudah dipasang langsung melalui Codex pada 17 Oktober 2026. Anda tidak perlu menjalankan SQL lagi di proyek ini.
+- File supabase/migration-004-portal-pa.sql disertakan agar kode repositori mencatat skema yang digunakan. Jangan jalankan ulang kecuali memasang pada proyek Supabase lain.
+- Calon pemimpin PA sudah didaftarkan secara aman di Supabase. Hak edit akan aktif otomatis setelah akun dengan email yang diberikan kepada Codex dibuat dan emailnya terverifikasi. Tidak perlu menjalankan SQL tambahan.
+- File supabase/migration-005-pa-leader-pending.sql juga mencatat aturan aktivasi otomatis tersebut. Alamat email calon pemimpin disimpan hanya di database, tidak di file repositori.
+
+Pemakaian:
+- Pengunjung melihat sesi PA yang sudah diterbitkan: hari/jam WITA, nama pemimpin, bacaan, dan pertanyaan panduan.
+- Pemimpin PA masuk dengan akun GRIA yang diberi akses. Di portal, isi sesi hari Selasa, simpan draf, lalu terbitkan.
+- Yang disimpan hanya pertanyaan panduan; tidak ada kolom jawaban.
+- Bila portal masih kosong, artinya pemimpin belum menerbitkan sesi PA.
