@@ -65,17 +65,54 @@
       card.append(actions);list.append(card);
     });
   }
+  function authMessage(message){say(message,$('paAuthStatus'));}
+  async function requestLogin(event){
+    event.preventDefault();
+    const email=$('paAuthEmail').value.trim().toLowerCase();
+    const button=$('paAuthRequest').querySelector('button');button.disabled=true;authMessage('Mengirim tautan masuk…');
+    try{
+      const {error}=await supabaseClient.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname,shouldCreateUser:true}});
+      if(error)throw error;
+      $('paAuthVerify').hidden=false;
+      authMessage('Periksa email Anda. Buka tautan masuk, atau tempel kode/tautan di bawah jika diperlukan.');
+    }catch(error){console.error('Masuk PA:',error);authMessage('Tautan belum terkirim. Periksa alamat email atau coba lagi beberapa saat.');}
+    finally{button.disabled=false;}
+  }
+  async function verifyLogin(event){
+    event.preventDefault();
+    const input=$('paAuthToken').value.trim(),email=$('paAuthEmail').value.trim().toLowerCase();
+    let credentials;
+    try{
+      if(/^\d{6,8}$/.test(input))credentials={email,token:input,type:'email'};
+      else{
+        const url=new URL(input);
+        if(url.origin!==new URL(SUPABASE_URL).origin||!url.pathname.endsWith('/auth/v1/verify'))throw new Error('Tautan tidak sesuai proyek GRIA');
+        const token=url.searchParams.get('token'),type=url.searchParams.get('type');
+        if(!token||!['magiclink','signup','email','invite'].includes(type))throw new Error('Tautan tidak valid');
+        credentials={token_hash:token,type};
+      }
+    }catch(_){authMessage('Tempel kode email atau tautan masuk Supabase GRIA yang lengkap.');return;}
+    const button=$('paAuthVerify').querySelector('button');button.disabled=true;authMessage('Memverifikasi akun…');
+    try{
+      const {error}=await supabaseClient.auth.verifyOtp(credentials);if(error)throw error;
+      authMessage('Berhasil masuk. Memuat hak pemimpin PA…');await load();
+    }catch(error){console.error('Verifikasi PA:',error);authMessage('Kode atau tautan tidak berlaku. Minta tautan baru bila sudah kedaluwarsa.');}
+    finally{button.disabled=false;}
+  }
   async function load(){
     try{
       if(typeof supabaseClient==='undefined')throw new Error('Koneksi Supabase belum tersedia.');
       const auth=await supabaseClient.auth.getUser();
       userId=auth.data?.user?.id||null;
+      isLeader=false;$('paEditor').hidden=true;
+      $('paSignOut').hidden=!userId;$('paLoginToggle').hidden=!!userId;
+      if(userId)$('paAuthPanel').hidden=true;
       if(userId){
         const membership=await supabaseClient.from('pa_leaders').select('user_id').eq('user_id',userId).maybeSingle();
         if(membership.error)throw membership.error;
         isLeader=!!membership.data;
-        if(isLeader){$('paEditor').hidden=false;$('paLoginLink').hidden=true;}
-        else{$('paLoginLink').textContent='Akun belum diberi akses';$('paLoginLink').removeAttribute('href');}
+        if(isLeader)$('paEditor').hidden=false;
+        else authMessage('Akun ini belum diberi hak pemimpin PA. Gunakan email pemimpin yang telah didaftarkan.');
       }
       const response=await supabaseClient.from('pa_sessions').select('id,created_by,title,reference,leader_name,starts_at,questions,status').order('starts_at',{ascending:true});
       if(response.error)throw response.error;
@@ -107,6 +144,9 @@
     }catch(error){console.error('Simpan PA:',error);say('Gagal menyimpan. Periksa koneksi, hak pemimpin PA, dan data yang diisi.',$('paFormStatus'));}
     finally{buttons.forEach(button=>button.disabled=false);}
   }
+  $('paLoginToggle').addEventListener('click',()=>{$('paAuthPanel').hidden=!$('paAuthPanel').hidden;});
+  $('paAuthRequest').addEventListener('submit',requestLogin);$('paAuthVerify').addEventListener('submit',verifyLogin);
+  $('paSignOut').addEventListener('click',async()=>{await supabaseClient.auth.signOut();$('paAuthPanel').hidden=true;authMessage('');load();});
   $('paAddQuestion').addEventListener('click',()=>addQuestion());$('paReset').addEventListener('click',resetForm);form.addEventListener('submit',save);
   resetForm();load();
 })();

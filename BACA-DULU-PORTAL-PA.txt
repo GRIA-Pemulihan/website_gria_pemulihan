@@ -7,6 +7,7 @@ Pemasangan manual:
 
 Supabase proyek sdlzgekgjdpleiknwenj:
 - Tabel dan aturan akses Portal PA sudah dipasang langsung melalui Codex pada 17 Oktober 2026. Anda tidak perlu menjalankan SQL lagi di proyek ini.
+- Website GRIA masih memakai proyek ini. Proyek baru GRIA_Pemulihan (midqrssclkpwcmxvohff) belum dipakai karena masih kosong; akun dan progres baca website ada di proyek lama.
 - File supabase/migration-004-portal-pa.sql disertakan agar kode repositori mencatat skema yang digunakan. Jangan jalankan ulang kecuali memasang pada proyek Supabase lain.
 - Calon pemimpin PA sudah didaftarkan secara aman di Supabase. Hak edit akan aktif otomatis setelah akun dengan email yang diberikan kepada Codex dibuat dan emailnya terverifikasi. Tidak perlu menjalankan SQL tambahan.
 - File supabase/migration-005-pa-leader-pending.sql juga mencatat aturan aktivasi otomatis tersebut. Alamat email calon pemimpin disimpan hanya di database, tidak di file repositori.
@@ -14,5 +15,6 @@ Supabase proyek sdlzgekgjdpleiknwenj:
 Pemakaian:
 - Pengunjung melihat sesi PA yang sudah diterbitkan: hari/jam WITA, nama pemimpin, bacaan, dan pertanyaan panduan.
 - Pemimpin PA masuk dengan akun GRIA yang diberi akses. Di portal, isi sesi hari Selasa, simpan draf, lalu terbitkan.
+- Gunakan tombol "Masuk sebagai pemimpin PA" di Portal PA untuk meminta tautan email. Setelah email diverifikasi, ruang pemimpin terbuka otomatis. Akun dashboard Supabase berbeda dari akun login website.
 - Yang disimpan hanya pertanyaan panduan; tidak ada kolom jawaban.
 - Bila portal masih kosong, artinya pemimpin belum menerbitkan sesi PA.

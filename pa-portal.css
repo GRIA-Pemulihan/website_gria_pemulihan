@@ -31,4 +31,9 @@
 .pa-question-rows{display:grid;gap:10px}.pa-question-row{display:grid;grid-template-columns:minmax(0,1fr) 140px auto;gap:8px;align-items:end;padding:12px;border:1px solid var(--card-border);border-radius:14px;background:var(--bg-soft)}
 .pa-question-row textarea{min-height:72px;resize:vertical}.pa-remove{padding:10px;border-radius:10px;color:var(--text-mute);font:800 12px Manrope,sans-serif}
 .pa-remove:hover{color:var(--text)}#paFormStatus{min-height:22px;margin-top:10px;color:var(--text-mute);font:700 12px Manrope,sans-serif}
+.pa-auth-panel{padding:20px;margin-top:10px;border:1px solid var(--card-border);border-radius:18px;background:var(--bg-elevated)}
+.pa-auth-panel form+form{margin-top:18px}.pa-auth-panel label{display:block;margin-bottom:8px;color:var(--text-mute);font:700 12px Manrope,sans-serif}
+.pa-auth-row{display:flex;gap:8px}.pa-auth-row input{flex:1;min-width:0;padding:11px 12px;border:1px solid var(--card-border-strong);border-radius:11px;background:var(--bg-soft);color:var(--text);font:500 13px Manrope,sans-serif}
+.pa-auth-panel p{margin-top:9px;color:var(--text-mute);font:500 12px/1.6 Manrope,sans-serif}
 @media(max-width:620px){.pa-shell{padding:82px 16px 96px}.pa-heading{align-items:start;flex-direction:column}.pa-editor-gate{align-items:start;flex-direction:column}.pa-question-row{grid-template-columns:minmax(0,1fr) auto}.pa-question-row label:first-child{grid-column:1/-1}.pa-question-row label:nth-child(2){min-width:0}.pa-hero-actions>*{flex:1}.pa-timezone{font-size:10px}}
+@media(max-width:620px){.pa-auth-row{flex-direction:column}.pa-auth-row button{width:100%}}
