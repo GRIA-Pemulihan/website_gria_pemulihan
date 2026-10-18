@@ -1,5 +1,5 @@
 /* GRIA PWA service worker v27 — Renungan Harian + Daily Hero */
-const VERSION='gria-pwa-v27-pa-3';
+const VERSION='gria-pwa-v27-read-1';
 const STATIC_CACHE=`${VERSION}-static`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const scopeUrl=self.registration.scope;
@@ -14,7 +14,7 @@ const PRECACHE=[
   'gria-fix-v22.js','gria-fix-v22.css',
   'gria-performance-v23.js','gria-performance-v23.css',
   'warta-mobile.js','foto-home.json','daily-hero.json',
-  'renungan.html','renungan-v27.js?v=27.0','renungan-v27.css?v=27.0','renungan-data-oct-2026.json','renungan-reminder.ics','foto-ibadah-natal.png','foto-kebersamaan-gria.png','foto-hut-gria.png','foto-komunitas-hero.png'
+  'renungan.html','renungan-tracker.js?v=1','renungan-v27.js?v=27.1','renungan-v27.css?v=27.1','renungan-data-oct-2026.json','renungan-reminder.ics','foto-ibadah-natal.png','foto-kebersamaan-gria.png','foto-hut-gria.png','foto-komunitas-hero.png'
 ].map(p=>new URL(p,scopeUrl).href);
 
 self.addEventListener('install',event=>{
@@ -139,7 +139,7 @@ self.addEventListener('fetch',event=>{
   if(req.mode==='navigate'||req.destination==='document'){
     const isWarta=url.pathname.endsWith('/warta.html');
 
-    if(isWarta||url.pathname.endsWith('/pendalaman-alkitab.html')){
+    if(isWarta||url.pathname.endsWith('/pendalaman-alkitab.html')||url.pathname.endsWith('/renungan.html')){
       event.respondWith((async()=>{
         try{
           const net=await networkWithTimeout(req,1200);

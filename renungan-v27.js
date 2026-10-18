@@ -14,9 +14,7 @@
   const ROOT=new URL('./',document.currentScript?document.currentScript.src:location.href);
   const $=s=>document.querySelector(s);
   let source=null,items=[],selected=null;
-  let reactionView=null;
-  const pendingReactions=new Set();
-  const memoryReactions={};
+  let tracker=null;
   const sessionDeviceId=crypto.randomUUID?crypto.randomUUID():"dev-"+Date.now()+"-"+Math.random().toString(36).slice(2);
 
   function appUrl(p){return new URL(p,ROOT).href}
@@ -35,32 +33,28 @@
 
   function getReactionClient(){if(reactionClient)return reactionClient;try{if(window.supabase&&window.supabase.createClient)reactionClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY)}catch(_){}return reactionClient}
   function getDeviceId(){try{let id=localStorage.getItem('gria_devotional_device_v1');if(!id){id=sessionDeviceId;localStorage.setItem('gria_devotional_device_v1',id)}return id}catch(_){return sessionDeviceId}}
-  function localReactionState(date){if(memoryReactions[date])return memoryReactions[date];try{return JSON.parse(localStorage.getItem('gria_devotional_reactions_v1')||'{}')[date]||{}}catch(_){return{}}}
-  function saveLocalReaction(date,type,on){memoryReactions[date]={...localReactionState(date),[type]:!!on};try{const all=JSON.parse(localStorage.getItem('gria_devotional_reactions_v1')||'{}');all[date]=memoryReactions[date];localStorage.setItem('gria_devotional_reactions_v1',JSON.stringify(all))}catch(_){}}
-  function setReactionUI(counts,own,local=false){document.querySelectorAll('.reaction-btn').forEach(btn=>{const type=btn.dataset.reaction;btn.classList.toggle('is-active',!!own[type]);btn.setAttribute('aria-pressed',String(!!own[type]));btn.disabled=pendingReactions.has(selected.date);const n=btn.querySelector('[data-count]');if(n)n.textContent=counts[type]||0});const status=$('#reactionStatus');if(status)status.textContent=local?'Reaksi di perangkat ini · total bersama belum tersedia':'Total reaksi jemaat'}
-  async function reactionRequest(name,args){const client=getReactionClient();if(!client)throw Error('offline');const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),6000);try{const {data,error}=await client.rpc(name,args).abortSignal(controller.signal);if(error)throw error;return data}finally{clearTimeout(timer)}}
-  function displayReactions(date,data){if(!selected||selected.date!==date)return;reactionView={date,...data};saveLocalReaction(date,'like',data.own.like);saveLocalReaction(date,'love',data.own.love);setReactionUI(data.counts,data.own)}
-  let reactionLoad=0;
-  async function loadReactions(date){
-    const generation=++reactionLoad,own=localReactionState(date);
-    reactionView={date,counts:{like:own.like?1:0,love:own.love?1:0},own,local:true};
-    setReactionUI(reactionView.counts,own,true);
-    if(pendingReactions.has(date))return;
-    try{const data=await reactionRequest('get_devotional_reactions',{p_date:date,p_device_id:getDeviceId()});if(generation===reactionLoad&&!pendingReactions.has(date))displayReactions(date,data)}catch(_){/* Local feedback remains available. */}
+  function setReactionUI(view){
+    if(!selected||view.date!==selected.date)return;
+    document.querySelectorAll('.reaction-btn').forEach(btn=>{
+      const type=btn.dataset.reaction;
+      btn.classList.toggle('is-active',!!view.own[type]);btn.setAttribute('aria-pressed',String(!!view.own[type]));
+      btn.disabled=view.busy||(type==='read'&&view.own.read);
+      const count=btn.querySelector('[data-count]');if(count)count.textContent=view.counts[type]===null?'—':view.counts[type];
+    });
+    const status=$('#reactionStatus');
+    if(status)status.textContent=view.queued?'Menunggu sinkronisasi · klik tersimpan di perangkat':view.live&&view.loaded?'● Live · Like dan Read tersinkron':view.loaded?'Jumlah tersimpan · diperbarui otomatis':'Menghubungkan tracker…';
   }
-  async function toggleReaction(type){
-    if(!selected||!released(selected.date)||pendingReactions.has(selected.date))return;
-    const date=selected.date,state=localReactionState(date),active=!!state[type];
-    pendingReactions.add(date);++reactionLoad;
-    saveLocalReaction(date,type,!active);
-    const own=localReactionState(date),counts={...(reactionView&&reactionView.date===date?reactionView.counts:{like:0,love:0})};
-    counts[type]=Math.max(0,(counts[type]||0)+(active?-1:1));
-    reactionView={date,counts,own,local:!reactionView||reactionView.local};
-    setReactionUI(counts,own,reactionView.local);
-    try{const data=await reactionRequest('set_devotional_reaction',{p_date:date,p_device_id:getDeviceId(),p_reaction:type,p_active:!active});displayReactions(date,data)}
-    catch(_){if(selected&&selected.date===date){reactionView={date,counts:{like:own.like?1:0,love:own.love?1:0},own,local:true};setReactionUI(reactionView.counts,own,true);toast('Reaksi tersimpan di perangkat ini')}}
-    finally{pendingReactions.delete(date);if(selected&&selected.date===date&&reactionView)setReactionUI(reactionView.counts,reactionView.own,reactionView.local)}
+  function getTracker(){
+    if(!tracker&&window.GriaDevotionalTracker){
+      tracker=new window.GriaDevotionalTracker(getReactionClient(),getDeviceId(),setReactionUI);
+      window.addEventListener('online',()=>tracker.resume());
+      document.addEventListener('visibilitychange',()=>{if(!document.hidden)tracker.resume()});
+      window.addEventListener('pagehide',()=>tracker.unwatch());window.addEventListener('pageshow',()=>tracker.resume());
+    }
+    return tracker;
   }
+  function loadReactions(date){getTracker()?.select(date)}
+  function toggleReaction(type){if(selected&&released(selected.date))getTracker()?.choose(type)}
 
   function isBookmarked(date){try{return(JSON.parse(localStorage.getItem('gria_devotional_bookmarks_v1')||'[]')).includes(date)}catch(_){return false}}
   function toggleBookmark(){if(!selected)return;try{let arr=JSON.parse(localStorage.getItem('gria_devotional_bookmarks_v1')||'[]');arr=arr.includes(selected.date)?arr.filter(x=>x!==selected.date):arr.concat(selected.date);localStorage.setItem('gria_devotional_bookmarks_v1',JSON.stringify(arr));renderBookmark();toast(arr.includes(selected.date)?'Renungan disimpan':'Dihapus dari simpanan')}catch(_){}}
@@ -100,12 +94,12 @@
         <h1>${esc(e.title)}</h1><p class="featured-author">${esc(e.author)}</p><span class="featured-ref">${esc(e.reference)}</span>
         <blockquote class="featured-quote">“${esc(e.quote)}”</blockquote>
         <div class="featured-actions"><button class="read-btn" id="readBtn" type="button">BACA RENUNGAN</button><button class="bookmark-btn" id="bookmarkBtn" type="button" aria-label="Simpan renungan"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M6 3h12v18l-6-4-6 4V3Z"/></svg></button></div>
-        <div class="reaction-row"><button class="reaction-btn" data-reaction="like" type="button" aria-label="Suka"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M7 10v11H3V10h4Zm0 0 4-7c1.8 0 3 1.5 2.5 3.2L13 8h6a2 2 0 0 1 2 2.3l-1.2 8A3 3 0 0 1 16.8 21H7"/></svg><span>Like</span><b data-count>0</b></button><button class="reaction-btn" data-reaction="love" type="button" aria-label="Love"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg><span>Love</span><b data-count>0</b></button><button class="share-btn" id="shareBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.6 6.8-4.2M8.6 13.4l6.8 4.2"/></svg>Bagikan</button></div>
-        <small id="reactionStatus" role="status"></small>
+        <div class="reaction-row"><button class="reaction-btn" data-reaction="like" type="button" aria-label="Suka"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M7 10v11H3V10h4Zm0 0 4-7c1.8 0 3 1.5 2.5 3.2L13 8h6a2 2 0 0 1 2 2.3l-1.2 8A3 3 0 0 1 16.8 21H7"/></svg><span>Like</span><b data-count>0</b></button><button class="reaction-btn" data-reaction="read" type="button" aria-label="Tandai sudah dibaca" title="Read: tandai sudah membaca renungan ini"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 4h6a4 4 0 0 1 3 1 4 4 0 0 1 3-1h6v15h-6a4 4 0 0 0-3 1 4 4 0 0 0-3-1H3V4Z"/><path d="M12 5v15M6 11l2 2 3-4"/></svg><span>Read</span><b data-count>0</b></button><button class="share-btn" id="shareBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.6 6.8-4.2M8.6 13.4l6.8 4.2"/></svg>Bagikan</button></div>
+        <small id="reactionStatus" role="status" aria-live="polite"></small><small class="reaction-help">Read = sudah dibaca · sekali per renungan pada browser/perangkat ini.</small>
       </div>
     </article>`}
 
-  function renderFeature(){const wrap=$('#featuredWrap'),status=$('#todayStatus');if(!selected){wrap.innerHTML='';status.hidden=false;status.innerHTML='Renungan Harian GRIA dimulai <strong>4 Oktober 2026</strong> dan renungan baru terbuka setiap hari pukul <strong>06.00 WITA</strong>.';return}status.hidden=true;wrap.innerHTML=featureHtml(selected);$('#readBtn').onclick=openReader;$('#bookmarkBtn').onclick=toggleBookmark;$('#shareBtn').onclick=()=>shareEntry(selected);document.querySelectorAll('.reaction-btn').forEach(b=>b.onclick=()=>toggleReaction(b.dataset.reaction));renderBookmark();loadReactions(selected.date)}
+  function renderFeature(){const wrap=$('#featuredWrap'),status=$('#todayStatus');if(!selected){getTracker()?.select(null);wrap.innerHTML='';status.hidden=false;status.innerHTML='Renungan Harian GRIA dimulai <strong>4 Oktober 2026</strong> dan renungan baru terbuka setiap hari pukul <strong>06.00 WITA</strong>.';return}status.hidden=true;wrap.innerHTML=featureHtml(selected);$('#readBtn').onclick=openReader;$('#bookmarkBtn').onclick=toggleBookmark;$('#shareBtn').onclick=()=>shareEntry(selected);document.querySelectorAll('.reaction-btn').forEach(b=>b.onclick=()=>toggleReaction(b.dataset.reaction));renderBookmark();loadReactions(selected.date)}
 
   function openReader(){if(!selected)return;$('#readerTheme').textContent=`${selected.monthTheme} · ${selected.weekTheme}`;$('#readerTitle').textContent=selected.title;$('#readerMeta').textContent=`${formatDate(selected.date,true)} · ${selected.readingTime} menit membaca`;$('#readerReference').textContent=selected.reference;$('#readerKeyVerse').textContent=selected.keyVerse;$('#readerKeyVerseRef').textContent=selected.keyVerseReference+' · AYT';$('#readerBody').innerHTML=selected.body.map(p=>`<p>${esc(p)}</p>`).join('');$('#readerQuote').textContent='“'+selected.quote+'”';$('#readerReflection').textContent=selected.reflection;$('#readerAction').textContent=selected.action;$('#readerPrayer').textContent=selected.prayer;$('#shareQuoteBtn').onclick=()=>shareEntry(selected,true);const rel=releasedItems(),idx=rel.findIndex(x=>x.date===selected.date),prev=rel[idx-1],next=rel[idx+1];const pb=$('#prevDevotional'),nb=$('#nextDevotional');pb.disabled=!prev;nb.disabled=!next;pb.onclick=()=>prev&&setSelected(prev.date,true,true);nb.onclick=()=>next&&setSelected(next.date,true,true);$('#readerPanel').hidden=false;setTimeout(()=>$('#readerPanel').scrollIntoView({behavior:'smooth',block:'start'}),60)}
   function closeReader(){$('#readerPanel').hidden=true}

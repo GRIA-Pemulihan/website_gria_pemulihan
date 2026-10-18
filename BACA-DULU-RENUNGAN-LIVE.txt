@@ -1,0 +1,19 @@
+RENUNGAN — LIKE, READ, DAN JUMLAH LIVE
+
+Ekstrak ZIP ke akar repositori website_gria_pemulihan, timpa file yang sama, lalu commit/upload.
+Setelah deployment selesai, buka ulang aplikasi GRIA agar pembaruan cache masuk.
+
+Perubahan:
+- Like tetap tersedia dan tersimpan di Supabase. Like bisa dibatalkan.
+- Love diganti Read (sudah dibaca). Read dicatat sekali untuk setiap renungan pada browser/perangkat yang sama.
+- Jumlah Like dan Read berubah otomatis pada HP lain yang membuka renungan yang sama melalui Supabase Realtime.
+- Jika realtime terputus, jumlah diperiksa berkala setiap 15 detik serta saat aplikasi dibuka kembali.
+- Klik saat koneksi gagal masuk antrean pada perangkat dan dicoba lagi. Status menunjukkan jika klik masih menunggu sinkronisasi.
+- Riwayat Like dipertahankan. Data Love lama tidak diubah menjadi Read karena belum tentu berarti sudah membaca.
+
+Tanpa akun, identitas yang dipakai adalah ID acak browser. Orang yang sama memakai HP/browser lain atau menghapus penyimpanan browser bisa terhitung lagi. Tidak ada alamat email atau identitas perangkat yang dibagikan lewat realtime; yang dibagikan hanya jumlah.
+
+Supabase sudah diperbarui langsung pada proyek sdlzgekgjdpleiknwenj. TIDAK perlu menjalankan SQL lagi pada proyek ini. File migrasi disertakan untuk dokumentasi repositori.
+
+Validasi: uji dua browser nyata tanpa polling membuktikan pembaruan realtime; uji database memeriksa duplikasi, pembatalan Like, dan tanggal terkunci; uji antrean offline, respons hilang, dan pemuatan ulang lulus. Lebar 375, 430, 768, dan 1280 px tidak meluap.
+Jalankan npm test untuk uji antrean tracker.
