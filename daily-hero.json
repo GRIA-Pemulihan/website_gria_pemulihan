@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-19",
+  "date": "2026-10-20",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of landscapes",
+  "category": "Christian crosses with flowers",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/2016_Kampot%2C_Zach%C3%B3d_s%C5%82o%C5%84ca_nad_rzek%C4%85_Praek_Tuek_Chhu_%2819%29.jpg/1280px-2016_Kampot%2C_Zach%C3%B3d_s%C5%82o%C5%84ca_nad_rzek%C4%85_Praek_Tuek_Chhu_%2819%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "2016 Kampot, Zachód słońca nad rzeką Praek Tuek Chhu (19).jpg",
-    "author": "Marcin Konsek",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:2016_Kampot,_Zach%C3%B3d_s%C5%82o%C5%84ca_nad_rzek%C4%85_Praek_Tuek_Chhu_(19).jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Easter_cross_-_geograph.org.uk_-_7164325.jpg/1280px-Easter_cross_-_geograph.org.uk_-_7164325.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Easter cross - geograph.org.uk - 7164325.jpg",
+    "author": "Jeff Gogarty",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Easter_cross_-_geograph.org.uk_-_7164325.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of landscapes",
-    "width": 4927,
-    "height": 3285
+    "category": "Christian crosses with flowers",
+    "width": 1600,
+    "height": 1200
   }
 }
