@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-20",
+  "date": "2026-10-21",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Christian crosses with flowers",
+  "category": "Quality images of mountains",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Easter_cross_-_geograph.org.uk_-_7164325.jpg/1280px-Easter_cross_-_geograph.org.uk_-_7164325.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Easter cross - geograph.org.uk - 7164325.jpg",
-    "author": "Jeff Gogarty",
-    "license": "CC BY-SA 2.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Easter_cross_-_geograph.org.uk_-_7164325.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/Hiking_trail_at_N%C3%A1mafjall_Mountain%2C_Iceland%2C_20240716_1140_1373.jpg/1280px-Hiking_trail_at_N%C3%A1mafjall_Mountain%2C_Iceland%2C_20240716_1140_1373.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Hiking trail at Námafjall Mountain, Iceland, 20240716 1140 1373.jpg",
+    "author": "Jakub Hałun",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Hiking_trail_at_N%C3%A1mafjall_Mountain,_Iceland,_20240716_1140_1373.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Christian crosses with flowers",
-    "width": 1600,
-    "height": 1200
+    "category": "Quality images of mountains",
+    "width": 5640,
+    "height": 3740
   }
 }
