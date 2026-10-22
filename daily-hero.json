@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-22",
+  "date": "2026-10-23",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Featured pictures of sunsets",
+  "category": "Quality images of landscapes",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/D%C3%BClmen%2C_Merfeld%2C_Volvo_PV_544_B18_--_2021_--_0075-9.jpg/1280px-D%C3%BClmen%2C_Merfeld%2C_Volvo_PV_544_B18_--_2021_--_0075-9.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Dülmen, Merfeld, Volvo PV 544 B18 -- 2021 -- 0075-9.jpg",
-    "author": "Dietmar Rabich",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Arman%C3%A7on_Nuits.jpg/1280px-Arman%C3%A7on_Nuits.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Armançon Nuits.jpg",
+    "author": "Myrabella",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_Merfeld,_Volvo_PV_544_B18_--_2021_--_0075-9.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Arman%C3%A7on_Nuits.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Featured pictures of sunsets",
-    "width": 5987,
-    "height": 3742
+    "category": "Quality images of landscapes",
+    "width": 4179,
+    "height": 2351
   }
 }
