@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-23",
+  "date": "2026-10-24",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of landscapes",
+  "category": "Quality images of sunsets",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Arman%C3%A7on_Nuits.jpg/1280px-Arman%C3%A7on_Nuits.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Armançon Nuits.jpg",
-    "author": "Myrabella",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/2016_Kampot%2C_Zach%C3%B3d_s%C5%82o%C5%84ca_nad_rzek%C4%85_Praek_Tuek_Chhu_%2819%29.jpg/1280px-2016_Kampot%2C_Zach%C3%B3d_s%C5%82o%C5%84ca_nad_rzek%C4%85_Praek_Tuek_Chhu_%2819%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "2016 Kampot, Zachód słońca nad rzeką Praek Tuek Chhu (19).jpg",
+    "author": "Marcin Konsek",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Arman%C3%A7on_Nuits.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:2016_Kampot,_Zach%C3%B3d_s%C5%82o%C5%84ca_nad_rzek%C4%85_Praek_Tuek_Chhu_(19).jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of landscapes",
-    "width": 4179,
-    "height": 2351
+    "category": "Quality images of sunsets",
+    "width": 4927,
+    "height": 3285
   }
 }
