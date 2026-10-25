@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-25",
+  "date": "2026-10-26",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Draped Easter Crosses",
+  "category": "Quality images of landscapes",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kath_Filialkirche_Zur_Kreuzerh%C3%B6hung_Strebersdorf_Interior_05.jpg/1280px-Kath_Filialkirche_Zur_Kreuzerh%C3%B6hung_Strebersdorf_Interior_05.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Kath Filialkirche Zur Kreuzerhöhung Strebersdorf Interior 05.jpg",
-    "author": "Nxr-at",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/2017_Kamienio%C5%82om_Romanowo_6.jpg/1280px-2017_Kamienio%C5%82om_Romanowo_6.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "2017 Kamieniołom Romanowo 6.jpg",
+    "author": "Jacek Halicki",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Kath_Filialkirche_Zur_Kreuzerh%C3%B6hung_Strebersdorf_Interior_05.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:2017_Kamienio%C5%82om_Romanowo_6.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Draped Easter Crosses",
-    "width": 6000,
-    "height": 4000
+    "category": "Quality images of landscapes",
+    "width": 4714,
+    "height": 2972
   }
 }
