@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-28",
+  "date": "2026-10-29",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of mountains",
+  "category": "Featured pictures of sunsets",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/A_tree_and_a_mountain_along_the_Padjelantaleden_%28DSCF1065%29.jpg/1280px-A_tree_and_a_mountain_along_the_Padjelantaleden_%28DSCF1065%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "A tree and a mountain along the Padjelantaleden (DSCF1065).jpg",
-    "author": "Trougnouf (Benoit Brummer)",
-    "license": "CC BY 4.0",
-    "license_url": "https://creativecommons.org/licenses/by/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:A_tree_and_a_mountain_along_the_Padjelantaleden_(DSCF1065).jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Clifton_Beach_4.jpg/1280px-Clifton_Beach_4.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Clifton Beach 4.jpg",
+    "author": "JJ Harrison ( https://www.jjharrison.com.au/ )",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Clifton_Beach_4.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of mountains",
-    "width": 4935,
-    "height": 3295
+    "category": "Featured pictures of sunsets",
+    "width": 1944,
+    "height": 1296
   }
 }
