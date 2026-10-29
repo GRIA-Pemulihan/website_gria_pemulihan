@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-29",
+  "date": "2026-10-30",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Featured pictures of sunsets",
+  "category": "Quality images of landscapes",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Clifton_Beach_4.jpg/1280px-Clifton_Beach_4.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Clifton Beach 4.jpg",
-    "author": "JJ Harrison ( https://www.jjharrison.com.au/ )",
-    "license": "CC BY-SA 3.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Clifton_Beach_4.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/2014_Gagra%2C_Pla%C5%BCa_%2807%29.jpg/1280px-2014_Gagra%2C_Pla%C5%BCa_%2807%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "2014 Gagra, Plaża (07).jpg",
+    "author": "Hons084",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:2014_Gagra,_Pla%C5%BCa_(07).jpg",
     "provider": "Wikimedia Commons",
-    "category": "Featured pictures of sunsets",
-    "width": 1944,
-    "height": 1296
+    "category": "Quality images of landscapes",
+    "width": 4533,
+    "height": 2550
   }
 }
