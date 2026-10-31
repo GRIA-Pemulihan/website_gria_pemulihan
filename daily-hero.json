@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-10-31",
+  "date": "2026-11-01",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of sunsets",
+  "category": "Draped Easter Crosses",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/Ao_Nang_beach_5.jpg/1280px-Ao_Nang_beach_5.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Ao Nang beach 5.jpg",
-    "author": "kallerna",
-    "license": "CC BY-SA 3.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Ao_Nang_beach_5.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Benediktbeuern_Marienkirche_Innen.JPG/1280px-Benediktbeuern_Marienkirche_Innen.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Benediktbeuern Marienkirche Innen.JPG",
+    "author": "Rudolph Buch",
+    "license": "Public domain",
+    "license_url": "",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Benediktbeuern_Marienkirche_Innen.JPG",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of sunsets",
-    "width": 2900,
-    "height": 1920
+    "category": "Draped Easter Crosses",
+    "width": 3872,
+    "height": 2592
   }
 }
