@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-01",
+  "date": "2026-11-02",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Draped Easter Crosses",
+  "category": "Quality images of landscapes",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Benediktbeuern_Marienkirche_Innen.JPG/1280px-Benediktbeuern_Marienkirche_Innen.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Benediktbeuern Marienkirche Innen.JPG",
-    "author": "Rudolph Buch",
-    "license": "Public domain",
-    "license_url": "",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Benediktbeuern_Marienkirche_Innen.JPG",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/61-208-5089_Dniester_Canyon_2_RB_18_1.jpg/1280px-61-208-5089_Dniester_Canyon_2_RB_18_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "61-208-5089 Dniester Canyon 2 RB 18 1.jpg",
+    "author": "Rbrechko",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:61-208-5089_Dniester_Canyon_2_RB_18_1.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Draped Easter Crosses",
-    "width": 3872,
-    "height": 2592
+    "category": "Quality images of landscapes",
+    "width": 4200,
+    "height": 2800
   }
 }
