@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-04",
+  "date": "2026-11-05",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of mountains",
+  "category": "Featured pictures of sunsets",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/Empty_road_in_southern_Thailand_wilderness%2C_Surat_Thani.jpg/1280px-Empty_road_in_southern_Thailand_wilderness%2C_Surat_Thani.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Empty road in southern Thailand wilderness, Surat Thani.jpg",
-    "author": "Vyacheslav Argenberg",
-    "license": "CC BY 4.0",
-    "license_url": "https://creativecommons.org/licenses/by/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Empty_road_in_southern_Thailand_wilderness,_Surat_Thani.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Corse_Ota_Porto_genoese_tower_sunset.jpg/1280px-Corse_Ota_Porto_genoese_tower_sunset.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Corse Ota Porto genoese tower sunset.jpg",
+    "author": "Myrabella",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Corse_Ota_Porto_genoese_tower_sunset.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of mountains",
-    "width": 4032,
-    "height": 2688
+    "category": "Featured pictures of sunsets",
+    "width": 4264,
+    "height": 2832
   }
 }
