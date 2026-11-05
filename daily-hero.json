@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Featured pictures of sunsets",
+  "category": "Quality images of landscapes",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Corse_Ota_Porto_genoese_tower_sunset.jpg/1280px-Corse_Ota_Porto_genoese_tower_sunset.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Corse Ota Porto genoese tower sunset.jpg",
-    "author": "Myrabella",
-    "license": "CC BY-SA 3.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Corse_Ota_Porto_genoese_tower_sunset.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/Amursk_Amur_River_P8010340_2475.jpg/1280px-Amursk_Amur_River_P8010340_2475.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Amursk Amur River P8010340 2475.jpg",
+    "author": "Alexxx1979",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Amursk_Amur_River_P8010340_2475.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Featured pictures of sunsets",
-    "width": 4264,
-    "height": 2832
+    "category": "Quality images of landscapes",
+    "width": 3300,
+    "height": 2475
   }
 }
