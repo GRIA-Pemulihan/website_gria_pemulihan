@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-07",
+  "date": "2026-11-08",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of sunsets",
+  "category": "Draped Easter Crosses",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/68-104-9007_Kamianets-Podilskyi_Fortress_RB_18_2.jpg/1280px-68-104-9007_Kamianets-Podilskyi_Fortress_RB_18_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "68-104-9007 Kamianets-Podilskyi Fortress RB 18 2.jpg",
-    "author": "Rbrechko",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Kath_Filialkirche_Zur_Kreuzerh%C3%B6hung_Strebersdorf_Interior_05.jpg/1280px-Kath_Filialkirche_Zur_Kreuzerh%C3%B6hung_Strebersdorf_Interior_05.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Kath Filialkirche Zur Kreuzerhöhung Strebersdorf Interior 05.jpg",
+    "author": "Nxr-at",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:68-104-9007_Kamianets-Podilskyi_Fortress_RB_18_2.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Kath_Filialkirche_Zur_Kreuzerh%C3%B6hung_Strebersdorf_Interior_05.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of sunsets",
-    "width": 5032,
-    "height": 3355
+    "category": "Draped Easter Crosses",
+    "width": 6000,
+    "height": 4000
   }
 }
