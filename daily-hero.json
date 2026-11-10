@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of landscapes",
+  "category": "Christian crosses with flowers",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ee/Amursk_Amur_River_P8010333_2200.jpg/1280px-Amursk_Amur_River_P8010333_2200.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Amursk Amur River P8010333 2200.jpg",
-    "author": "Alexxx1979",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Amursk_Amur_River_P8010333_2200.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Easter_cross_-_geograph.org.uk_-_7164325.jpg/1280px-Easter_cross_-_geograph.org.uk_-_7164325.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Easter cross - geograph.org.uk - 7164325.jpg",
+    "author": "Jeff Gogarty",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Easter_cross_-_geograph.org.uk_-_7164325.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of landscapes",
-    "width": 3300,
-    "height": 2200
+    "category": "Christian crosses with flowers",
+    "width": 1600,
+    "height": 1200
   }
 }
