@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of mountains",
+  "category": "Featured pictures of sunsets",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Capileira_seen_from_the_Sulayr_Trail_%28DSCF5861%29.jpg/1280px-Capileira_seen_from_the_Sulayr_Trail_%28DSCF5861%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Capileira seen from the Sulayr Trail (DSCF5861).jpg",
-    "author": "Trougnouf (Benoit Brummer)",
-    "license": "CC BY 4.0",
-    "license_url": "https://creativecommons.org/licenses/by/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Capileira_seen_from_the_Sulayr_Trail_(DSCF5861).jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Corse_Ota_Porto_genoese_tower_sunset.jpg/1280px-Corse_Ota_Porto_genoese_tower_sunset.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Corse Ota Porto genoese tower sunset.jpg",
+    "author": "Myrabella",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Corse_Ota_Porto_genoese_tower_sunset.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of mountains",
-    "width": 4909,
-    "height": 3294
+    "category": "Featured pictures of sunsets",
+    "width": 4264,
+    "height": 2832
   }
 }
