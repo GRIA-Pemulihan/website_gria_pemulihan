@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Featured pictures of sunsets",
+  "category": "Quality images of landscapes",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Corse_Ota_Porto_genoese_tower_sunset.jpg/1280px-Corse_Ota_Porto_genoese_tower_sunset.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Corse Ota Porto genoese tower sunset.jpg",
-    "author": "Myrabella",
-    "license": "CC BY-SA 3.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Corse_Ota_Porto_genoese_tower_sunset.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/2015_Sokal%2C_Pola_uprawne_01.JPG/1280px-2015_Sokal%2C_Pola_uprawne_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "2015 Sokal, Pola uprawne 01.JPG",
+    "author": "Marcin Konsek",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:2015_Sokal,_Pola_uprawne_01.JPG",
     "provider": "Wikimedia Commons",
-    "category": "Featured pictures of sunsets",
-    "width": 4264,
-    "height": 2832
+    "category": "Quality images of landscapes",
+    "width": 4123,
+    "height": 2748
   }
 }
