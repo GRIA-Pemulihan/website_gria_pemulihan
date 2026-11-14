@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-14",
+  "date": "2026-11-15",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of sunsets",
+  "category": "Draped Easter Crosses",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Angelus_Hut_in_the_winter%2C_Nelson_Lakes_National_Park%2C_New_Zealand.jpg/1280px-Angelus_Hut_in_the_winter%2C_Nelson_Lakes_National_Park%2C_New_Zealand.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Angelus Hut in the winter, Nelson Lakes National Park, New Zealand.jpg",
-    "author": "Michal Klajban",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Angelus_Hut_in_the_winter,_Nelson_Lakes_National_Park,_New_Zealand.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/6DHo_05-03-2014_07103_10FB.jpg/1280px-6DHo_05-03-2014_07103_10FB.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "6DHo 05-03-2014 07103 10FB.jpg",
+    "author": "Hans Holz",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:6DHo_05-03-2014_07103_10FB.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of sunsets",
-    "width": 7357,
-    "height": 3437
+    "category": "Draped Easter Crosses",
+    "width": 1399,
+    "height": 932
   }
 }
