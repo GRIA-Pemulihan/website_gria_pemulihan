@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of landscapes",
+  "category": "Christian crosses with flowers",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/2014_Nowy_Aton%2C_Widok_ze_szczytu_G%C3%B3ry_Iwerskiej_%2810%29.jpg/1280px-2014_Nowy_Aton%2C_Widok_ze_szczytu_G%C3%B3ry_Iwerskiej_%2810%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "2014 Nowy Aton, Widok ze szczytu Góry Iwerskiej (10).jpg",
-    "author": "Hons084",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:2014_Nowy_Aton,_Widok_ze_szczytu_G%C3%B3ry_Iwerskiej_(10).jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Easter_decoration_at_the_entrance_to_Christ_Church%2C_New_Mill_-_geograph.org.uk_-_7739272.jpg/1280px-Easter_decoration_at_the_entrance_to_Christ_Church%2C_New_Mill_-_geograph.org.uk_-_7739272.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Easter decoration at the entrance to Christ Church, New Mill - geograph.org.uk - 7739272.jpg",
+    "author": "Humphrey Bolton",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Easter_decoration_at_the_entrance_to_Christ_Church,_New_Mill_-_geograph.org.uk_-_7739272.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of landscapes",
-    "width": 4545,
-    "height": 2557
+    "category": "Christian crosses with flowers",
+    "width": 2048,
+    "height": 1536
   }
 }
