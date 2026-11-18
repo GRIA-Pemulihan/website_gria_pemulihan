@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-18",
+  "date": "2026-11-19",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of mountains",
+  "category": "Featured pictures of sunsets",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/Hiking_trail_at_N%C3%A1mafjall_Mountain%2C_Iceland%2C_20240716_1140_1373.jpg/1280px-Hiking_trail_at_N%C3%A1mafjall_Mountain%2C_Iceland%2C_20240716_1140_1373.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Hiking trail at Námafjall Mountain, Iceland, 20240716 1140 1373.jpg",
-    "author": "Jakub Hałun",
-    "license": "CC BY 4.0",
-    "license_url": "https://creativecommons.org/licenses/by/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Hiking_trail_at_N%C3%A1mafjall_Mountain,_Iceland,_20240716_1140_1373.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Colorful_sky_with_orange_clouds_reflecting_in_the_water_of_a_paddy_field%2C_at_sunset%2C_Vang_Vieng%2C_Laos.jpg/1280px-Colorful_sky_with_orange_clouds_reflecting_in_the_water_of_a_paddy_field%2C_at_sunset%2C_Vang_Vieng%2C_Laos.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Colorful sky with orange clouds reflecting in the water of a paddy field, at sunset, Vang Vieng, Laos.jpg",
+    "author": "Basile Morin",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Colorful_sky_with_orange_clouds_reflecting_in_the_water_of_a_paddy_field,_at_sunset,_Vang_Vieng,_Laos.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of mountains",
-    "width": 5640,
-    "height": 3740
+    "category": "Featured pictures of sunsets",
+    "width": 6619,
+    "height": 4413
   }
 }
