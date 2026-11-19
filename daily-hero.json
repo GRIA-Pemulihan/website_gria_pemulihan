@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-19",
+  "date": "2026-11-20",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Featured pictures of sunsets",
+  "category": "Quality images of landscapes",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Colorful_sky_with_orange_clouds_reflecting_in_the_water_of_a_paddy_field%2C_at_sunset%2C_Vang_Vieng%2C_Laos.jpg/1280px-Colorful_sky_with_orange_clouds_reflecting_in_the_water_of_a_paddy_field%2C_at_sunset%2C_Vang_Vieng%2C_Laos.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Colorful sky with orange clouds reflecting in the water of a paddy field, at sunset, Vang Vieng, Laos.jpg",
-    "author": "Basile Morin",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/2014_Nowy_Aton%2C_Widok_ze_szczytu_G%C3%B3ry_Iwerskiej_%2810%29.jpg/1280px-2014_Nowy_Aton%2C_Widok_ze_szczytu_G%C3%B3ry_Iwerskiej_%2810%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "2014 Nowy Aton, Widok ze szczytu Góry Iwerskiej (10).jpg",
+    "author": "Hons084",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Colorful_sky_with_orange_clouds_reflecting_in_the_water_of_a_paddy_field,_at_sunset,_Vang_Vieng,_Laos.jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:2014_Nowy_Aton,_Widok_ze_szczytu_G%C3%B3ry_Iwerskiej_(10).jpg",
     "provider": "Wikimedia Commons",
-    "category": "Featured pictures of sunsets",
-    "width": 6619,
-    "height": 4413
+    "category": "Quality images of landscapes",
+    "width": 4545,
+    "height": 2557
   }
 }
