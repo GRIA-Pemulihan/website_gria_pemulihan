@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of landscapes",
+  "category": "Quality images of sunsets",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/2014_Nowy_Aton%2C_Widok_ze_szczytu_G%C3%B3ry_Iwerskiej_%2810%29.jpg/1280px-2014_Nowy_Aton%2C_Widok_ze_szczytu_G%C3%B3ry_Iwerskiej_%2810%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "2014 Nowy Aton, Widok ze szczytu Góry Iwerskiej (10).jpg",
-    "author": "Hons084",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/2016_Prowincja_Krabi%2C_Ko_Lanta_Yai%2C_Pla%C5%BCa_Klong_Khong_%2849%29.jpg/1280px-2016_Prowincja_Krabi%2C_Ko_Lanta_Yai%2C_Pla%C5%BCa_Klong_Khong_%2849%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "2016 Prowincja Krabi, Ko Lanta Yai, Plaża Klong Khong (49).jpg",
+    "author": "Marcin Konsek",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:2014_Nowy_Aton,_Widok_ze_szczytu_G%C3%B3ry_Iwerskiej_(10).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:2016_Prowincja_Krabi,_Ko_Lanta_Yai,_Pla%C5%BCa_Klong_Khong_(49).jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of landscapes",
-    "width": 4545,
-    "height": 2557
+    "category": "Quality images of sunsets",
+    "width": 5139,
+    "height": 2891
   }
 }
