@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Draped Easter Crosses",
+  "category": "Quality images of landscapes",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/2024_Franken_Sch%C3%B6nau_Brend_Fastentuecher.jpg/1280px-2024_Franken_Sch%C3%B6nau_Brend_Fastentuecher.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "2024 Franken Schönau Brend Fastentuecher.jpg",
-    "author": "ManfRomeoWohlfahrt",
-    "license": "CC0",
-    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-    "source_page": "https://commons.wikimedia.org/wiki/File:2024_Franken_Sch%C3%B6nau_Brend_Fastentuecher.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Aguas_termales%2C_Laguna_Salada%2C_Bolivia%2C_2016-02-02%2C_DD_110.JPG/1280px-Aguas_termales%2C_Laguna_Salada%2C_Bolivia%2C_2016-02-02%2C_DD_110.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Aguas termales, Laguna Salada, Bolivia, 2016-02-02, DD 110.JPG",
+    "author": "Diego Delso",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Aguas_termales,_Laguna_Salada,_Bolivia,_2016-02-02,_DD_110.JPG",
     "provider": "Wikimedia Commons",
-    "category": "Draped Easter Crosses",
-    "width": 5184,
-    "height": 2920
+    "category": "Quality images of landscapes",
+    "width": 8688,
+    "height": 5792
   }
 }
