@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of landscapes",
+  "category": "Christian crosses with flowers",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Aguas_termales%2C_Laguna_Salada%2C_Bolivia%2C_2016-02-02%2C_DD_110.JPG/1280px-Aguas_termales%2C_Laguna_Salada%2C_Bolivia%2C_2016-02-02%2C_DD_110.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Aguas termales, Laguna Salada, Bolivia, 2016-02-02, DD 110.JPG",
-    "author": "Diego Delso",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Aguas_termales,_Laguna_Salada,_Bolivia,_2016-02-02,_DD_110.JPG",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Easter_decoration_at_the_entrance_to_Christ_Church%2C_New_Mill_-_geograph.org.uk_-_7739272.jpg/1280px-Easter_decoration_at_the_entrance_to_Christ_Church%2C_New_Mill_-_geograph.org.uk_-_7739272.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Easter decoration at the entrance to Christ Church, New Mill - geograph.org.uk - 7739272.jpg",
+    "author": "Humphrey Bolton",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Easter_decoration_at_the_entrance_to_Christ_Church,_New_Mill_-_geograph.org.uk_-_7739272.jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of landscapes",
-    "width": 8688,
-    "height": 5792
+    "category": "Christian crosses with flowers",
+    "width": 2048,
+    "height": 1536
   }
 }
