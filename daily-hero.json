@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of mountains",
+  "category": "Featured pictures of sunsets",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Blue_Mountains_National_Park_%28AU%29%2C_Three_Sisters_--_2019_--_1983.jpg/1280px-Blue_Mountains_National_Park_%28AU%29%2C_Three_Sisters_--_2019_--_1983.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Blue Mountains National Park (AU), Three Sisters -- 2019 -- 1983.jpg",
-    "author": "Dietmar Rabich",
-    "license": "CC BY-SA 4.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Blue_Mountains_National_Park_(AU),_Three_Sisters_--_2019_--_1983.jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Ammonite_lamp_post_at_dusk%2C_Lyme_Regis.JPG/1280px-Ammonite_lamp_post_at_dusk%2C_Lyme_Regis.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "Ammonite lamp post at dusk, Lyme Regis.JPG",
+    "author": "MichaelMaggs",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Ammonite_lamp_post_at_dusk,_Lyme_Regis.JPG",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of mountains",
-    "width": 6720,
-    "height": 4480
+    "category": "Featured pictures of sunsets",
+    "width": 1675,
+    "height": 1200
   }
 }
