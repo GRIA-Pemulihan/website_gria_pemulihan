@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Featured pictures of sunsets",
+  "category": "Quality images of landscapes",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Ammonite_lamp_post_at_dusk%2C_Lyme_Regis.JPG/1280px-Ammonite_lamp_post_at_dusk%2C_Lyme_Regis.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "Ammonite lamp post at dusk, Lyme Regis.JPG",
-    "author": "MichaelMaggs",
-    "license": "CC BY-SA 3.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:Ammonite_lamp_post_at_dusk,_Lyme_Regis.JPG",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/2016_Bord%C5%BComi%2C_Widok_na_wzg%C3%B3rza_otaczaj%C4%85ce_miasto_%2802%29.jpg/1280px-2016_Bord%C5%BComi%2C_Widok_na_wzg%C3%B3rza_otaczaj%C4%85ce_miasto_%2802%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "2016 Bordżomi, Widok na wzgórza otaczające miasto (02).jpg",
+    "author": "Marcin Konsek",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source_page": "https://commons.wikimedia.org/wiki/File:2016_Bord%C5%BComi,_Widok_na_wzg%C3%B3rza_otaczaj%C4%85ce_miasto_(02).jpg",
     "provider": "Wikimedia Commons",
-    "category": "Featured pictures of sunsets",
-    "width": 1675,
-    "height": 1200
+    "category": "Quality images of landscapes",
+    "width": 5138,
+    "height": 2890
   }
 }
