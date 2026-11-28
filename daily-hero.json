@@ -1,19 +1,19 @@
 {
   "version": 1,
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "timezone": "Asia/Makassar",
   "provider": "Wikimedia Commons",
-  "category": "Quality images of landscapes",
+  "category": "Quality images of sunsets",
   "image": {
-    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/2016_Bord%C5%BComi%2C_Widok_na_wzg%C3%B3rza_otaczaj%C4%85ce_miasto_%2802%29.jpg/1280px-2016_Bord%C5%BComi%2C_Widok_na_wzg%C3%B3rza_otaczaj%C4%85ce_miasto_%2802%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "title": "2016 Bordżomi, Widok na wzgórza otaczające miasto (02).jpg",
+    "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/2016_Kampot%2C_Zach%C3%B3d_s%C5%82o%C5%84ca_nad_rzek%C4%85_Praek_Tuek_Chhu_%2820%29.jpg/1280px-2016_Kampot%2C_Zach%C3%B3d_s%C5%82o%C5%84ca_nad_rzek%C4%85_Praek_Tuek_Chhu_%2820%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "title": "2016 Kampot, Zachód słońca nad rzeką Praek Tuek Chhu (20).jpg",
     "author": "Marcin Konsek",
     "license": "CC BY-SA 4.0",
     "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source_page": "https://commons.wikimedia.org/wiki/File:2016_Bord%C5%BComi,_Widok_na_wzg%C3%B3rza_otaczaj%C4%85ce_miasto_(02).jpg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:2016_Kampot,_Zach%C3%B3d_s%C5%82o%C5%84ca_nad_rzek%C4%85_Praek_Tuek_Chhu_(20).jpg",
     "provider": "Wikimedia Commons",
-    "category": "Quality images of landscapes",
-    "width": 5138,
-    "height": 2890
+    "category": "Quality images of sunsets",
+    "width": 4645,
+    "height": 3097
   }
 }
